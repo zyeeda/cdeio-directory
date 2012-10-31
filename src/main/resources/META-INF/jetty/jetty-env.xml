@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+
+    <New class="org.objectweb.jotm.Jotm">
+        <Arg type="boolean">True</Arg>
+        <Arg type="boolean">False</Arg>
+        <Call id="tm" name="getTransactionManager"/>
+        <Call id="ut" name="getUserTransaction"/>
+        <Call id="tsr" name="getTransactionSynchronizationRegistry"/>
+    </New>
+
+    <New class="org.mortbay.jetty.plus.naming.Resource">
+        <Arg></Arg>
+        <Arg>javax.transaction.TransactionManager</Arg>
+        <Arg><Ref id="ut" /></Arg>
+    </New>
+
+    <New id="tx" class="org.mortbay.jetty.plus.naming.Transaction">
+        <Arg><Ref id="ut" /></Arg>
+    </New>
+    
+    <New class="org.mortbay.jetty.plus.naming.Resource">
+        <Arg>java:comp</Arg>
+        <Arg>TransactionSynchronizationRegistry</Arg>
+        <Arg>
+            <New class="javax.naming.Reference">
+                <Arg>javax.transaction.TransactionSynchronizationRegistry</Arg>
+                <Arg>org.objectweb.jotm.TransactionSynchronizationRegistryFactory</Arg>
+                <Arg></Arg>
+            </New>
+        </Arg>
+    </New>
+
+    <New class="org.mortbay.jetty.plus.naming.Resource">
+        <Arg>dataSource</Arg>
+        <Arg>
+            <New id="dataSource" class="org.enhydra.jdbc.standard.StandardXADataSource">
+                <Set name="driverName">com.mysql.jdbc.Driver</Set>
+                <Set name="url">jdbc:mysql://localhost:3306/zyeeda-directory?pinGlobalTxToPhysicalConnection=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8</Set>
+                <Set name="transactionManager"><Ref id="tm" /></Set>
+            </New>
+        </Arg>
+    </New>
+
+    <New class="org.mortbay.jetty.plus.naming.Resource">
+        <Arg></Arg>
+        <Arg>jdbc/defaultDS</Arg>
+        <Arg>
+            <New class="org.enhydra.jdbc.pool.StandardXAPoolDataSource">
+                <Arg><Ref id="dataSource" /></Arg>
+                <Set name="dataSourceName">dataSource</Set>
+                <Set name="user">root</Set>
+                <Set name="password">root</Set>
+            </New>
+        </Arg>
+    </New>
+
+</Configure>
