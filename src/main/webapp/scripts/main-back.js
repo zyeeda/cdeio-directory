@@ -38,21 +38,22 @@ define([
 
     $(function() {
         var app = window.app = coala.startApplication();
-        /*
+        app._c_ = coala;
         app.done(function(){
         	app.startFeature('viewport').done(function (viewport) {
                 config.featureContainer = function (feature) {
-                    return viewport.layout.$('sidebar');
+                    return viewport.views.content.$el;
                 }
                 coala.startBackboneHistory(app);
-            }).done(function(viewport){
-            	app.startFeature('system/departments');
-            }).done(function(viewport){
-            	app.startFeature('system/accounts', viewport.layout.$('content'));
+            }).done(function() {
+            	app.startFeature('system/accounts').done(function (viewport) {
+                    config.featureContainer = function (feature) {
+                        return viewport.views.content.$el;
+                    }
+                    coala.startBackboneHistory(app);
+                })
             });
-        });*/
-        config.featureContainer = $(document.body);
-        app.startFeature('system/accounts');
+        });
     });
 
 });

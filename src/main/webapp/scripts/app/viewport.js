@@ -5,7 +5,7 @@ define({
     views: [
         { name: 'header', region: 'header' },
         { name: 'footer', region: 'footer' },
-        { name: 'sidebar', region: 'sidebar' },
-        { name: 'content', region: 'content' }
+        { name: 'departments', region: 'sidebar' },
+        { name: 'accounts', region: 'content' }
     ]
 });
