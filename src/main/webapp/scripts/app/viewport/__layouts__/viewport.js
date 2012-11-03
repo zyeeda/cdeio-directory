@@ -18,7 +18,7 @@ define({
             //size: 52
         },
         west: {
-            size: 340,
+            size: 450,
             spacing_open: 5
         },
         center: {

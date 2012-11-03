@@ -1,11 +1,10 @@
 
 var {mark} = require('coala/mark');
-
+exports.enableFrontendExtension = true;
 exports.filters = {
     defaults: {
         exclude: {
-        	departmentFilter: ['children', 'accounts']
-//            departmentFilter: ['children', 'accounts', 'parent(1)']
+            departmentFilter: ['children', 'accounts', 'parent(1)']
         }
     }
 };
@@ -29,11 +28,9 @@ exports.fieldGroups = {
 };
 
 exports['tree'] = {
-        colModel: [
-                  {name:'name', label: '部门'}
-        ],
-		height: 350,
-		width: 340
+        callback: {
+        	onClick: 'treeNodeClick'
+        }
 };
 
 exports.validators = {
