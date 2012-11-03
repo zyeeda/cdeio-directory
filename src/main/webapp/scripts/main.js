@@ -38,7 +38,7 @@ define([
 
     $(function() {
         var app = window.app = coala.startApplication();
-        /*
+        
         app.done(function(){
         	app.startFeature('viewport').done(function (viewport) {
                 config.featureContainer = function (feature) {
@@ -50,9 +50,7 @@ define([
             }).done(function(viewport){
             	app.startFeature('system/accounts', viewport.layout.$('content'));
             });
-        });*/
-        config.featureContainer = $(document.body);
-        app.startFeature('system/accounts');
+        });
     });
 
 });

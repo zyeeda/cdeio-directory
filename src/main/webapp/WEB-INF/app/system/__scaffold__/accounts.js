@@ -86,7 +86,7 @@ exports['grid'] = {
            {label: '禁用状态', name: 'disabled', type: 'boolean'},
            {label: '部门', name: 'department.name'}
 	    ],
-	    height: '350px'
+	    height: '400px'
 }
 
 // listBySql
@@ -122,7 +122,7 @@ exports.operators = {
 	        "label": "查看",
 	        "icon": "icon-eye-open"
 	    },
-	    "changePwd": {
+	    "changePassword": {
 	        "label": "修改密码",
 	        "icon": "icon-edit"
 	    }

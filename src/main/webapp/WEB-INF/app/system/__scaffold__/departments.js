@@ -18,7 +18,7 @@ exports.picker = {
     }
 };
 
-exports.style = 'grid';
+exports.style = 'tree';
 
 exports.labels = {
         name: '部门'
@@ -28,12 +28,12 @@ exports.fieldGroups = {
         DEFAULT: ['name']
 };
 
-exports['grid'] = {
+exports['tree'] = {
         colModel: [
                   {name:'name', label: '部门'}
         ],
 		height: 350,
-		width: 100
+		width: 340
 };
 
 exports.validators = {
