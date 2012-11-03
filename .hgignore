@@ -22,7 +22,7 @@ WEB-INF/classes
 WEB-INF/lib
 WEB-INF/modules/coala
 
-src/main/webapp/scripts/zui
+src/main/webapp/scripts/libs
 src/main/webapp/scripts/main-dist.js
 
 
