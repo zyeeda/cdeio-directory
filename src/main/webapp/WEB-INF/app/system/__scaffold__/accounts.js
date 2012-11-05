@@ -13,11 +13,12 @@ exports.filters = {
     defaults: {
         exclude: {
             accountFilter: ['password', 'password2'],
-            departmentFilter: ['accounts', 'children', 'parent']
+            departmentFilter: ['accounts', 'children', 'parent(1)']
         }
     }
 };
 
+exports.enableFrontendExtension = true;
 exports.style = 'grid';
 
 exports.labels = {
@@ -34,12 +35,17 @@ exports.labels = {
         email: '邮箱',
         mobile: '手机',
         telephone: '电话',
-        disabled: '禁用状态'
+        disabled: '禁用状态',
+        
+        oldPassword: '原密码',
+        newPassword1: '新密码',
+        newPassword2: '重复密码'
 };
 
 exports.fieldGroups = {
 		baseInfo: ['familyName', 'firstName', 'nickname', 'email', 'username'],
 		pwdInfo: ['password', {name: 'password2'}],
+		editPwdInfo: ['oldPassword','newPassword1', 'newPassword2'],
 		others: [
 			'department',
 			{name: 'gender', type: 'picker', group: 'others',
@@ -65,55 +71,38 @@ exports.forms = {
             ],
             groups: ['baseInfo', 'others']
         }
-//        ,
-//        changePwd: {
-//        	tabs: [
-//                   {title: '密码信息', groups: ['pwdInfo']},
-//               ],
-//        	groups: ['pwdInfo']
-//        }
+        ,
+        changePwd: {
+        	tabs: [
+                   {title: '密码信息', groups: ['editPwdInfo']},
+               ],
+        	groups: ['editPwdInfo']
+        }
 }
 
 
 exports['grid'] = {
 		colModel: [
-           {label: '姓', name: 'familyName'},
-           {label: '名', name: 'firstName'},
+           {label: '姓', name: 'familyName', width: 50},
+           {label: '名', name: 'firstName', width: 50},
+           {label: '部门', name: 'department.name'},
+
            {label: '生日', name: 'birthday', type: 'date'},
            {label: '昵称', name: 'nickname'},
            {label: '用户名', name: 'username'},
            {label: '邮箱', name: 'email'},
-           {label: '禁用状态', name: 'disabled', type: 'boolean'},
-           {label: '部门', name: 'department.name'}
+           {label: '禁用状态', name: 'disabled', type: 'boolean'}
 	    ],
-	    height: '400px'
+	    height: '400px',
+	    events: {
+	    	departmentChanged: 'departmentChanged'
+	    }
 }
 
-// listBySql
-//exports['grid'] = {
-//	colModel: [
-//	    // {label: 'id', name: 'id', alias: 'f_id', position: 0},
-//	   {label: '姓', name: 'familyName',alias: 'F_FAMILY_NAME',  position: 1},
-//	   {label: '名', name: 'firstName', alias: 'F_FIRST_NAME', position: 2},
-//	   {label: '昵称', name: 'nickname',alias: 'F_NICKNAME', position: 3},
-//	   {label: '用户名', name: 'username',alias: 'F_USERNAME', position: 4},
-//	   {label: '邮箱', name: 'email',alias: 'F_EMAIL', position: 5},
-//	   {label: '禁用状态', name: 'disabled', alias: 'F_DISABLED', type: 'boolean', position: 6}
-////	   {label: '部门', name: 'department.name', position: 7}
-//	],
-//	height: '350px'
-//	// resultClass: 'com.zyeeda.framework.commons.organization.entity.Account'
-//}
 
 exports.operators = {
-	    "add": {
-	        "label": "添加",
-	        "icon": "icon-plus"
-	    },
-	    "edit": {
-	        "label": "编辑",
-	        "icon": "icon-edit"
-	    },
+	    add: {label: "添加", icon: "icon-plus"},
+	    edit: {label: "编辑", icon: "icon-edit"},
 	    "del": {
 	        "label": "删除",
 	        "icon": "icon-minus"
@@ -121,6 +110,10 @@ exports.operators = {
 	    "show": {
 	        "label": "查看",
 	        "icon": "icon-eye-open"
+	    },
+	    "refresh": {
+	        "label": "刷新",
+	        "icon": "icon-refresh"
 	    },
 	    "changePassword": {
 	        "label": "修改密码",
@@ -198,33 +191,3 @@ exports.hooks = {
 	}
 };
 
-/*
-exports.picker = {
-    grid: {
-        height: 300,
-        colModel: [
-            {label: 'ID', index: 'id', name: 'id'},
-            {label: '名称', index: 'name', name: 'name'},
-            {label: '描述', index: 'description', name: 'description'}
-        ]
-    }
-};
-
-exports.doWithRouter = function(router) {
-    router.get('/roles', mark('services', 'system:account-service').on(function(service, request){
-        var {id} = request.params, results;
-
-        if (!id) {
-            return json(false);
-        }
-        results = service.findRolesByAccountId(id);
-        
-        return json({results: results}, {
-            exclude: {
-                roleFilter: 'accounts'
-            }
-        });
-
-    }));
-};
-*/
