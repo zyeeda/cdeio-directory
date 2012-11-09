@@ -12,7 +12,7 @@ var {Update} = com.zyeeda.framework.validation.group;
 exports.filters = {
     defaults: {
         exclude: {
-            accountFilter: ['password', 'password2'],
+            accountFilter: '',
             departmentFilter: ['accounts', 'children', 'parent(1)']
         }
     }
@@ -29,23 +29,27 @@ exports.labels = {
         username: '用户名',
         password: '密码',
         password2: '重复密码',
-        department: '部门',
         gender: '性别',
         birthday: '生日',
         email: '邮箱',
         mobile: '手机',
         telephone: '电话',
         disabled: '禁用状态',
-        
         oldPassword: '原密码',
-        newPassword1: '新密码',
-        newPassword2: '重复密码'
+        newPassword: '新密码',
+        newPassword2: '重复密码',
+        department: '部门'
+        	
 };
 
 exports.fieldGroups = {
 		baseInfo: ['familyName', 'firstName', 'nickname', 'email', 'username'],
 		pwdInfo: ['password', {name: 'password2'}],
-		editPwdInfo: ['oldPassword','newPassword1', 'newPassword2'],
+		editPwdInfo: [
+		    {name: 'oldPassword', type: 'string', rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
+		    {name: 'newPassword', type: 'string', rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
+		    {name: 'newPassword2', type: 'string', rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}
+		],
 		others: [
 			'department',
 			{name: 'gender', type: 'picker', group: 'others',
@@ -83,15 +87,12 @@ exports.forms = {
 
 exports['grid'] = {
 		colModel: [
-           {label: '姓', name: 'familyName', width: 50},
-           {label: '名', name: 'firstName', width: 50},
-           {label: '部门', name: 'department.name'},
-
-           {label: '生日', name: 'birthday', type: 'date'},
-           {label: '昵称', name: 'nickname'},
-           {label: '用户名', name: 'username'},
-           {label: '邮箱', name: 'email'},
-           {label: '禁用状态', name: 'disabled', type: 'boolean'}
+           {name: 'familyName', width: 50},
+           {name: 'firstName', width: 50},
+           {name: 'birthday', type: 'date'},
+           'nickname','username', 'email',
+           {name: 'disabled', type: 'boolean'},
+           {label: '部门', name: 'department.name', sortable: false, search: false}
 	    ],
 	    height: '400px',
 	    events: {
@@ -99,27 +100,14 @@ exports['grid'] = {
 	    }
 }
 
-
 exports.operators = {
-	    add: {label: "添加", icon: "icon-plus"},
-	    edit: {label: "编辑", icon: "icon-edit"},
-	    "del": {
-	        "label": "删除",
-	        "icon": "icon-minus"
-	    },
-	    "show": {
-	        "label": "查看",
-	        "icon": "icon-eye-open"
-	    },
-	    "refresh": {
-	        "label": "刷新",
-	        "icon": "icon-refresh"
-	    },
-	    "changePassword": {
-	        "label": "修改密码",
-	        "icon": "icon-edit"
-	    }
-	}
+    add: {label: "添加", icon: "icon-plus"},
+    edit: {label: "编辑", icon: "icon-edit"},
+    del: {label: "删除",icon: "icon-minus"},
+    show: {label: "查看",icon: "icon-eye-open"},
+    refresh: {label: "刷新", icon: "icon-refresh"},
+    changePassword: {label: "修改密码", icon: "icon-edit"}
+}
 
 exports.converters = {
 	'com.zyeeda.framework.commons.organization.entity.Gender': function (value, fieldMeta) {
@@ -132,7 +120,7 @@ exports.validators = {
 		changePassword: function (context, account, request) {
 			try {
 				if (!BCrypt.checkpw(request.params.oldPassword, account.getPassword())) {
-					context.addViolation({ message: '旧密码不正确', properties: 'oldPassword' });
+					context.addViolation({ message: '不正确', properties: 'oldPassword' });
 				}
 			} catch (e) {
 				context.addViolation({ message: '原密码哈希有误' });
@@ -150,7 +138,7 @@ exports.validators = {
 	
 	remove: {
 		defaults: function (context, account, request) {
-			if (account.getUsername() === 'tangrui') {
+			if (account.getUsername() === 'tangrui1') {
 				context.addViolation({ message: '不能删除' + account.getUsername() + '用户'});
 			}
 		}
@@ -167,7 +155,7 @@ exports.validators = {
 
 exports.hooks = {
 	beforeCreate: {
-		defaults: mark('services', 'system:accounts').on(function (accountSvc, entity) {
+		add: mark('services', 'system:accounts').on(function (accountSvc, entity) {
 			accountSvc.hashPassword(entity);
 		})
 	},
@@ -190,4 +178,3 @@ exports.hooks = {
 		})
 	}
 };
-

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm classpath:///META-INF/schema/orm_2_0.xsd"
+    version="2.0">
+    
+    <named-query name="getSubDepartmentCount">
+        <query>
+            select count(d) from Department d where d.parent.id = :departmentId
+        </query>
+    </named-query>
+    
+    <named-query name="getAccountCount">
+        <query>
+            select count(c) from Account c where c.department.id = :departmentId
+        </query>
+    </named-query>
+    
+    <named-query name="getDepartmentMaxCode">
+        <query>
+            select max(code) from Department 
+        </query>
+    </named-query>
+    
+</entity-mappings>

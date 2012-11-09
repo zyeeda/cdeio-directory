@@ -1,4 +1,3 @@
-
 var {mark} = require('coala/mark');
 exports.enableFrontendExtension = true;
 exports.filters = {
@@ -10,9 +9,9 @@ exports.filters = {
 };
 
 exports.picker = {
-    grid: {
+	grid: {
         colModel: [
-            {name:'name',label: '部门', width: 500}
+            {name: 'name', label: '部门', width: 500}
         ]
     }
 };
@@ -43,3 +42,11 @@ exports.validators = {
 		})
 	}
 }
+
+exports.hooks = {
+	beforeCreate: {
+		add: mark('services', 'system:departments').on(function (departmentSvc, department) {
+			departmentSvc.genPath(department);
+		})
+	}
+};
