@@ -92,7 +92,7 @@ exports['grid'] = {
            {name: 'birthday', type: 'date'},
            'nickname','username', 'email',
            {name: 'disabled', type: 'boolean'},
-           {label: '部门', name: 'department.name', sortable: false, search: false}
+           {label: '部门', name: 'department.name'}
 	    ],
 	    height: '400px',
 	    events: {
