@@ -16,10 +16,4 @@
         </query>
     </named-query>
     
-    <named-query name="getDepartmentMaxCode">
-        <query>
-            select max(code) from Department 
-        </query>
-    </named-query>
-    
 </entity-mappings>
