@@ -33,11 +33,12 @@ define([
     'order!libs/jquery/layout/jquery.layout.resizeTabLayout',
     'order!libs/jquery/daterangepicker/date',
     'order!libs/jquery/jquery.validate',
-    'order!libs/jquery/daterangepicker/daterangepicker'
+    'order!libs/jquery/daterangepicker/daterangepicker',
+    'order!directory-application'
 ], function ($, coala, config) {
 
     $(function() {
-        var app = window.app = coala.startApplication();
+        var app = window.app = coala.startApplication('directory-application');
         
         app.done(function(){
         	app.startFeature('viewport').done(function (viewport) {
@@ -48,7 +49,7 @@ define([
             }).done(function(viewport){
             	app.startFeature('system/departments');
             }).done(function(viewport){
-            	app.startFeature('system/accounts', viewport.layout.$('content'));
+            	app.startFeature('system/accounts', {container: viewport.layout.$('content')});
             });
         });
     });

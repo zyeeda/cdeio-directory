@@ -1,4 +1,6 @@
 var {mark} = require('coala/mark');
+var {json} = require('coala/response');
+
 exports.enableFrontendExtension = true;
 exports.filters = {
     defaults: {
@@ -16,6 +18,7 @@ exports.picker = {
     }
 };
 
+exports.enableFrontendExtension = true;
 exports.style = 'tree';
 
 exports.labels = {
@@ -27,9 +30,21 @@ exports.fieldGroups = {
 };
 
 exports['tree'] = {
-        callback: {
-        	onClick: 'treeNodeClick'
-        }
+	edit: {
+		enable: true,
+		showRemoveBtn: false,
+		showRenameBtn: false
+	},
+	callback: {
+    	'onDrop': 'departmentMoved'
+    }
+};
+
+exports.operators = {
+	    add: {label: "添加", icon: "icon-plus"},
+	    edit: {label: "编辑", icon: "icon-edit"},
+	    del: {label: "删除",icon: "icon-minus"},
+	    toggleMove: {label: "开启移动", icon: "icon-move"}
 };
 
 exports.validators = {
@@ -44,9 +59,37 @@ exports.validators = {
 }
 
 exports.hooks = {
-	beforeCreate: {
-		add: mark('services', 'system:departments').on(function (departmentSvc, department) {
-			departmentSvc.genPath(department);
+		
+	afterCreate: {
+		defaults: mark('services', ['system:departments', 'system:jmsService']).on(function (departmentSvc, jmsService, department) {
+			department =  departmentSvc.buildPath(department);
+			var msg = jmsService.buildMsg('department', 'create', department);
+			json(msg, exports.filters.defaults).body.forEach(function(str){
+				jmsService.sendMsg(str);
+			})
+		})
+	},
+	afterUpdate: {
+		defaults: mark('services', 'system:jmsService').on(function (jmsService, department) {
+			var msg = jmsService.buildMsg('department', 'update', department);
+			json(msg, exports.filters.defaults).body.forEach(function(str){
+				jmsService.sendMsg(str);
+			})
+		}),
+		move: mark('services', ['system:departments', 'system:jmsService']).on(function (departmentSvc, jmsService, department) {
+			departmentSvc.changeChildrenPath(department);
+			var msg = jmsService.buildMsg('department', 'move', department);
+			json(msg, exports.filters.defaults).body.forEach(function(str){
+				jmsService.sendMsg(str);
+			})
+		})
+	},
+	afterRemove: {
+		defaults: mark('services', 'system:jmsService').on(function (jmsService, department) {
+			var msg = jmsService.buildMsg('department', 'remove', department);
+			json(msg, exports.filters.defaults).body.forEach(function(str){
+				jmsService.sendMsg(str);
+			})
 		})
 	}
 };

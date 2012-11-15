@@ -16,4 +16,10 @@
         </query>
     </named-query>
     
+    <named-query name="getAllChildren">
+        <query>
+        	select d from Department d where d.path like :likePath and d.path != :path
+        </query>
+    </named-query>
+    
 </entity-mappings>

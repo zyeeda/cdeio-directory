@@ -96,7 +96,7 @@ exports['grid'] = {
 	    ],
 	    height: '400px',
 	    events: {
-	    	departmentChanged: 'departmentChanged'
+	    	'system/departments#tree:onClick': 'departmentChanged'
 	    }
 }
 
@@ -155,7 +155,7 @@ exports.validators = {
 
 exports.hooks = {
 	beforeCreate: {
-		add: mark('services', 'system:accounts').on(function (accountSvc, entity) {
+		defaults: mark('services', 'system:accounts').on(function (accountSvc, entity) {
 			accountSvc.hashPassword(entity);
 		})
 	},
@@ -175,6 +175,31 @@ exports.hooks = {
 		
 		disable: mark('services', 'system:accounts').on(function (accountSvc, account) {
 			accountSvc.disableAccount(account);
+		})
+	},
+	
+	afterCreate: {
+		defaults: mark('services','system:jmsService').on(function (jmsService, account) {
+			var msg = jmsService.buildMsg('account', 'create', account);
+			json(msg, exports.filters.defaults).body.forEach(function(str){
+				jmsService.sendMsg(str);
+			})
+		})
+	},
+	afterUpdate: {
+		defaults: mark('services','system:jmsService').on(function (jmsService, account) {
+			var msg = jmsService.buildMsg('account', 'update', account);
+			json(msg, exports.filters.defaults).body.forEach(function(str){
+				jmsService.sendMsg(str);
+			})
+		})
+	},
+	afterRemove: {
+		defaults: mark('services','system:jmsService').on(function (jmsService, account) {
+			var msg = jmsService.buildMsg('account', 'remove', account);
+			json(msg, exports.filters.defaults).body.forEach(function(str){
+				jmsService.sendMsg(str);
+			})
 		})
 	}
 };

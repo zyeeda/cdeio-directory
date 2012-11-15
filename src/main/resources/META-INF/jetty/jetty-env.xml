@@ -58,4 +58,26 @@
         </Arg>
     </New>
 
+<!-- 	<New id="myQueue" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg>jms/myQueue</Arg>
+		<Arg>
+			<New class="org.apache.activemq.command.ActiveMQQueue">
+				<Arg>directory</Arg>
+			</New>
+		</Arg>
+	</New> -->
+
+	<New id="cf" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg></Arg>
+		<Arg>jms/connectionFactory</Arg>
+		<Arg>
+			<New class="org.apache.activemq.ActiveMQConnectionFactory">
+				<!-- <Arg>tcp://localhost:61616</Arg> -->
+				<Set name="brokerURL">tcp://localhost:61616</Set>
+				<Set name="userName">system</Set>
+				<Set name="password">admin</Set>
+			</New>
+		</Arg>
+	</New>
+
 </Configure>
