@@ -20,7 +20,7 @@ exports.createService = function () {
 		changeChildrenPath: mark('managers', Department).mark('tx').on(function (deptMgr, department) {
 			var oldPath = department.path;
 			var newPath = department.parent ? department.parent.path + department.id + ',': department.id + ',';
-			var children = deptMgr.getAllChildren({likePath: oldPath + '%', path: oldPath});
+			var children = deptMgr.getChildrenDepartments({likePath: oldPath + '%', path: oldPath});
 			department.path = newPath;
 			deptMgr.merge(department);
 			var i = 0, _len = children.size(), child;
@@ -30,6 +30,16 @@ exports.createService = function () {
 				deptMgr.merge(child);
 			}
 			return department;
+		}),
+		getDepartments: mark('managers', Department).mark('tx').on(function (deptMgr, path, isSyncTree) {
+			if(isSyncTree) {
+				return deptMgr.getChildrenDepartments({likePath: path + '%', path: path});
+			}else {
+				return deptMgr.getSubDepartments({parentId: path});
+			}
+		}),
+		get: mark('managers', Department).mark('tx').on(function (deptMgr, id) {
+			return deptMgr.find(id);
 		})
 	};
 }

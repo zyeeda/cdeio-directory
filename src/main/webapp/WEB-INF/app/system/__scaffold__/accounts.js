@@ -203,3 +203,17 @@ exports.hooks = {
 		})
 	}
 };
+
+exports.doWithRouter = function(router) {
+    router.get('/sync/:path', mark('services', 'system:accounts').on(function (accountMgr, request, path) {
+    	var results;
+    	if(!path) {
+    		return html('notfound!');
+    	}else if(path.indexOf(',') !== -1) {
+    		results = accountMgr.getAccounts(path, true);
+    	}else {
+    		results = accountMgr.getAccounts(path, false);
+    	}
+        return json(results, exports.filters.defaults);
+    }));
+};

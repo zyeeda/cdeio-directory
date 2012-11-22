@@ -7,6 +7,18 @@ exports.filters = {
         exclude: {
             departmentFilter: ['children', 'accounts', 'parent(1)']
         }
+    },
+    sub: {
+        exclude: {
+            departmentFilter: ['parent', 'children(2)'],
+            accountFilter: ['department', 'password', 'password2']
+        }
+    },
+    child: {
+        exclude: {
+            departmentFilter: ['parent'],
+            accountFilter: ['department', 'password', 'password2']
+        }
     }
 };
 
@@ -31,7 +43,6 @@ exports.fieldGroups = {
 
 exports['tree'] = {
 	edit: {
-		enable: true,
 		showRemoveBtn: false,
 		showRenameBtn: false
 	},
@@ -93,3 +104,29 @@ exports.hooks = {
 		})
 	}
 };
+
+exports.doWithRouter = function(router) {
+    router.get('/sync/:path', mark('services', 'system:departments').on(function (deptService, request, path) {
+    	var results;
+    	if(!path) {
+    		return html('notfound!');
+    	}else if(path.indexOf(',') !== -1) {
+    		results = deptService.getDepartments(path, true);
+    	}else {
+    		results = deptService.getDepartments(path, false);
+    	}
+        return json(results, exports.filters.defaults);
+    }));
+    
+    router.get('/sub/:id', mark('services', 'system:departments').on(function (deptService, request, id) {
+    	var results = deptService.get(id);
+        return json(results, exports.filters.sub);
+    }));
+    
+    router.get('/child/:id', mark('services', 'system:departments').on(function (deptService, request, id) {
+    	var results = deptService.get(id);
+        return json(results, exports.filters.child);
+    }));
+    
+};
+

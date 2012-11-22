@@ -16,9 +16,27 @@
         </query>
     </named-query>
     
-    <named-query name="getAllChildren">
+   <named-query name="getSubDepartments">
+        <query>
+       		select d from Department d  where d.parent.id = :parentId 
+        </query>
+    </named-query>
+    
+    <named-query name="getChildrenDepartments">
         <query>
         	select d from Department d where d.path like :likePath and d.path != :path
+        </query>
+    </named-query>
+        
+    <named-query name="getSubAccounts">
+        <query>
+       		select a from Account a left outer join a.department d where d.parent.id = :parentId 
+        </query>
+    </named-query>
+    
+    <named-query name="getChildrenAccounts">
+        <query>
+           	select a from Account a left outer join a.department d where d.path like :likePath 
         </query>
     </named-query>
     

@@ -16,12 +16,18 @@ define(['jquery'], function($){
                 });
                 return true;
             },
-            toggleMove: function() {
-                console.log(this);
+            toggleMove: function(e) {
                 var me = this,
                 tree = me.feature.views['treeViews:tree'].components[0],
                 app = me.feature.module.getApplication();
-                console.log(tree);
+                var $ele = $(e.srcElement);
+                if(tree.setting.edit.enable) {
+                	 tree.setting.edit.enable = false;
+                	 $ele.html($ele.html().replace('关闭','开启'));
+                }else {
+                	 tree.setting.edit.enable = true;
+                	 $ele.html($ele.html().replace('开启','关闭'));
+                }
                 return true;
             }
         }

@@ -21,7 +21,15 @@ exports.createService = function() {
     	
     	disableAccount: mark('tx').on(function (account) {
     		account.setDisabled(true);
-    	})
+    	}),
+    	
+		getAccounts: mark('managers', Account).mark('tx').on(function (accountMgr, path, isSyncTree) {
+			if(isSyncTree) {
+				return accountMgr.getChildrenAccounts({likePath: path + '%'});
+			}else {
+				return accountMgr.getSubAccounts({parentId: path});
+			}
+		})
     	
     };
     
