@@ -1,10 +1,14 @@
 var {mark} 					= require('coala/mark');
+var {activemq} 				= require('config');
 var {Session, DeliveryMode} = javax.jms;
 var {HashMap} 				= java.util;
 
 exports.createService = function () {
 	return {
 		sendMsg: mark('beans', 'connectionFactory').on(function (connectionFactory, msg) {
+			if(activemq.disable) {
+				return;
+			}
 			var connection, session, topic, publisher;
 			connection = connectionFactory.createConnection();
 	        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);

@@ -182,7 +182,7 @@ exports.createService = function () {
             		 temp = str.substr(0, str.length -1);
             		 parentId = temp.substr(temp.lastIndexOf(',') + 1, temp.length);
         		 }
-        		 if(parentId.length > 0) {
+        		 if(parentId) {
         			 var newParent = new Department();
         			 newParent.setId(parentId);
         			 dept.setParent(newParent);

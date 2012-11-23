@@ -74,6 +74,7 @@ define(['jquery', 'zui/coala/loader-plugin-manager'], function($, LoaderManager)
 	            return true;
             },
             departmentChanged: function(feature, view, tree, e, viewName, treeNode) {
+            	console.log(treeNode.id);
             	var me = this,
                 grid = me.feature.views['views:grid'].components[0];
             	
