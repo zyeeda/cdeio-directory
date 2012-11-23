@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm classpath:///META-INF/schema/orm_2_0.xsd"
+    version="2.0">
+    
+    <named-query name="getSubDepartmentCount">
+        <query>
+            select count(d) from Department d where d.parent.id = :departmentId
+        </query>
+    </named-query>
+    
+    <named-query name="getAccountCount">
+        <query>
+            select count(c) from Account c where c.department.id = :departmentId
+        </query>
+    </named-query>
+        
+   <named-query name="getSubDepartments">
+        <query>
+       		select d from Department d  where d.parent.id = :parentId 
+        </query>
+    </named-query>
+    
+    <named-query name="getChildrenDepartments">
+        <query>
+        	select d from Department d where d.path like :likePath and d.path != :path
+        </query>
+    </named-query>
+        
+    <named-query name="getSubAccounts">
+        <query>
+       		select a from Account a left outer join a.department d where d.parent.id = :parentId 
+        </query>
+    </named-query>
+    
+    <named-query name="getChildrenAccounts">
+        <query>
+           	select a from Account a left outer join a.department d where d.path like :likePath 
+        </query>
+    </named-query>
+  
+	<named-query name="removeAllDepartments">
+        <query>
+       		delete from Department 
+        </query>
+    </named-query>
+
+    <named-query name="removeSubDepartments">
+        <query>
+       		delete from Department d  where d.parent.id = :parentId 
+        </query>
+    </named-query>
+    
+    <named-query name="removeChildrenDepartments">
+        <query>
+        	delete from Department d where d.path like :likePath and d.path != :path
+        </query>
+    </named-query>
+        
+    <named-query name="removeAllAccounts">
+        <query>
+       		delete from Account 
+        </query>
+    </named-query>
+    
+    <named-query name="removeSubAccounts">
+        <query>
+            delete from Account a left join a.department d where d.parent.id = :parentId 
+        </query>
+    </named-query>
+    
+    <named-query name="removeChildrenAccounts">
+        <query>
+        	delete from Account a where a.department.id in (select d.id from Department d where d.path like :likePath)
+        </query>
+    </named-query>
+     
+</entity-mappings>
