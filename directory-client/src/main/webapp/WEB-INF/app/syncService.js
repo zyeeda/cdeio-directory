@@ -141,11 +141,11 @@ exports.createService = function () {
         },
         
         sync: function(id) {
-        	try {
-        		service.removeDept({id: id});
-        	}catch(e) {
-        		print('not entity!');
-        	}
+//        	try {
+//        		service.removeDept({id: id});
+//        	}catch(e) {
+//        		print('not entity!');
+//        	}
         	var uri = sync.serviceUri + '/invoke/scaffold/system/departments/child/' + id;
         	service.requestAndRecursion(uri);
         },
