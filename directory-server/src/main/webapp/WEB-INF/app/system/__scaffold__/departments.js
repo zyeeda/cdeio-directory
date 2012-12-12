@@ -72,7 +72,7 @@ exports.validators = {
 exports.hooks = {
 		
 	afterCreate: {
-		defaults: mark('services', ['system:departments', 'system:jmsService']).on(function (departmentSvc, jmsService, department) {
+		add: mark('services', ['system:departments', 'system:jmsService']).on(function (departmentSvc, jmsService, department) {
 			department =  departmentSvc.buildPath(department);
 			var msg = jmsService.buildMsg('department', 'create', department);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
@@ -81,7 +81,7 @@ exports.hooks = {
 		})
 	},
 	afterUpdate: {
-		defaults: mark('services', 'system:jmsService').on(function (jmsService, department) {
+		edit: mark('services', 'system:jmsService').on(function (jmsService, department) {
 			var msg = jmsService.buildMsg('department', 'update', department);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);

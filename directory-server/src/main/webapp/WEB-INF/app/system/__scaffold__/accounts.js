@@ -44,11 +44,11 @@ exports.labels = {
 
 exports.fieldGroups = {
 		baseInfo: ['familyName', 'firstName', 'nickname', 'email', 'username'],
-		pwdInfo: ['password', {name: 'password2'}],
+		pwdInfo: [{name: 'password', type: 'password'}, {name: 'password2', type: 'password'}],
 		editPwdInfo: [
-		    {name: 'oldPassword', type: 'string', rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
-		    {name: 'newPassword', type: 'string', rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
-		    {name: 'newPassword2', type: 'string', rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}
+		    {name: 'oldPassword', type: 'password', rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
+		    {name: 'newPassword', type: 'password', rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
+		    {name: 'newPassword2', type: 'password', rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}
 		],
 		others: [
 			'department',
@@ -61,21 +61,20 @@ exports.fieldGroups = {
 };
 
 exports.forms = {
-        defaults: {
+		defaults: {
+        	 tabs: [
+                {title: '基本信息', groups: ['DEFAULT', 'baseInfo']},
+                {title: '其它信息', groups: ['others']}
+            ],
+            groups: ['baseInfo', 'others']
+        },
+        add: {
             tabs: [
                 {title: '基本信息', groups: ['DEFAULT', 'baseInfo', 'pwdInfo']},
                 {title: '其它信息', groups: ['others']}
             ],
             groups: ['baseInfo', 'pwdInfo', 'others']
         },
-        edit: {
-        	 tabs: [
-                {title: '基本信息', groups: ['DEFAULT', 'baseInfo']},
-                {title: '其它信息', groups: ['others']}
-            ],
-            groups: ['baseInfo', 'others']
-        }
-        ,
         changePwd: {
         	tabs: [
                    {title: '密码信息', groups: ['editPwdInfo']},
@@ -155,13 +154,13 @@ exports.validators = {
 
 exports.hooks = {
 	beforeCreate: {
-		defaults: mark('services', 'system:accounts').on(function (accountSvc, entity) {
+		add: mark('services', 'system:accounts').on(function (accountSvc, entity) {
 			accountSvc.hashPassword(entity);
 		})
 	},
 	
 	beforeUpdate: {
-		defaults: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
+		edit: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
 			accountSvc.hashPassword(account);
 		}),
 		
@@ -179,7 +178,7 @@ exports.hooks = {
 	},
 	
 	afterCreate: {
-		defaults: mark('services','system:jmsService').on(function (jmsService, account) {
+		add: mark('services','system:jmsService').on(function (jmsService, account) {
 			var msg = jmsService.buildMsg('account', 'create', account);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
@@ -187,7 +186,7 @@ exports.hooks = {
 		})
 	},
 	afterUpdate: {
-		defaults: mark('services','system:jmsService').on(function (jmsService, account) {
+		edit: mark('services','system:jmsService').on(function (jmsService, account) {
 			var msg = jmsService.buildMsg('account', 'update', account);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);

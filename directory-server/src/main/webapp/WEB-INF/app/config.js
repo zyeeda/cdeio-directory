@@ -14,5 +14,5 @@ exports.coala = {
 }
 
 exports.activemq = {
-	disable: false
+	disable: true
 }
