@@ -12,7 +12,7 @@ var {Update} = com.zyeeda.framework.validation.group;
 exports.filters = {
     defaults: {
         exclude: {
-            accountFilter: '',
+            accountFilter: ['password', 'password2'],
             departmentFilter: ['accounts', 'children', 'parent(1)']
         }
     }
