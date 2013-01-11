@@ -5,7 +5,7 @@ var {json, error, html} = require('coala/response');
 var {mark} = require('coala/mark');
 var validator = require('coala/validation/validator').createValidator();
 
-var {Account, Gender} = com.zyeeda.framework.commons.organization.entity;
+var {Account, Gender} = com.zyeeda.coala.commons.organization.entity;
 
 exports.filters = {
     defaults: {

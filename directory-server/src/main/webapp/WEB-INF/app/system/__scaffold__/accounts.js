@@ -5,9 +5,9 @@ var {json, error, html} = require('coala/response');
 var {mark} = require('coala/mark');
 var validator = require('coala/validation/validator').createValidator();
 
-var {BCrypt} = com.zyeeda.framework.commons.crypto;
-var {Account, Gender} = com.zyeeda.framework.commons.organization.entity;
-var {Update} = com.zyeeda.framework.validation.group;
+var {BCrypt} = com.zyeeda.coala.commons.crypto;
+var {Account, Gender} = com.zyeeda.coala.commons.organization.entity;
+var {Update} = com.zyeeda.coala.validation.group;
 
 exports.filters = {
     defaults: {
@@ -109,7 +109,7 @@ exports.operators = {
 }
 
 exports.converters = {
-	'com.zyeeda.framework.commons.organization.entity.Gender': function (value, fieldMeta) {
+	'com.zyeeda.coala.commons.organization.entity.Gender': function (value, fieldMeta) {
 		return Gender.valueOf(value);
 	}
 };

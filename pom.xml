@@ -14,34 +14,39 @@
     <name>Zyeeda Directory Service</name>
     <url>http://www.zyeeda.com/products/zyeeda-directory</url>
     <packaging>pom</packaging>
+    
+    <properties>
+        <coala.version>2.0.0-SNAPSHOT</coala.version>
+        <activemq.version>5.7.0</activemq.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.zyeeda</groupId>
-            <artifactId>zyeeda-framework-commons</artifactId>
-            <version>2.0.0.B2-SNAPSHOT</version>
+            <artifactId>zyeeda-coala-commons</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.zyeeda</groupId>
-            <artifactId>zyeeda-framework-core</artifactId>
-            <version>2.0.0.B2-SNAPSHOT</version>
+            <artifactId>zyeeda-coala-core</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
         </dependency>
-       <dependency>
-		  <groupId>org.apache.activemq</groupId>
-		  <artifactId>activemq-core</artifactId>
-		  <version>5.7.0</version>
-		</dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-core</artifactId>
+            <version>${activemq.version}</version>
+        </dependency>
     </dependencies>
 
-  	<modules>
-		<module>directory-server</module>
-		<module>directory-client</module>
-	</modules>
+    <modules>
+        <module>directory-server</module>
+        <module>directory-client</module>
+    </modules>
 </project>
