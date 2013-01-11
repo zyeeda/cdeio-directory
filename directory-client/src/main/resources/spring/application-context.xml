@@ -36,7 +36,7 @@
     <!--
      - Scaffold configuration.
     -->
-    <bean class="com.zyeeda.framework.web.scaffold.provider.DefaultEntityMetaResolver" />
+    <bean class="com.zyeeda.coala.web.scaffold.provider.DefaultEntityMetaResolver" />
     
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">

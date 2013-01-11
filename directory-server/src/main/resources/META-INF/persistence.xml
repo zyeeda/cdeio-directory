@@ -13,8 +13,8 @@
 		<class>org.drools.persistence.info.WorkItemInfo</class>
 		-->
 
-		<class>com.zyeeda.framework.commons.organization.entity.Account</class>
-		<class>com.zyeeda.framework.commons.organization.entity.Department</class>
+		<class>com.zyeeda.coala.commons.organization.entity.Account</class>
+		<class>com.zyeeda.coala.commons.organization.entity.Department</class>
 		<mapping-file>META-INF/orm/commons/validation.xml</mapping-file>
 
 		<validation-mode>NONE</validation-mode>
