@@ -72,7 +72,7 @@ exports.validators = {
 exports.hooks = {
 		
 	afterCreate: {
-		add: mark('services', ['system:departments', 'system:jmsService']).on(function (departmentSvc, jmsService, department) {
+		add: mark('services', ['system:departments', 'system:jms-service']).on(function (departmentSvc, jmsService, department) {
 			department =  departmentSvc.buildPath(department);
 			var msg = jmsService.buildMsg('department', 'create', department);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
@@ -81,13 +81,13 @@ exports.hooks = {
 		})
 	},
 	afterUpdate: {
-		edit: mark('services', 'system:jmsService').on(function (jmsService, department) {
+		edit: mark('services', 'system:jms-service').on(function (jmsService, department) {
 			var msg = jmsService.buildMsg('department', 'update', department);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
 		}),
-		move: mark('services', ['system:departments', 'system:jmsService']).on(function (departmentSvc, jmsService, department) {
+		move: mark('services', ['system:departments', 'system:jms-service']).on(function (departmentSvc, jmsService, department) {
 			departmentSvc.changeChildrenPath(department);
 			var msg = jmsService.buildMsg('department', 'move', department);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
@@ -96,7 +96,7 @@ exports.hooks = {
 		})
 	},
 	afterRemove: {
-		defaults: mark('services', 'system:jmsService').on(function (jmsService, department) {
+		defaults: mark('services', 'system:jms-service').on(function (jmsService, department) {
 			var msg = jmsService.buildMsg('department', 'remove', department);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);

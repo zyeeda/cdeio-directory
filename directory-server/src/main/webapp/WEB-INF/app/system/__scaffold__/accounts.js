@@ -51,7 +51,7 @@ exports.fieldGroups = {
 		    {name: 'newPassword2', type: 'password', rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}
 		],
 		others: [
-			'department',
+			{name: 'department'},
 			{name: 'gender', type: 'picker', group: 'others',
 				pickerSource: [{id: 'MALE', text: '男'}, {id: 'FEMALE', text: '女'}]},
 			'birthday', 'mobile', 'telephone',
@@ -178,7 +178,7 @@ exports.hooks = {
 	},
 	
 	afterCreate: {
-		add: mark('services','system:jmsService').on(function (jmsService, account) {
+		add: mark('services','system:jms-service').on(function (jmsService, account) {
 			var msg = jmsService.buildMsg('account', 'create', account);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
@@ -186,7 +186,7 @@ exports.hooks = {
 		})
 	},
 	afterUpdate: {
-		edit: mark('services','system:jmsService').on(function (jmsService, account) {
+		edit: mark('services','system:jms-service').on(function (jmsService, account) {
 			var msg = jmsService.buildMsg('account', 'update', account);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
@@ -194,7 +194,7 @@ exports.hooks = {
 		})
 	},
 	afterRemove: {
-		defaults: mark('services','system:jmsService').on(function (jmsService, account) {
+		defaults: mark('services','system:jms-service').on(function (jmsService, account) {
 			var msg = jmsService.buildMsg('account', 'remove', account);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);

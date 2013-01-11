@@ -1,12 +1,12 @@
 var {mark} 					= require('coala/mark');
-var {activemq} 				= require('config');
+var {directoryServer} 		= require('config'); 
 var {Session, DeliveryMode} = javax.jms;
 var {HashMap} 				= java.util;
 
 exports.createService = function () {
 	return {
 		sendMsg: mark('beans', 'connectionFactory').on(function (connectionFactory, msg) {
-			if(activemq.disable) {
+			if(directoryServer.activemq.disable) {
 				return;
 			}
 			var connection, session, topic, publisher;

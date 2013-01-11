@@ -104,7 +104,7 @@ exports.operators = {
 
 exports.doWithRouter = function(router) {
     router.get('/sync', function(request) {
-    	var service = require('syncService').createService();
+    	var service = require('sync-service').createService();
         service.syncAllAccounts();
         return html('success');
     });

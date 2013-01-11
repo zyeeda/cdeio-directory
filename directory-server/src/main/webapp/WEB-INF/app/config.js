@@ -13,6 +13,9 @@ exports.coala = {
 
 }
 
-exports.activemq = {
-	disable: true
+exports.directoryServer = {
+		activemq: {
+			disable: true
+		}
 }
+

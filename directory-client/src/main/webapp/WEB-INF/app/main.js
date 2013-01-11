@@ -1,2 +1,2 @@
 exports.router = require('coala/application').create(this);
-require('syncService').createService().revMsg();
+require('sync-service').createService().revMsg();
