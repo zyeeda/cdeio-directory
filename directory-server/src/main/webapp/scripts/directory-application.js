@@ -1,4 +1,4 @@
-define(['zui/applications/default'], function(createDefaultApplication) {
+define(['coala/applications/default'], function(createDefaultApplication) {
     return function() {
 
         // 获取一个加载了内置features, 有openDialog方法的app

@@ -1,4 +1,4 @@
-define(['jquery', 'zui/coala/loader-plugin-manager'], function($, LoaderManager){
+define(['jquery', 'coala/zui/coala/loader-plugin-manager'], function($, LoaderManager){
 	return {
 	    handlers: {
 	    	changePassword: function() {
@@ -10,6 +10,7 @@ define(['jquery', 'zui/coala/loader-plugin-manager'], function($, LoaderManager)
 	                return app.info('请选择要操作的记录');
 	            me.feature.model.set('id', selected);
 	            $.when(me.feature.model.fetch()).done(function(){
+	            	console.log(LoaderManager);
 	                LoaderManager.invoke('view', me.feature.module, me.feature, 'forms:changePwd').done(function(view){
 	                    app.showDialog({
 	                        view: view,

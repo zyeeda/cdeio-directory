@@ -20,7 +20,8 @@ define(['jquery'], function($){
                 var me = this,
                 tree = me.feature.views['treeViews:tree'].components[0],
                 app = me.feature.module.getApplication();
-                var $ele = $(e.srcElement);
+                var $ele = $(e.currentTarget);
+            	console.log($ele);
                 if(tree.setting.edit.enable) {
                 	 tree.setting.edit.enable = false;
                 	 $ele.html($ele.html().replace('关闭','开启'));
