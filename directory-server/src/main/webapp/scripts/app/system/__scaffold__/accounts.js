@@ -1,6 +1,33 @@
-define(['jquery', 'coala/zui/coala/loader-plugin-manager'], function($, LoaderManager){
+define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-view-loader'], function($, LoaderManager, ViewLoader){
 	return {
 	    handlers: {
+	    	add: function() {
+    			var me = this,
+                grid = me.feature.views['views:grid'].components[0],
+                app = me.feature.module.getApplication();
+    			var selectNodes = app.findModule('system').findFeature('departments')
+    				.views['treeViews:tree'].components[0].getSelectedNodes();
+    			if(selectNodes[0]) {
+    				me.feature.model.set('department', selectNodes[0].id);
+    			}
+                LoaderManager.invoke('view', me.feature.module, me.feature, 'forms:add').done(function(view) {
+                    app.showDialog({
+                        view: view,
+                        title: '增加人员',
+                        buttons: [{
+                            label: 'OK',
+                            fn: function() {
+                            	ViewLoader.getFormData(view);
+                                view.model.save().done(function(data) {
+                                	grid.trigger('reloadGrid');
+	                                app.success('操作成功');
+                                });
+                            }
+                        }]
+                    })
+                });
+	    	},
+	    	
 	    	changePassword: function() {
 	            var me = this,
                 grid = me.feature.views['views:grid'].components[0],
@@ -10,7 +37,6 @@ define(['jquery', 'coala/zui/coala/loader-plugin-manager'], function($, LoaderMa
 	                return app.info('请选择要操作的记录');
 	            me.feature.model.set('id', selected);
 	            $.when(me.feature.model.fetch()).done(function(){
-	            	console.log(LoaderManager);
 	                LoaderManager.invoke('view', me.feature.module, me.feature, 'forms:changePwd').done(function(view){
 	                    app.showDialog({
 	                        view: view,
