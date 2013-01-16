@@ -1,7 +1,5 @@
 exports.coala = {
 
-    appPath: 'src/main/webapp/WEB-INF/app/',
-
     entityPackages : [
         'com.zyeeda.coala.commons.organization.entity',
         'com.zyeeda.directory'

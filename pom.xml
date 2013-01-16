@@ -14,7 +14,7 @@
     <name>Zyeeda Directory Service</name>
     <url>http://www.zyeeda.com/products/zyeeda-directory</url>
     <packaging>pom</packaging>
-    
+
     <properties>
         <coala.version>2.0.0-SNAPSHOT</coala.version>
         <activemq.version>5.7.0</activemq.version>
@@ -30,12 +30,12 @@
         <dependency>
             <groupId>com.zyeeda</groupId>
             <artifactId>zyeeda-coala-commons</artifactId>
-            <version>2.0.0-SNAPSHOT</version>
+            <version>${coala.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zyeeda</groupId>
             <artifactId>zyeeda-coala-core</artifactId>
-            <version>2.0.0-SNAPSHOT</version>
+            <version>${coala.version}</version>
         </dependency>
 
         <dependency>
