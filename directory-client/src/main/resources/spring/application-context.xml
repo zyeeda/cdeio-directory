@@ -20,7 +20,7 @@
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
 
-    <context:property-placeholder location="classpath:*.properties" />
+    <context:property-placeholder location="classpath:settings/*.properties" />
 
     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/defaultDS" />
     
@@ -52,6 +52,6 @@
      - Other imported spring configurations.
      - Uncomment the one you use then change it.
     -->
-    <import resource="classpath:spring/spring-hibernate.xml" />
-    <import resource="classpath:spring/spring-validation.xml" />
+    <import resource="classpath:spring/hibernate.xml" />
+    <import resource="classpath:spring/coala/validation.xml" />
 </beans>
