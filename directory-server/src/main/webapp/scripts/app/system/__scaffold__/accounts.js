@@ -8,10 +8,12 @@ define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-v
     			var selectNodes = app.findModule('system').findFeature('departments')
     				.views['treeViews:tree'].components[0].getSelectedNodes();
     			me.feature.model.clear();
+    			var formName = 'forms:addWithDept';
     			if(selectNodes[0]) {
     				me.feature.model.set('department', selectNodes[0].id);
+    				formName = 'forms:add';
     			}
-                LoaderManager.invoke('view', me.feature.module, me.feature, 'forms:add').done(function(view) {
+                LoaderManager.invoke('view', me.feature.module, me.feature, formName).done(function(view) {
                     app.showDialog({
                         view: view,
                         title: '增加人员',
@@ -30,15 +32,15 @@ define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-v
 	    	},
 	    	
 	    	changePassword: function() {
-	            var me = this,
-                grid = me.feature.views['views:grid'].components[0],
+	            var me = this, grid = me.feature.views['views:grid'].components[0],
                 selected = grid.getGridParam('selrow'),
                 app = me.feature.module.getApplication();
 	            if (!selected)
 	                return app.info('请选择要操作的记录');
 	            me.feature.model.clear();
-	            me.feature.model.set('id', selected);
-                LoaderManager.invoke('view', me.feature.module, me.feature, 'forms:changePwd').done(function(view){
+				me.feature.model.set('id', selected);
+
+                LoaderManager.invoke('view', me.feature.module, me.feature, 'forms:changePassword').done(function(view){
                     app.showDialog({
                         view: view,
                         title: '修改密码',
@@ -47,15 +49,7 @@ define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-v
                             fn: function() {
                                 var valid = view.$$('form').valid();
                                 if (!valid) return false;
-                            	var _form = view.$$('form');
-                            	var oldPassword = _form.find('input[name="oldPassword"]');
-                            	var newPassword1 = _form.find('input[name="newPassword"]');
-                            	var newPassword2 = _form.find('input[name="newPassword2"]');
-                                view.model.set('id', selected);
-                                view.model.set('oldPassword', oldPassword.val());
-                                view.model.set('newPassword', newPassword1.val());
-                                view.model.set('newPassword2', newPassword2.val());
-                            	view.model.set('__formName__', 'changePassword');
+                            	ViewLoader.getFormData(view);
                                 view.model.save().done(function(data) {
                                     if(data.violations) {
 	                                    var msg = '', summary = '', i = 0, j = 0, err = {}, label = {}, labels = view.forms.fields;
@@ -97,7 +91,7 @@ define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-v
 	                        });
                     });
                 });
-            return true;
+                return true;
             },
             departmentChanged: function(feature, view, tree, e, viewName, treeNode) {
             	var me = this,

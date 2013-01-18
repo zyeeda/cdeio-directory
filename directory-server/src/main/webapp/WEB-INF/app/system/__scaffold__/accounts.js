@@ -22,6 +22,7 @@ exports.enableFrontendExtension = true;
 exports.style = 'grid';
 
 exports.labels = {
+		entity: '人员',
         id: 'ID',
         familyName: '姓',
         firstName: '名',
@@ -50,8 +51,8 @@ exports.fieldGroups = {
 		    {name: 'newPassword', type: 'password', rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
 		    {name: 'newPassword2', type: 'password', rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}
 		],
+		departmentInfo: [{name: 'department'}],
 		others: [
-			{name: 'department'},
 			{name: 'gender', type: 'picker', group: 'others',
 				pickerSource: [{id: 'MALE', text: '男'}, {id: 'FEMALE', text: '女'}]},
 			'birthday', 'mobile', 'telephone',
@@ -64,9 +65,9 @@ exports.forms = {
 		defaults: {
         	 tabs: [
                 {title: '基本信息', groups: ['DEFAULT', 'baseInfo']},
-                {title: '其它信息', groups: ['others']}
+                {title: '其它信息', groups: ['departmentInfo', 'others']}
             ],
-            groups: ['baseInfo', 'others']
+            groups: ['baseInfo', 'departmentInfo', 'others']
         },
         add: {
             tabs: [
@@ -75,7 +76,14 @@ exports.forms = {
             ],
             groups: ['baseInfo', 'pwdInfo', 'others']
         },
-        changePwd: {
+        addWithDept: {
+            tabs: [
+                {title: '基本信息', groups: ['DEFAULT', 'baseInfo', 'pwdInfo']},
+                {title: '其它信息', groups: ['departmentInfo', 'others']}
+            ],
+            groups: ['baseInfo', 'pwdInfo', 'departmentInfo', 'others']
+        },
+        changePassword: {
         	tabs: [
                    {title: '密码信息', groups: ['editPwdInfo']},
                ],

@@ -8,7 +8,7 @@ define(['jquery'], function($){
                 app = me.feature.module.getApplication();
                 me.feature.model.set('id', treeNodes[0].id);
                 $.when(me.feature.model.fetch()).done(function(){
-                    me.feature.model.set('_formName_', 'move');
+                    me.feature.model.set('__formName__', 'move');
                     me.feature.model.set('parent', targetNode.id);
                     me.feature.model.save().done(function(data) {
                         app.success('操作成功');
