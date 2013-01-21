@@ -22,14 +22,6 @@ exports.filters = {
     }
 };
 
-exports.picker = {
-	grid: {
-        colModel: [
-            {name: 'name', label: '部门', width: 500}
-        ]
-    }
-};
-
 exports.enableFrontendExtension = true;
 exports.style = 'tree';
 

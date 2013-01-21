@@ -51,7 +51,7 @@ exports.fieldGroups = {
 		    {name: 'newPassword', type: 'password', rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
 		    {name: 'newPassword2', type: 'password', rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}
 		],
-		departmentInfo: [{name: 'department'}],
+		departmentInfo: [{name: 'department', minor: 'tree'}],
 		others: [
 			{name: 'gender', type: 'picker', group: 'others',
 				pickerSource: [{id: 'MALE', text: '男'}, {id: 'FEMALE', text: '女'}]},
