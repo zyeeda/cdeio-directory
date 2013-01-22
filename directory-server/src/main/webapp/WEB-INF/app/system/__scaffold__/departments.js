@@ -26,6 +26,7 @@ exports.enableFrontendExtension = true;
 exports.style = 'tree';
 
 exports.labels = {
+		entity: '部门',
         name: '部门'
 };
 

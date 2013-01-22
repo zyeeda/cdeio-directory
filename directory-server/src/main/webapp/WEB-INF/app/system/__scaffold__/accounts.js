@@ -24,14 +24,10 @@ exports.style = 'grid';
 exports.labels = {
 		entity: '人员',
         id: 'ID',
-        familyName: '姓',
-        firstName: '名',
-        nickname: '昵称',
+        realName: '姓名',
         username: '用户名',
         password: '密码',
         password2: '重复密码',
-        gender: '性别',
-        birthday: '生日',
         email: '邮箱',
         mobile: '手机',
         telephone: '电话',
@@ -44,7 +40,7 @@ exports.labels = {
 };
 
 exports.fieldGroups = {
-		baseInfo: ['familyName', 'firstName', 'nickname', 'email', 'username'],
+		baseInfo: ['realName', 'email', 'username'],
 		pwdInfo: [{name: 'password', type: 'password'}, {name: 'password2', type: 'password'}],
 		editPwdInfo: [
 		    {name: 'oldPassword', type: 'password', rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
@@ -53,9 +49,7 @@ exports.fieldGroups = {
 		],
 		departmentInfo: [{name: 'department', minor: 'tree'}],
 		others: [
-			{name: 'gender', type: 'picker', group: 'others',
-				pickerSource: [{id: 'MALE', text: '男'}, {id: 'FEMALE', text: '女'}]},
-			'birthday', 'mobile', 'telephone',
+			'mobile', 'telephone',
 			{name: 'disabled', type: 'picker', group: 'others',
 				pickerSource: [{id: true, text: '禁用'}, {id: false, text: '启用'}]}
 		]
@@ -94,10 +88,8 @@ exports.forms = {
 
 exports['grid'] = {
 		colModel: [
-           {name: 'familyName', width: 50},
-           {name: 'firstName', width: 50},
-           {name: 'birthday', type: 'date'},
-           'nickname','username', 'email',
+		   'realName',
+           'username', 'email','mobile',
            {name: 'disabled', type: 'boolean'},
            {label: '部门', name: 'department.name'}
 	    ],
@@ -115,12 +107,6 @@ exports.operators = {
     refresh: {label: "刷新", icon: "icon-refresh"},
     changePassword: {label: "修改密码", icon: "icon-edit"}
 }
-
-exports.converters = {
-	'com.zyeeda.coala.commons.organization.entity.Gender': function (value, fieldMeta) {
-		return Gender.valueOf(value);
-	}
-};
 
 exports.validators = {
 	update: {
@@ -145,7 +131,7 @@ exports.validators = {
 	
 	remove: {
 		defaults: function (context, account, request) {
-			if (account.getUsername() === 'tangrui1') {
+			if (account.getUsername() === 'admin') {
 				context.addViolation({ message: '不能删除' + account.getUsername() + '用户'});
 			}
 		}
@@ -163,6 +149,9 @@ exports.validators = {
 exports.hooks = {
 	beforeCreate: {
 		add: mark('services', 'system:accounts').on(function (accountSvc, entity) {
+			accountSvc.hashPassword(entity);
+		}),
+		addWithDept: mark('services', 'system:accounts').on(function (accountSvc, entity) {
 			accountSvc.hashPassword(entity);
 		})
 	},
@@ -187,6 +176,12 @@ exports.hooks = {
 	
 	afterCreate: {
 		add: mark('services','system:jms-service').on(function (jmsService, account) {
+			var msg = jmsService.buildMsg('account', 'create', account);
+			json(msg, exports.filters.defaults).body.forEach(function(str){
+				jmsService.sendMsg(str);
+			})
+		}), 
+		addWithDept: mark('services','system:jms-service').on(function (jmsService, account) {
 			var msg = jmsService.buildMsg('account', 'create', account);
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
