@@ -67,7 +67,7 @@ exports.hooks = {
 	afterCreate: {
 		add: mark('services', ['system:departments', 'system:jms-service']).on(function (departmentSvc, jmsService, department) {
 			department =  departmentSvc.buildPath(department);
-			var msg = jmsService.buildMsg('department', 'create', department);
+			var msg = {resource: 'department', type: 'create', content: department};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
@@ -75,14 +75,14 @@ exports.hooks = {
 	},
 	afterUpdate: {
 		edit: mark('services', 'system:jms-service').on(function (jmsService, department) {
-			var msg = jmsService.buildMsg('department', 'update', department);
+			var msg = {resource: 'department', type: 'update', content: department};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
 		}),
 		move: mark('services', ['system:departments', 'system:jms-service']).on(function (departmentSvc, jmsService, department) {
 			departmentSvc.changeChildrenPath(department);
-			var msg = jmsService.buildMsg('department', 'move', department);
+			var msg = {resource: 'department', type: 'move', content: department};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
@@ -90,7 +90,7 @@ exports.hooks = {
 	},
 	afterRemove: {
 		defaults: mark('services', 'system:jms-service').on(function (jmsService, department) {
-			var msg = jmsService.buildMsg('department', 'remove', department);
+			var msg = {resource: 'department', type: 'remove',	content: department};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})

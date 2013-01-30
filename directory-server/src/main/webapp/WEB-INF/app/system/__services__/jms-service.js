@@ -1,31 +1,18 @@
 var {mark} 					= require('coala/mark');
 var {directoryServer} 		= require('config'); 
-var {Session, DeliveryMode} = javax.jms;
-var {HashMap} 				= java.util;
+var {MessageCreator} 		= org.springframework.jms.core;
 
 exports.createService = function () {
 	return {
-		sendMsg: mark('beans', 'connectionFactory').on(function (connectionFactory, msg) {
+		sendMsg: mark('beans',  ['jmsTemplate', 'destination']).on(function (jmsTemplate, destination, msg) {
 			if(directoryServer.activemq.disable) {
 				return;
 			}
-			var connection, session, topic, publisher;
-			connection = connectionFactory.createConnection();
-	        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-	        topic = session.createTopic("directory.messages");
-	        publisher = session.createProducer(topic);
-	        publisher.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-	        connection.start();
-	        publisher.send(session.createTextMessage(msg));
-	        connection.stop();
-	        connection.close();
-		}),
-		buildMsg: function(resource, type, entity) {
-			var msg = new HashMap();
-			msg.put('resource', resource);
-			msg.put('type', type);
-			msg.put('content', entity);
-			return msg;
-		}
+			jmsTemplate.send(destination, new MessageCreator() {
+				createMessage: function(session) {
+					return session.createTextMessage(msg);
+				}
+			});
+		})
 	};
 }

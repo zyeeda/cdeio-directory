@@ -11,13 +11,12 @@ var {URL} = java.net;
 
 exports.createService = function () {
 	service = {
-		revMsg: mark('beans', 'connectionFactory').on(function (connectionFactory) {
-			var connection, session, topic, comsumer;
-			connection = connectionFactory.createConnection();
+		revMsg: mark('beans', ['jmsTemplate', 'destination']).on(function (jmsTemplate, destination) {
+			var connection, session, comsumer;
+			connection = jmsTemplate.connectionFactory.createConnection();
 		    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		    topic = session.createTopic("directory.messages");
 	        connection.start();
-		    comsumer = session.createConsumer(topic);
+		    comsumer = session.createConsumer(destination);
 		    comsumer.setMessageListener(
 		        function onMessage(m) {
 		        	service.handle(m);

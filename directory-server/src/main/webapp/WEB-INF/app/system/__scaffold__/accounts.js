@@ -176,13 +176,13 @@ exports.hooks = {
 	
 	afterCreate: {
 		add: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = jmsService.buildMsg('account', 'create', account);
+			var msg = {resource: 'account', type: 'create',	content: account};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
 		}), 
 		addWithDept: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = jmsService.buildMsg('account', 'create', account);
+			var msg = {resource: 'account', type: 'create',	content: account};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
@@ -190,7 +190,7 @@ exports.hooks = {
 	},
 	afterUpdate: {
 		edit: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = jmsService.buildMsg('account', 'update', account);
+			var msg = {resource: 'account', type: 'update',	content: account};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
@@ -198,7 +198,7 @@ exports.hooks = {
 	},
 	afterRemove: {
 		defaults: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = jmsService.buildMsg('account', 'remove', account);
+			var msg = {resource: 'account', type: 'remove',	content: account};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})

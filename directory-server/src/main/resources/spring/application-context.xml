@@ -24,9 +24,6 @@
 
     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/defaultDS" />
     
-    <jee:jndi-lookup id="connectionFactory" jndi-name="jms/connectionFactory" />
-	<!--     <jee:jndi-lookup id="myQueue" jndi-name="jms/myQueue" /> -->
-	
     <!--
      - TransactionManager declaration.
      - If use JTA as transaction managment, uncomment it.
@@ -54,4 +51,6 @@
     -->
     <import resource="classpath:spring/hibernate.xml" />
     <import resource="classpath:spring/coala/validation.xml" />
+    <import resource="classpath:spring/jms.xml" />
+    
 </beans>
