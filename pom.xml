@@ -37,10 +37,21 @@
             <artifactId>zyeeda-coala-core</artifactId>
             <version>${coala.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>
             <version>${activemq.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
          </dependency>
         <dependency>
             <groupId>org.apache.activemq</groupId>
