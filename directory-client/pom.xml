@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>com.zyeeda</groupId>
         <artifactId>zyeeda-directory</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    
-    <artifactId>zyeeda-directory-server</artifactId>
-    <name>Zyeeda Directory Service (Server)</name>
+
+    <artifactId>zyeeda-directory-server-consumer</artifactId>
+    <name>Zyeeda Directory Service (Consumer)</name>
     <packaging>war</packaging>
 
     <build>
@@ -102,4 +102,4 @@
         <tag>HEAD</tag>
     </scm>
 </project>
-  
+

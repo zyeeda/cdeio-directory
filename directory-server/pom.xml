@@ -9,8 +9,8 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     
-    <artifactId>zyeeda-directory-server</artifactId>
-    <name>Zyeeda Directory Service (Server)</name>
+    <artifactId>zyeeda-directory-service-provider</artifactId>
+    <name>Zyeeda Directory Service (Provider)</name>
     <packaging>war</packaging>
     
     <build>
