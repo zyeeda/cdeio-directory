@@ -88,12 +88,13 @@ exports.forms = {
 
 exports['grid'] = {
 		colModel: [
-		   'realName',
-           'username', 'email','mobile',
-           {name: 'disabled', type: 'boolean'},
-           {label: '部门', name: 'department.name'}
+		   {name: 'realName', search: true},
+		   {name: 'username', search: true},
+		   {name: 'email', search: true},
+		   {name: 'mobile', search: true},
+           {name: 'disabled', type: 'boolean', search: true},
+           {label: '部门', name: 'department.name', search: true}
 	    ],
-	    height: '400px',
 	    events: {
 	    	'system/departments#tree:onClick': 'departmentChanged'
 	    }

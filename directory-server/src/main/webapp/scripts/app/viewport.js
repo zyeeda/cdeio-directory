@@ -8,13 +8,11 @@ define({
                 resizable: false
             },
             north: {
-                //size: 83,
-                size: 50,
+                size: 51,
                 togglerLength_open: 0
             },
             south: {
                 size: 42
-                //size: 52
             },
             west: {
                 size: 380,
