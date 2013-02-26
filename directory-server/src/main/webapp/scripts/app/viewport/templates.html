@@ -1,0 +1,57 @@
+{{#layout}}
+<div id="header" class="ui-layout-north navbar-fixed-top" />
+<div id="content" class="ui-layout-center" />
+<div id="sidebar" class="ui-layout-west" />
+<div id="footer" class="ui-layout-south ui-footer" />
+{{/layout}}
+
+{{#view "header"}}
+<div class="ui-header">
+    <div class="ui-header-top">
+        <div class="ui-app-logo">
+            <img src="scripts/coala/themes/default/zui/images/logo.png"></img>
+        </div>
+        <div class="ui-app-name">中昱达目录服务</div>
+        <div class="ui-global-feature">
+            <div class="ui-welcome-message">
+                <i class="icon-user icon-white"></i>
+                欢迎您，张三
+            </div>
+            <div class="btn-group ui-shortcut-group">
+                <a class="btn" title="退出">
+                    <img src="scripts/coala/themes/default/zui/images/sign-out.png" class="ui-sign-out"></img>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/view}}
+
+{{#view "footer"}}
+<div class="ui-footer">
+    <footer>
+        Copyright 2012 - 2013 ZYEEDA Co. Ltd. All Rights Reserved
+    </footer>
+</div>
+{{/view}}
+
+{{#view "sidebar"}}
+<div class="ui-sidebar">
+    <div class="ui-sidebar-header">
+        <div class="ui-sidebar-title">组织结构树</div>
+    </div>
+    <div class="ui-sidebar-nav">
+        <ul>
+            {{#each data}}
+            <li>
+                <a id="{{id}}" href="javascript:void(0)">
+                    <i class="{{iconClass}}"></i>
+                    <span>{{name}}</span>
+                    <i class="icon-sidebar-nav-indicator ui-sidebar-nav-indicator"></i>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+{{/view}}

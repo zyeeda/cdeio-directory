@@ -2,7 +2,7 @@ define([
     'jquery',
     'coala/coala',
     'coala/core/config',
-    './directory-application'
+    'directory-application'
 ], function ($, coala, config) {
 
     $(function() {
