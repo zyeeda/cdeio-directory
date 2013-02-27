@@ -4,8 +4,7 @@ define({
             type: 'layout',
             defaults: {
                 spacing_open: 0,
-                hideTogglerOnSlide: true,
-                resizable: false
+                hideTogglerOnSlide: true
             },
             north: {
                 size: 51,
@@ -15,7 +14,7 @@ define({
                 size: 42
             },
             west: {
-                size: 380,
+                size: 280,
                 spacing_open: 5
             },
             center: {
