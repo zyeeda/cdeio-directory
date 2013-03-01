@@ -45,10 +45,14 @@ exports['tree'] = {
 };
 
 exports.operators = {
-	    add: {label: "添加", icon: "icon-plus"},
-	    edit: {label: "编辑", icon: "icon-edit"},
-	    del: {label: "删除",icon: "icon-minus"},
-	    toggleMove: {label: "开启移动", icon: "icon-move"}
+	    add: {icon: "icon-plus"},
+	    edit: {icon: "icon-edit"},
+	    del: {icon: "icon-minus"},
+	    toggleMove: {icon: "icon-move"}
+		//add: {label: "添加", icon: "icon-plus"},
+		//edit: {label: "编辑", icon: "icon-edit"},
+		//del: {label: "删除",icon: "icon-minus"},
+		//toggleMove: {label: "开启移动", icon: "icon-move"}
 };
 
 exports.validators = {
@@ -63,7 +67,7 @@ exports.validators = {
 }
 
 exports.hooks = {
-		
+
 	afterCreate: {
 		add: mark('services', ['system:departments', 'system:jms-service']).on(function (departmentSvc, jmsService, department) {
 			department =  departmentSvc.buildPath(department);
@@ -110,16 +114,16 @@ exports.doWithRouter = function(router) {
     	}
         return json(results, exports.filters.defaults);
     }));
-    
+
     router.get('/sub/:id', mark('services', 'system:departments').on(function (deptService, request, id) {
     	var results = deptService.get(id);
         return json(results, exports.filters.sub);
     }));
-    
+
     router.get('/child/:id', mark('services', 'system:departments').on(function (deptService, request, id) {
     	var results = deptService.get(id);
         return json(results, exports.filters.child);
     }));
-    
+
 };
 

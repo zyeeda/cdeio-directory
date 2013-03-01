@@ -18,11 +18,7 @@ define({
                 spacing_open: 5
             },
             center: {
-                findNestedContent: true,
-                onresize: function (paneName, paneElement) {
-                    $.layout.callbacks.resizeTabLayout(paneName, paneElement);
-                    cbTabs.resizeFitTabPanel(paneName, paneElement);
-                }
+                findNestedContent: true
             }
         }],
 

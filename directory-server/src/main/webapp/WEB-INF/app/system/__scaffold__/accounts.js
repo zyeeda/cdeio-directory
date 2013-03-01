@@ -36,7 +36,7 @@ exports.labels = {
         newPassword: '新密码',
         newPassword2: '重复密码',
         department: '部门'
-        	
+
 };
 
 exports.fieldGroups = {
@@ -58,21 +58,21 @@ exports.fieldGroups = {
 exports.forms = {
 		defaults: {
         	 tabs: [
-                {title: '基本信息', groups: ['DEFAULT', 'baseInfo']},
+                {title: '基本信息', groups: ['baseInfo']},
                 {title: '其它信息', groups: ['departmentInfo', 'others']}
             ],
             groups: ['baseInfo', 'departmentInfo', 'others']
         },
         add: {
             tabs: [
-                {title: '基本信息', groups: ['DEFAULT', 'baseInfo', 'pwdInfo']},
+                {title: '基本信息', groups: ['baseInfo', 'pwdInfo']},
                 {title: '其它信息', groups: ['others']}
             ],
             groups: ['baseInfo', 'pwdInfo', 'others']
         },
         addWithDept: {
             tabs: [
-                {title: '基本信息', groups: ['DEFAULT', 'baseInfo', 'pwdInfo']},
+                {title: '基本信息', groups: ['baseInfo', 'pwdInfo']},
                 {title: '其它信息', groups: ['departmentInfo', 'others']}
             ],
             groups: ['baseInfo', 'pwdInfo', 'departmentInfo', 'others']
@@ -119,17 +119,17 @@ exports.validators = {
 			} catch (e) {
 				context.addViolation({ message: '原密码哈希有误' });
 			}
-			
+
 			if (context.hasViolations()) {
 				context.skipBeanValidation();
 				return;
 			}
-			
+
 			account.setPassword(request.params.newPassword);
 			account.setPassword2(request.params.newPassword2);
 		}
 	},
-	
+
 	remove: {
 		defaults: function (context, account, request) {
 			if (account.getUsername() === 'admin') {
@@ -137,7 +137,7 @@ exports.validators = {
 			}
 		}
 	},
-	
+
 	batchRemove: {
 		defaults: function (context, accounts, request) {
 			if (accounts.length > 2) {
@@ -156,32 +156,32 @@ exports.hooks = {
 			accountSvc.hashPassword(entity);
 		})
 	},
-	
+
 	beforeUpdate: {
 		edit: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
 			accountSvc.hashPassword(account);
 		}),
-		
+
 		changePassword: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
 			accountSvc.hashPassword(account);
 		}),
-		
+
 		enable: mark('services', 'system:accounts').on(function (accountSvc, account) {
 			accountSvc.enableAccount(account);
 		}),
-		
+
 		disable: mark('services', 'system:accounts').on(function (accountSvc, account) {
 			accountSvc.disableAccount(account);
 		})
 	},
-	
+
 	afterCreate: {
 		add: mark('services','system:jms-service').on(function (jmsService, account) {
 			var msg = {resource: 'account', type: 'create',	content: account};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
-		}), 
+		}),
 		addWithDept: mark('services','system:jms-service').on(function (jmsService, account) {
 			var msg = {resource: 'account', type: 'create',	content: account};
 			json(msg, exports.filters.defaults).body.forEach(function(str){

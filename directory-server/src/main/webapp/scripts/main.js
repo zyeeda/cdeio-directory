@@ -12,10 +12,8 @@ define([
                 config.featureContainer = function (feature) {
                     return viewport.layout.$('sidebar');
                 }
-                coala.startBackboneHistory(app);
             }).done(function(viewport){
             	app.startFeature('system/departments', {container: viewport.layout.$('sidebar')});
-            }).done(function(viewport){
             	app.startFeature('system/accounts', {container: viewport.layout.$('content')});
             });
         });
