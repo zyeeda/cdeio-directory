@@ -22,21 +22,20 @@ exports.enableFrontendExtension = true;
 exports.style = 'grid';
 
 exports.labels = {
-		entity: '账户',
-        id: 'ID',
-        realName: '姓名',
-        username: '用户名',
-        password: '密码',
-        password2: '重复密码',
-        email: '邮箱',
-        mobile: '手机',
-        telephone: '电话',
-        disabled: '禁用状态',
-        oldPassword: '原密码',
-        newPassword: '新密码',
-        newPassword2: '重复密码',
-        department: '部门'
-
+    entity: '账户',
+    id: 'ID',
+    realName: '姓名',
+    username: '用户名',
+    password: '密码',
+    password2: '重复密码',
+    email: '邮箱',
+    mobile: '手机',
+    telephone: '电话',
+    disabled: '禁用状态',
+    oldPassword: '原密码',
+    newPassword: '新密码',
+    newPassword2: '重复密码',
+    department: '部门'
 };
 
 exports.fieldGroups = {
@@ -50,12 +49,13 @@ exports.fieldGroups = {
     }],
     extInfo: ['realName', 'department', 'mobile', 'telephone', {
         name: 'disabled',
+        type: 'dropdown',
         source: [{
             id: true,
-            value: '禁用'
+            text: '禁用'
         }, {
             id: false,
-            value: '启用'
+            text: '启用'
         }]
     }],
     editPwdInfo: [
@@ -66,58 +66,58 @@ exports.fieldGroups = {
 };
 
 exports.forms = {
-		defaults: {
-            groups: [{
-                name: 'baseInfo',
-                columns: 2
-            }, {
-                name: 'extInfo',
-                columns: 2
-            }]
-        },
-        add: {
-            groups: [{
-                name: 'baseInfo',
-                columns: 2
-            }, {
-                name: 'pwdInfo',
-                columns: 2
-            }, {
-                name: 'extInfo',
-                columns: 2
-            }]
-        },
-        addWithDept: {
-            groups: [{
-                name: 'baseInfo',
-                columns: 2
-            }, {
-                name: 'pwdInfo',
-                columns: 2
-            }, {
-                name: 'extInfo',
-                columns: 2
-            }]
-        },
-        changePassword: {
-        	groups: ['editPwdInfo']
-        }
+    defaults: {
+        groups: [{
+            name: 'baseInfo',
+            columns: 2
+        }, {
+            name: 'extInfo',
+            columns: 2
+        }]
+    },
+    add: {
+        groups: [{
+            name: 'baseInfo',
+            columns: 2
+        }, {
+            name: 'pwdInfo',
+            columns: 2
+        }, {
+            name: 'extInfo',
+            columns: 2
+        }]
+    },
+    addWithDept: {
+        groups: [{
+            name: 'baseInfo',
+            columns: 2
+        }, {
+            name: 'pwdInfo',
+            columns: 2
+        }, {
+            name: 'extInfo',
+            columns: 2
+        }]
+    },
+    changePassword: {
+        groups: ['editPwdInfo']
+    }
 }
 
 
 exports.grid = {
-		colModel: [
-		   {name: 'realName', search: true},
-		   {name: 'username', search: true},
-		   {name: 'email', search: true},
-		   {name: 'mobile', search: true},
-           {name: 'disabled', type: 'boolean', search: true},
-           {label: '部门', name: 'department.name', search: true}
-	    ],
-        filterToolbar: true,
-	    events: {
-	    	'system/departments#tree:onClick': 'departmentChanged'
-	    }
+    colModel: [
+        {name: 'realName', search: true},
+        {name: 'username', search: true},
+        {name: 'email', search: true},
+        {name: 'mobile', search: true},
+        {name: 'disabled', type: 'boolean', search: true},
+        {label: '部门', name: 'department.name', search: true}
+    ],
+    filterToolbar: true,
+    events: {
+        'system/departments#tree:onClick': 'departmentChanged'
+    }
 }
 
 exports.operators = {
@@ -130,113 +130,113 @@ exports.operators = {
 }
 
 exports.validators = {
-	update: {
-		changePassword: function (context, account, request) {
-			try {
-				if (!BCrypt.checkpw(request.params.oldPassword, account.getPassword())) {
-					context.addViolation({ message: '不正确', properties: 'oldPassword' });
-				}
-			} catch (e) {
-				context.addViolation({ message: '原密码哈希有误' });
-			}
+    update: {
+        changePassword: function (context, account, request) {
+            try {
+                if (!BCrypt.checkpw(request.params.oldPassword, account.getPassword())) {
+                    context.addViolation({ message: '不正确', properties: 'oldPassword' });
+                }
+            } catch (e) {
+                context.addViolation({ message: '原密码哈希有误' });
+            }
 
-			if (context.hasViolations()) {
-				context.skipBeanValidation();
-				return;
-			}
+            if (context.hasViolations()) {
+                context.skipBeanValidation();
+                return;
+            }
 
-			account.setPassword(request.params.newPassword);
-			account.setPassword2(request.params.newPassword2);
-		}
-	},
+            account.setPassword(request.params.newPassword);
+            account.setPassword2(request.params.newPassword2);
+        }
+    },
 
-	remove: {
-		defaults: function (context, account, request) {
-			if (account.getUsername() === 'admin') {
-				context.addViolation({ message: '不能删除' + account.getUsername() + '用户'});
-			}
-		}
-	},
+    remove: {
+        defaults: function (context, account, request) {
+            if (account.getUsername() === 'admin') {
+                context.addViolation({ message: '不能删除' + account.getUsername() + '用户'});
+            }
+        }
+    },
 
-	batchRemove: {
-		defaults: function (context, accounts, request) {
-			if (accounts.length > 2) {
-				context.addViolation({ message: '不能同时删除两条以上的数据' });
-			}
-		}
-	}
+    batchRemove: {
+        defaults: function (context, accounts, request) {
+            if (accounts.length > 2) {
+                context.addViolation({ message: '不能同时删除两条以上的数据' });
+            }
+        }
+    }
 };
 
 exports.hooks = {
-	beforeCreate: {
-		add: mark('services', 'system:accounts').on(function (accountSvc, entity) {
-			accountSvc.hashPassword(entity);
-		}),
-		addWithDept: mark('services', 'system:accounts').on(function (accountSvc, entity) {
-			accountSvc.hashPassword(entity);
-		})
-	},
+    beforeCreate: {
+        add: mark('services', 'system:accounts').on(function (accountSvc, entity) {
+            accountSvc.hashPassword(entity);
+        }),
+        addWithDept: mark('services', 'system:accounts').on(function (accountSvc, entity) {
+            accountSvc.hashPassword(entity);
+        })
+    },
 
-	beforeUpdate: {
-		edit: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
-			accountSvc.hashPassword(account);
-		}),
+    beforeUpdate: {
+        edit: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
+            accountSvc.hashPassword(account);
+        }),
 
-		changePassword: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
-			accountSvc.hashPassword(account);
-		}),
+        changePassword: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
+            accountSvc.hashPassword(account);
+        }),
 
-		enable: mark('services', 'system:accounts').on(function (accountSvc, account) {
-			accountSvc.enableAccount(account);
-		}),
+        enable: mark('services', 'system:accounts').on(function (accountSvc, account) {
+            accountSvc.enableAccount(account);
+        }),
 
-		disable: mark('services', 'system:accounts').on(function (accountSvc, account) {
-			accountSvc.disableAccount(account);
-		})
-	},
+        disable: mark('services', 'system:accounts').on(function (accountSvc, account) {
+            accountSvc.disableAccount(account);
+        })
+    },
 
-	afterCreate: {
-		add: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = {resource: 'account', type: 'create',	content: account};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
-				jmsService.sendMsg(str);
-			})
-		}),
-		addWithDept: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = {resource: 'account', type: 'create',	content: account};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
-				jmsService.sendMsg(str);
-			})
-		})
-	},
-	afterUpdate: {
-		edit: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = {resource: 'account', type: 'update',	content: account};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
-				jmsService.sendMsg(str);
-			})
-		})
-	},
-	afterRemove: {
-		defaults: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = {resource: 'account', type: 'remove',	content: account};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
-				jmsService.sendMsg(str);
-			})
-		})
-	}
+    afterCreate: {
+        add: mark('services','system:jms-service').on(function (jmsService, account) {
+            var msg = {resource: 'account', type: 'create',	content: account};
+            json(msg, exports.filters.defaults).body.forEach(function(str){
+                jmsService.sendMsg(str);
+            })
+        }),
+        addWithDept: mark('services','system:jms-service').on(function (jmsService, account) {
+            var msg = {resource: 'account', type: 'create',	content: account};
+            json(msg, exports.filters.defaults).body.forEach(function(str){
+                jmsService.sendMsg(str);
+            })
+        })
+    },
+    afterUpdate: {
+        edit: mark('services','system:jms-service').on(function (jmsService, account) {
+            var msg = {resource: 'account', type: 'update',	content: account};
+            json(msg, exports.filters.defaults).body.forEach(function(str){
+                jmsService.sendMsg(str);
+            })
+        })
+    },
+    afterRemove: {
+        defaults: mark('services','system:jms-service').on(function (jmsService, account) {
+            var msg = {resource: 'account', type: 'remove',	content: account};
+            json(msg, exports.filters.defaults).body.forEach(function(str){
+                jmsService.sendMsg(str);
+            })
+        })
+    }
 };
 
 exports.doWithRouter = function(router) {
     router.get('/sync/:path', mark('services', 'system:accounts').on(function (accountMgr, request, path) {
-    	var results;
-    	if(!path) {
-    		return html('notfound!');
-    	}else if(path.indexOf(',') !== -1) {
-    		results = accountMgr.getAccounts(path, true);
-    	}else {
-    		results = accountMgr.getAccounts(path, false);
-    	}
+        var results;
+        if(!path) {
+            return html('notfound!');
+        }else if(path.indexOf(',') !== -1) {
+            results = accountMgr.getAccounts(path, true);
+        }else {
+            results = accountMgr.getAccounts(path, false);
+        }
         return json(results, exports.filters.defaults);
     }));
 };
