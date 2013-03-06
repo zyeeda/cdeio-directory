@@ -16,9 +16,10 @@ define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-v
                 LoaderManager.invoke('view', me.feature.module, me.feature, formName).done(function(view) {
                     app.showDialog({
                         view: view,
-                        title: '增加人员',
+                        title: '添加账户',
                         buttons: [{
-                            label: 'OK',
+                            label: '确定',
+                            status: 'btn-primary',
                             fn: function() {
                             	ViewLoader.getFormData(view);
                                 view.model.save().done(function(data) {
@@ -30,7 +31,7 @@ define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-v
                     })
                 });
 	    	},
-	    	
+
 	    	changePassword: function() {
 	            var me = this, grid = me.feature.views['views:grid'].components[0],
                 selected = grid.getGridParam('selrow'),
@@ -45,7 +46,8 @@ define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-v
                         view: view,
                         title: '修改密码',
                         buttons: [{
-                            label: 'OK',
+                            label: '确定',
+                            status: 'btn-primary',
                             fn: function() {
                                 var valid = view.$$('form').valid();
                                 if (!valid) return false;
@@ -93,10 +95,11 @@ define(['jquery', 'coala/core/loader-plugin-manager', 'coala/scaffold/abstract-v
                 });
                 return true;
             },
+
             departmentChanged: function(feature, view, tree, e, viewName, treeNode) {
             	var me = this,
                 grid = me.feature.views['views:grid'].components[0];
-            	
+
                 var myfilter = { groupOp: "AND", rules: [] };
                 myfilter.rules.push({ field: "department.path", op: "like", data: treeNode.path + '%' });
 
