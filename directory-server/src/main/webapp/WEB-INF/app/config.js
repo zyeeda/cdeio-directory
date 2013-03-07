@@ -13,7 +13,7 @@ exports.coala = {
 
 exports.directoryServer = {
 		activemq: {
-			disable: false
+			disable: true
 		}
 }
 

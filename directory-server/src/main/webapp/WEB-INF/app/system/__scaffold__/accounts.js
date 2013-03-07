@@ -43,9 +43,9 @@ exports.fieldGroups = {
 		baseInfo: ['realName', 'email', 'username'],
 		pwdInfo: [{name: 'password', type: 'password'}, {name: 'password2', type: 'password'}],
 		editPwdInfo: [
-		    {name: 'oldPassword', type: 'password', rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
-		    {name: 'newPassword', type: 'password', rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}},
-		    {name: 'newPassword2', type: 'password', rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}
+		    {name: 'oldPassword', type: 'password', validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
+		    {name: 'newPassword', type: 'password', validations: {rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
+		    {name: 'newPassword2', type: 'password', validations: {rules: {required: true, equalTo: 'input[name="newPassword"]'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
 		],
 		departmentInfo: [{name: 'department', minor: 'tree'}],
 		others: [
@@ -64,13 +64,6 @@ exports.forms = {
             groups: ['baseInfo', 'departmentInfo', 'others']
         },
         add: {
-            tabs: [
-                {title: '基本信息', groups: ['baseInfo', 'pwdInfo']},
-                {title: '其它信息', groups: ['others']}
-            ],
-            groups: ['baseInfo', 'pwdInfo', 'others']
-        },
-        addWithDept: {
             tabs: [
                 {title: '基本信息', groups: ['baseInfo', 'pwdInfo']},
                 {title: '其它信息', groups: ['departmentInfo', 'others']}
@@ -95,6 +88,7 @@ exports['grid'] = {
            {name: 'disabled', type: 'boolean', search: true},
            {label: '部门', name: 'department.name', search: true}
 	    ],
+	    filterToolbar: true,
 	    events: {
 	    	'system/departments#tree:onClick': 'departmentChanged'
 	    }
@@ -151,9 +145,6 @@ exports.hooks = {
 	beforeCreate: {
 		add: mark('services', 'system:accounts').on(function (accountSvc, entity) {
 			accountSvc.hashPassword(entity);
-		}),
-		addWithDept: mark('services', 'system:accounts').on(function (accountSvc, entity) {
-			accountSvc.hashPassword(entity);
 		})
 	},
 
@@ -177,12 +168,6 @@ exports.hooks = {
 
 	afterCreate: {
 		add: mark('services','system:jms-service').on(function (jmsService, account) {
-			var msg = {resource: 'account', type: 'create',	content: account};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
-				jmsService.sendMsg(str);
-			})
-		}),
-		addWithDept: mark('services','system:jms-service').on(function (jmsService, account) {
 			var msg = {resource: 'account', type: 'create',	content: account};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
