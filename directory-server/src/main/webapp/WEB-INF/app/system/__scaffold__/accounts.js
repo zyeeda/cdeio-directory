@@ -66,7 +66,18 @@ exports.fieldGroups = {
 };
 
 exports.forms = {
-    defaults: {
+    edit: {
+        groups: [{
+            name: 'baseInfo',
+            columns: 2
+        }, {
+            name: 'extInfo',
+            columns: 2
+        }]
+    },
+    show: {
+        labelOnTop: false,
+        size: 'large',
         groups: [{
             name: 'baseInfo',
             columns: 2
