@@ -35,7 +35,7 @@ exports.fieldGroups = {
 };
 
 exports['tree'] = {
-    isAsync: true,
+    isAsync: false,
 	edit: {
 		showRemoveBtn: false,
 		showRenameBtn: false
