@@ -32,7 +32,7 @@ exports.labels = {
 };
 
 exports.fieldGroups = {
-        DEFAULT: ['parent', 'name']
+        DEFAULT: ['name']
 };
 
 exports['tree'] = {
