@@ -61,7 +61,7 @@ exports.fieldGroups = {
     editPwdInfo: [
 		    {name: 'oldPassword', type: 'password', validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
 		    {name: 'newPassword', type: 'password', validations: {rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
-		    {name: 'newPassword2', type: 'password', validations: {rules: {required: true, equalTo: 'input[name="newPassword"]'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
+		    {name: 'newPassword2', type: 'password', validations: {rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
     ]
 };
 
@@ -115,6 +115,7 @@ exports.grid = {
         {label: '部门', name: 'department.name', search: true}
     ],
     filterToolbar: true,
+//    multiselect: true
     events: {
         'system/departments#tree:onClick': 'departmentChanged'
     }
@@ -130,26 +131,6 @@ exports.operators = {
 }
 
 exports.validators = {
-    update: {
-        changePassword: function (context, account, request) {
-            try {
-                if (!BCrypt.checkpw(request.params.oldPassword, account.getPassword())) {
-                    context.addViolation({ message: '不正确', properties: 'oldPassword' });
-                }
-            } catch (e) {
-                context.addViolation({ message: '原密码哈希有误' });
-            }
-
-            if (context.hasViolations()) {
-                context.skipBeanValidation();
-                return;
-            }
-
-            account.setPassword(request.params.newPassword);
-            account.setPassword2(request.params.newPassword2);
-        }
-    },
-
     remove: {
         defaults: function (context, account, request) {
             if (account.getUsername() === 'admin') {
@@ -169,13 +150,13 @@ exports.validators = {
 
 exports.hooks = {
     beforeCreate: {
-        add: mark('services', 'system:accounts').on(function (accountSvc, entity) {
+    	defaults: mark('services', 'system:accounts').on(function (accountSvc, entity) {
             accountSvc.hashPassword(entity);
         })
     },
 
     beforeUpdate: {
-        edit: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
+    	defaults: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
             accountSvc.hashPassword(account);
         }),
 
@@ -193,7 +174,7 @@ exports.hooks = {
     },
 
     afterCreate: {
-        add: mark('services','system:jms-service').on(function (jmsService, account) {
+    	defaults: mark('services','system:jms-service').on(function (jmsService, account) {
             var msg = {resource: 'account', type: 'create',	content: account};
             json(msg, exports.filters.defaults).body.forEach(function(str){
                 jmsService.sendMsg(str);
@@ -201,7 +182,7 @@ exports.hooks = {
         })
     },
     afterUpdate: {
-        edit: mark('services','system:jms-service').on(function (jmsService, account) {
+    	defaults: mark('services','system:jms-service').on(function (jmsService, account) {
             var msg = {resource: 'account', type: 'update',	content: account};
             json(msg, exports.filters.defaults).body.forEach(function(str){
                 jmsService.sendMsg(str);
@@ -219,15 +200,20 @@ exports.hooks = {
 };
 
 exports.doWithRouter = function(router) {
-    router.get('/sync/:path', mark('services', 'system:accounts').on(function (accountMgr, request, path) {
+    router.get('/sync/:path', mark('services', 'system:accounts').on(function (accountSvc, request, path) {
         var results;
         if(!path) {
             return html('notfound!');
         }else if(path.indexOf(',') !== -1) {
-            results = accountMgr.getAccounts(path, true);
+            results = accountSvc.getAccounts(path, true);
         }else {
-            results = accountMgr.getAccounts(path, false);
+            results = accountSvc.getAccounts(path, false);
         }
         return json(results, exports.filters.defaults);
+    }));
+    
+    router.put('/password', mark('services', 'system:accounts').on(function (accountSvc, request) {
+    	var data = request.params;
+        return json(accountSvc.changePassword(data), exports.filters.defaults);
     }));
 };

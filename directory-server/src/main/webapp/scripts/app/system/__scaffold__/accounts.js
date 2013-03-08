@@ -1,30 +1,31 @@
 define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager){
 	return {
 	    handlers: {
-    	
 	    	changePassword: function() {
 	            var me = this, grid = me.feature.views['views:grid'].components[0],
                 selected = grid.getGridParam('selrow'),
                 app = me.feature.module.getApplication();
-	            if (!selected)
-	                return app.info('请选择要操作的记录');
-	            me.feature.model.clear();
-				me.feature.model.set('id', selected);
-                LoaderManager.invoke('view', me.feature.module, me.feature, 'forms:changePassword').done(function(view){
-                	me.feature.model.fetch().done(function(d) {
-                    	console.log(d, me.feature.model);
-                		app.showDialog({
-                            view: view,
-                            title: '修改密码',
-                            buttons: [{
-                                label: 'OK',
-                                fn: function() {
-                                	view.submit();
-                                	return true;
-                                }
-                            }]
-                        })
-                	})
+                app.loadView(me.feature, 'forms:changePassword').done(function(view){
+                	view.model.clear();
+            		app.showDialog({
+                        view: view,
+                        title: '修改密码',
+                        buttons: [{
+                            label: '确定',
+                            fn: function() {
+                            	view.getFormData();
+                            	view.model.set('id', selected);
+                            	me.feature.request({
+                        			url: 'password',
+                        			type: 'put',
+                        			data: view.model.toJSON(),
+                        			success: function(d) {
+                                    	return true;
+                        			}
+                            	});
+                            }
+                        }]
+                    })
                 });
                 return true;
             },

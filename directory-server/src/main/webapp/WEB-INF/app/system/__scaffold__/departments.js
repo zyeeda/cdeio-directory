@@ -27,11 +27,12 @@ exports.style = 'tree';
 
 exports.labels = {
 		entity: '部门',
+		parent: '上级部门',
         name: '部门'
 };
 
 exports.fieldGroups = {
-        DEFAULT: ['name']
+        DEFAULT: ['parent', 'name']
 };
 
 exports['tree'] = {
