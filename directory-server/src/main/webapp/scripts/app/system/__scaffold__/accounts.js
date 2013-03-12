@@ -38,6 +38,23 @@ define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager
                 myfilter.rules.push({ field: "department.path", op: "like", data: treeNode.path + '%' });
             	grid.setGridParam({postData: { filters: JSON.stringify(myfilter)}});
             	grid.trigger('reloadGrid');
+            }, 
+            
+            del: function() {
+            	if(!window.confirm('确定要删除选中的记录吗?')){
+            		return;
+            	}
+            	var me = this,
+                grid = me.feature.views['views:grid'].components[0],
+                selected = grid.getGridParam('selarrrow');
+            	me.feature.request({
+        			url: 'delete',
+        			type: 'post',
+        			data: {ids: selected},
+        			success: function(d) {
+                    	grid.trigger('reloadGrid');
+        			}
+            	});
             }
 	    },
 	    
