@@ -115,7 +115,7 @@ exports.grid = {
         {label: '部门', name: 'department.name', search: true}
     ],
     filterToolbar: true,
-//    multiselect: true
+    multiselect: true,
     events: {
         'system/departments#tree:onClick': 'departmentChanged'
     }
