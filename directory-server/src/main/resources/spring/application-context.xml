@@ -52,5 +52,7 @@
     <import resource="classpath:spring/hibernate.xml" />
     <import resource="classpath:spring/coala/validation.xml" />
     <import resource="classpath:spring/jms.xml" />
+    <import resource="classpath:spring/sso/consumer/freemarker.xml" />
+    <import resource="classpath:spring/sso.xml" />
     
 </beans>

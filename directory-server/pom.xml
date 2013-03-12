@@ -11,7 +11,16 @@
     
     <artifactId>zyeeda-directory-service-provider</artifactId>
     <name>Zyeeda Directory Service (Provider)</name>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.zyeeda</groupId>
+            <artifactId>zyeeda-sso-consumer-shiro</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
     
     <build>
         <resources>

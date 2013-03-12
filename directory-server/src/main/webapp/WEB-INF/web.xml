@@ -32,7 +32,20 @@
         <filter-name>osiv</filter-name>
         <url-pattern>/invoke/*</url-pattern>
     </filter-mapping>
-
+    <!-- 
+    <filter>
+        <filter-name>shiro</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiro</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+     -->
     <servlet>
         <servlet-name>jsgi</servlet-name>
         <servlet-class>com.zyeeda.coala.web.SpringAwareJsgiServlet</servlet-class>
