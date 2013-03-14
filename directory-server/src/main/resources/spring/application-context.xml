@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:lang="http://www.springframework.org/schema/lang"
 	xmlns:util="http://www.springframework.org/schema/util"
@@ -17,41 +16,23 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
-        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
-
+		">
+	
+    <context:annotation-config/>
+    
     <context:property-placeholder location="classpath:settings/*.properties" />
-
+    
     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/defaultDS" />
     
-    <!--
-     - TransactionManager declaration.
-     - If use JTA as transaction managment, uncomment it.
-    -->
-    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"/>
-
-    <!--
-     - Scaffold configuration.
-    -->
+	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager" />
+	
     <bean class="com.zyeeda.coala.web.scaffold.provider.DefaultEntityMetaResolver" />
     
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>validationMessages</value>
-			    <value>org.hibernate.validator.ValidationMessages</value> 
-			</list>
-		</property>
-	</bean>
-    
-
-    <!--
-     - Other imported spring configurations.
-     - Uncomment the one you use then change it.
-    -->
     <import resource="classpath:spring/hibernate.xml" />
-    <import resource="classpath:spring/coala/validation.xml" />
-    <import resource="classpath:spring/jms.xml" />
+    <import resource="classpath:spring/jms.xml"/>
+    <import resource="classpath:spring/service.xml"/>
     <import resource="classpath:spring/sso/consumer/freemarker.xml" />
     <import resource="classpath:spring/sso.xml" />
     

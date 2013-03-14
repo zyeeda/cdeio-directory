@@ -1,37 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-    version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
 
     <display-name>Zyeeda Directory Service</display-name>
-
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/application-context.xml</param-value>
     </context-param>
-
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
+    
     <filter>
-        <filter-name>osiv</filter-name>
-        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+        <filter-name>openEntityManager</filter-name>
+        <filter-class>com.zyeeda.coala.web.OpenEntityManagerFilter</filter-class>
     </filter>
-
     <filter-mapping>
-        <filter-name>osiv</filter-name>
-        <url-pattern>/rest/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>osiv</filter-name>
+        <filter-name>openEntityManager</filter-name>
         <url-pattern>/invoke/*</url-pattern>
     </filter-mapping>
+    <!-- 
     <filter>
         <filter-name>shiro</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -44,6 +33,31 @@
         <filter-name>shiro</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+     -->
+    <filter>
+        <filter-name>closeEntityManager</filter-name>
+        <filter-class>com.zyeeda.coala.web.CloseEntityManagerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>closeEntityManager</filter-name>
+        <url-pattern>/invoke/*</url-pattern>
+    </filter-mapping>
+
+    <!--
+    <filter>
+        <filter-name>osiv</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>osiv</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>osiv</filter-name>
+        <url-pattern>/invoke/*</url-pattern>
+    </filter-mapping>
+    -->
+
     <servlet>
         <servlet-name>jsgi</servlet-name>
         <servlet-class>com.zyeeda.coala.web.SpringAwareJsgiServlet</servlet-class>
@@ -70,13 +84,15 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <!--
     <servlet-mapping>
         <servlet-name>jsgi</servlet-name>
         <url-pattern>/ns/invoke/*</url-pattern>
     </servlet-mapping>
+    -->
     <servlet-mapping>
         <servlet-name>jsgi</servlet-name>
         <url-pattern>/invoke/*</url-pattern>
     </servlet-mapping>
-    
 </web-app>
+

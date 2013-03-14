@@ -12,6 +12,12 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
         p:jpaVendorAdapter-ref="hibernateJpaVendorAdapter"
-        p:dataSource-ref="dataSource" />
-
+        p:persistenceUnitName="default"
+        p:dataSource-ref="dataSource" >
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.WeblogicJtaPlatform"/>
+            </map>
+        </property>
+    </bean>
 </beans>
