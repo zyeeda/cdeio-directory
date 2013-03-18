@@ -1,4 +1,4 @@
-define(['coala/applications/default'], function(createDefaultApplication) {
+define(['jquery', 'underscore',  'coala/core/config', 'coala/applications/default'], function($, _, config, createDefaultApplication) {
     return function() {
 
         // 获取一个加载了内置features, 有openDialog方法的app
@@ -9,6 +9,10 @@ define(['coala/applications/default'], function(createDefaultApplication) {
         });
 
         // do with app
+        
+        $.get(config.settingsPath, function(data) {
+            app.settings = _.extend({}, data);
+        })
 
         return app;
     };

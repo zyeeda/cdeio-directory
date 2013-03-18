@@ -1,2 +1,3 @@
 define({
+	settingsPath: 'invoke/settings'
 });
