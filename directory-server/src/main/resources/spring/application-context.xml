@@ -31,6 +31,7 @@
     <bean class="com.zyeeda.coala.web.scaffold.provider.DefaultEntityMetaResolver" />
     
     <import resource="classpath:spring/hibernate.xml" />
+    <import resource="classpath:spring/coala/validation.xml" />
     <import resource="classpath:spring/jms.xml"/>
     <import resource="classpath:spring/service.xml"/>
     <import resource="classpath:spring/sso/consumer/freemarker.xml" />
