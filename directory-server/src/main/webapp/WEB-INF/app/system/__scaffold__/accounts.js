@@ -77,13 +77,11 @@ exports.forms = {
     },
     show: {
         labelOnTop: false,
-        size: 'large',
+        size: 'normal',
         groups: [{
             name: 'baseInfo',
-            columns: 2
         }, {
             name: 'extInfo',
-            columns: 2
         }]
     },
     add: {
@@ -98,8 +96,9 @@ exports.forms = {
             columns: 2
         }]
     },
-    
+
     changePassword: {
+        size: 'normal',
         groups: ['editPwdInfo']
     }
 }
@@ -211,7 +210,7 @@ exports.doWithRouter = function(router) {
         }
         return json(results, exports.filters.defaults);
     }));
-    
+
     router.put('/password', mark('services', 'system:accounts').on(function (accountSvc, request) {
     	var data = request.params;
         return json(accountSvc.changePassword(data), exports.filters.defaults);

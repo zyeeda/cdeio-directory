@@ -36,7 +36,7 @@ exports.fieldGroups = {
 };
 
 exports['tree'] = {
-    isAsync: false,
+    isAsync: true,
     root: '所有部门',
 	edit: {
 		showRemoveBtn: false,
