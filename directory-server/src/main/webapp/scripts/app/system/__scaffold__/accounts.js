@@ -34,9 +34,8 @@ define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager
             	var me = this,
                 grid = me.feature.views['views:grid'].components[0];
             	me.feature.model.set('department', treeNode);
-                var myfilter = { groupOp: "AND", rules: [] };
-                myfilter.rules.push({ field: "department.path", op: "like", data: treeNode.path + '%' });
-            	grid.setGridParam({postData: { filters: JSON.stringify(myfilter)}});
+            	var defaultFilters = [{name: "department.path",operator: "like", value: treeNode.path + "%"}];
+            	grid.setGridParam({postData: { defaultFilters: defaultFilters}});
             	grid.trigger('reloadGrid');
             }, 
             
