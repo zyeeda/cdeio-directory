@@ -1,6 +1,18 @@
 define([
     'jquery',
     'coala/coala',
+    'application'
+], function ($, coala) {
+
+    $(function() {
+        var app = window.app = coala.startApplication('application');
+    });
+
+});
+
+/*define([
+    'jquery',
+    'coala/coala',
     'coala/core/config',
     'directory-application'
 ], function ($, coala, config) {
@@ -19,4 +31,4 @@ define([
         });
     });
 
-});
+});*/

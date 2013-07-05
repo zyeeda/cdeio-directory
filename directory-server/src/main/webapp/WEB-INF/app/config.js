@@ -1,10 +1,11 @@
-var {FrontendSettingsCollector} = com.zyeeda.coala.web;
 var {SecurityUtils} = org.apache.shiro;
 
+var logger = require('ringo/logging').getLogger(module.id);
+var {mark} = require('coala/mark');
 
 exports.coala = {
-
     entityPackages : [
+        'com.zyeeda.coala.commons.resource.entity',
         'com.zyeeda.coala.commons.organization.entity',
         'com.zyeeda.directory'
     ],
@@ -12,24 +13,27 @@ exports.coala = {
     orms: [
         'src/main/resources/META-INF/mappings/account-department.orm.xml'
     ]
-
 }
 
 exports.directoryServer = {
-		activemq: {
-			disable: true
-		}
+    activemq: {
+        disable: true
+    }
 }
 
-FrontendSettingsCollector.add('collector', 'registered in collector');
-
 exports.frontendSettings = {
-		
-    'subject': function(context) {
-    	return SecurityUtils.subject.getPrincipal().username;
+    currentUser: function(context) {
+        var subject = SecurityUtils.getSubject();
+        var p = subject.getPrincipal();
+        logger.debug('principal = {}', p);
+        return {
+            accountName: p.getAccountName(),
+            realName: p.getRealName(),
+            email: p.getEmail(),
+            isAdmin: false
+        };
     },
-    'singoutUrl': function(context) {
-    	var openIdConsumer = context.getBean('openIdConsumer');
-    	return openIdConsumer.getSignOutPath();
-    }
-};
+    signOutUrl: mark('beans', 'openIdProvider').on(function(openIdProvider, context) {
+        return openIdProvider.getSignOutUrl();
+    })
+}

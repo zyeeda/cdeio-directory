@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- $Id$ -->
+
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:p="http://www.springframework.org/schema/p"
@@ -8,56 +10,56 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-   	<context:property-placeholder location="classpath:settings/*.properties" />
-    
-	<!-- 配置connectionFactory -->
-	<bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
-		<property name="connectionFactory">
-			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
-				<property name="brokerURL">
-					<value>${carol.jms.activemq.brokerURL}</value>
-				</property>
-				<property name="userName">
-					<value>${carol.jms.activemq.userName}</value>
-				</property>
-				<property name="password">
-					<value>${carol.jms.activemq.password}</value>
-				</property>
-			</bean>
-		</property>
-		<property name="maxConnections" value="${carol.jms.activemq.maxConnections}"></property>
-	</bean>
+    <!--
+    <context:property-placeholder location="classpath:settings/*.properties" />
+    -->
 
-	<!-- Spring JMS Template -->
-	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory">
-			<ref local="jmsFactory" />
-		</property>
-		<property name="defaultDestinationName" value="${carol.jms.activemq.destination}" />
-		<!-- 区别它采用的模式为false是p2p为true是订阅 -->
-		<property name="pubSubDomain" value="true" />
-	</bean>
+    <bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL">
+                    <value>${carol.jms.activemq.brokerURL}</value>
+                </property>
+                <property name="userName">
+                    <value>${carol.jms.activemq.userName}</value>
+                </property>
+                <property name="password">
+                    <value>${carol.jms.activemq.password}</value>
+                </property>
+            </bean>
+        </property>
+        <property name="maxConnections" value="${carol.jms.activemq.maxConnections}"></property>
+    </bean>
 
-	<!-- 发送消息的目的地（一个队列） -->
-	<bean id="destination" class="org.apache.activemq.command.ActiveMQTopic">
-		<!-- 设置消息队列的名字 -->
-		<constructor-arg index="0" value="${carol.jms.activemq.destination}" />
-	</bean>
-	
-	<!-- 消息监听 
-    <bean id="listenerContainer"  
-        class="org.springframework.jms.listener.DefaultMessageListenerContainer">  
-        <property name="concurrentConsumers" value="1" />  
-        <property name="connectionFactory" ref="jmsFactory" />  
-        <property name="destinationName" value="${carol.jms.activemq.destination}" />  
-		<property name="messageListener" ref="messageListener" />     
- 		<property name="pubSubNoLocal" value="false"></property>  
-    </bean>  
-    <bean id="messageListener" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">  
-          <constructor-arg>  
-          	<bean class="com.zyeeda.jms.test.ProxyJMSConsumer"/>  
-          </constructor-arg>  
-          <property name="defaultListenerMethod" value="recive"/>  
-  </bean>  
-   --> 
- </beans>
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory">
+            <ref local="jmsFactory" />
+        </property>
+        <property name="defaultDestinationName" value="${carol.jms.activemq.destination}" />
+        <!-- 区别它采用的模式：false 是 P2P，true 是订阅 -->
+        <property name="pubSubDomain" value="true" />
+    </bean>
+
+    <!-- 发送消息的目的地（一个队列） -->
+    <bean id="destination" class="org.apache.activemq.command.ActiveMQTopic">
+        <!-- 设置消息队列的名字 -->
+        <constructor-arg index="0" value="${carol.jms.activemq.destination}" />
+    </bean>
+
+    <!-- 消息监听
+    <bean id="listenerContainer"
+        class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="concurrentConsumers" value="1" />
+        <property name="connectionFactory" ref="jmsFactory" />
+        <property name="destinationName" value="${carol.jms.activemq.destination}" />
+        <property name="messageListener" ref="messageListener" />
+        <property name="pubSubNoLocal" value="false"></property>
+    </bean>
+    <bean id="messageListener" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+          <constructor-arg>
+            <bean class="com.zyeeda.jms.test.ProxyJMSConsumer"/>
+          </constructor-arg>
+          <property name="defaultListenerMethod" value="recive"/>
+    </bean>
+    -->
+</beans>

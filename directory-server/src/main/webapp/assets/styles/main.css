@@ -8,3 +8,167 @@
     text-align: center;
 }
 
+.content {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 808px;
+    position: absolute;
+    background-color: #F6F6F6;
+    z-index: 1;
+}
+
+.content-bg {
+    background: none repeat scroll 0 0;
+    position: fixed;
+    z-index: -1;
+}
+
+.content-bg img {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    min-height: 50%;
+    min-width: 50%;
+    display: block;
+}
+
+.system-logo {
+    text-align: center;
+}
+
+.content .container-fluid {
+    margin: 30px 50px;
+}
+
+.left-padding,
+.right-padding {
+    height: 100px;
+}
+
+.signin-content {
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,.5);
+       -moz-box-shadow: 3px 3px 5px rgba(0,0,0,.5);
+            box-shadow: 3px 3px 5px rgba(0,0,0,.5);
+    min-width: 350px;
+}
+
+.signin-content form {
+    margin: 0px;
+}
+
+.signin-form-above {
+    padding: 10px 20px 5px 20px;
+    background-color: #fff;
+    border-top: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    border-bottom: 0;
+    /*-webkit-border-radius: 15px 0 0 0;
+       -moz-border-radius: 15px 0 0 0;
+            border-radius: 15px 0 0 0;*/
+}
+
+.signin-form {
+    background-color: #fff;
+    padding: 10px 20px 0 20px;
+    border: 1px solid #e5e5e5;
+}
+
+.password {
+    float: left;
+}
+
+.forget-password {
+    float: right;
+}
+
+.forget-password label {
+    font-size: 12px !important;
+    color: #CCC;
+    text-align: right;
+}
+
+.captcha-label {
+    float: left;
+}
+
+.captcha-unclear {
+    float: right;
+}
+
+.signin-form-below {
+    padding: 20px;
+    background-color: #f6f6f6;
+    height: 45px;
+    border-top: 0;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+}
+
+.signin-form label, .signin-form-below label {
+    font-size: 14px;
+}
+
+.signin-form .add-on {
+    height: 23px;
+    padding-top: 9px;
+}
+
+.signin-form input[type="text"],
+.signin-form input[type="password"] {
+    font-size: 18px;
+    /*height: 38px;*/
+    margin-bottom: 15px;
+    /*padding: 7px 9px;*/
+}
+
+.change-captcha {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+}
+
+.remember-me {
+    margin-top: 12px;
+    float: left;
+    width: 8em;
+}
+
+.signin-btn {
+    float: right;
+}
+
+.signin-btn, .signout-btn {
+    text-align: right;
+}
+
+.copyright {
+    margin-top: 20px;
+    padding: 0;
+    background-color: #fff;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    height: 30px;
+    font-size: 13px;
+    text-align: center;
+    padding-top: 10px;
+    border: 1px solid #e5e5e5;
+    min-width: 350px;
+}
+
+#currentUser, #onlineSystems {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.no-online-system {
+    text-align: center;
+}
+

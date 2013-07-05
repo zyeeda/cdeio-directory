@@ -1,41 +1,43 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence classpath:///META-INF/schema/persistence_2_0.xsd"
-	version="2.0">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence classpath:///META-INF/schema/persistence_2_0.xsd"
+    version="2.0">
 
-	<persistence-unit name="default" transaction-type="JTA">
+    <persistence-unit name="default" transaction-type="JTA">
 
-		<!--
-		 | Uncomment the following lines when using zyeeda-knowledge module!
-         |-->
         <!--
-		<class>org.drools.persistence.info.SessionInfo</class>
-		<class>org.drools.persistence.info.WorkItemInfo</class>
-		-->
+         | Uncomment the following lines when using zyeeda-knowledge module!
+         | <class>org.drools.persistence.info.SessionInfo</class>
+         | <class>org.drools.persistence.info.WorkItemInfo</class>
+         |-->
 
-		<class>com.zyeeda.coala.commons.organization.entity.Account</class>
-		<class>com.zyeeda.coala.commons.organization.entity.Department</class>
-		<mapping-file>META-INF/mappings/coala/validation.orm.xml</mapping-file>
-		<mapping-file>META-INF/mappings/sso/consumer/openid.orm.xml</mapping-file>
-		
-		<validation-mode>NONE</validation-mode>
+        <class>com.zyeeda.coala.commons.resource.entity.MenuItem</class>
+        <class>com.zyeeda.coala.commons.resource.entity.SettingItem</class>
+        <class>com.zyeeda.coala.commons.organization.entity.Account</class>
+        <class>com.zyeeda.coala.commons.organization.entity.Department</class>
+        <mapping-file>META-INF/mappings/coala/validation.orm.xml</mapping-file>
+        <mapping-file>META-INF/mappings/sso/consumer/openid.orm.xml</mapping-file>
+        <mapping-file>META-INF/mappings/sso/provider/openid.orm.xml</mapping-file>
 
-		<properties>
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.use_sql_comments" value="true" />
+        <validation-mode>NONE</validation-mode>
 
-			<property name="hibernate.transaction.manager_lookup_class"
-				value="org.hibernate.transaction.WeblogicTransactionManagerLookup" />
+        <properties>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.use_sql_comments" value="true" />
 
-			<property name="org.hibernate.envers.audit_strategy"
-				value="org.hibernate.envers.strategy.ValidityAuditStrategy" />
-			<property
-				name="org.hibernate.envers.audit_strategy_validity_store_revend_timestamp"
-				value="true" />
-			<property name="org.hibernate.envers.track_entities_changed_in_revision"
-				value="true" />
-		</properties>
+            <property name="hibernate.transaction.manager_lookup_class"
+                value="org.hibernate.transaction.WeblogicTransactionManagerLookup" />
 
-	</persistence-unit>
+            <property name="org.hibernate.envers.audit_strategy"
+                value="org.hibernate.envers.strategy.ValidityAuditStrategy" />
+            <property
+                name="org.hibernate.envers.audit_strategy_validity_store_revend_timestamp"
+                value="true" />
+            <property
+                name="org.hibernate.envers.track_entities_changed_in_revision"
+                value="true" />
+        </properties>
+
+    </persistence-unit>
 </persistence>

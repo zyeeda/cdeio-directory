@@ -29,11 +29,6 @@
         </dependency>
         <dependency>
             <groupId>com.zyeeda</groupId>
-            <artifactId>zyeeda-coala-commons</artifactId>
-            <version>${coala.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zyeeda</groupId>
             <artifactId>zyeeda-coala-core</artifactId>
             <version>${coala.version}</version>
         </dependency>

@@ -13,12 +13,34 @@
     <name>Zyeeda Directory Service (Provider)</name>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    
+    <repositories>
+        <repository>
+            <id>google-maven-snapshot-repository</id>
+            <name>Google Maven Snapshot Repository</name>
+            <url>https://m2repos.googlecode.com/svn/nexus</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <properties>
+        <kaptcha.version>2.3.2</kaptcha.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.zyeeda</groupId>
-            <artifactId>zyeeda-sso-consumer-shiro</artifactId>
+            <artifactId>zyeeda-sso-provider</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.google.code</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha.version}</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
@@ -51,7 +73,7 @@
                                 </property>-->
                                 <property>
                                     <name>jetty.port</name>
-                                    <value>9200</value>
+                                    <value>9100</value>
                                 </property>
                             </properties>
                         </configuration>
@@ -64,7 +86,7 @@
                 <configuration>
                     <jettyConfig>${project.build.outputDirectory}/META-INF/jetty/jetty.xml</jettyConfig>
                     <webApp>
-                        <contextPath>/zyeeda-directory</contextPath>
+                        <contextPath>/</contextPath>
                         <jettyEnvXml>${project.build.outputDirectory}/META-INF/jetty/jetty-env.xml</jettyEnvXml>
                         <defaultsDescriptor>${project.build.outputDirectory}/META-INF/jetty/webdefault.xml</defaultsDescriptor>
                     </webApp>
