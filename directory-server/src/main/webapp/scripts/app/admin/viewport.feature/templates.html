@@ -1,0 +1,39 @@
+{{#layout}}
+<div id="header" class="navbar navbar-inverse"></div>
+<div class="container-fluid ace-main-container">
+    <div id="sidebar" class="ace-sidebar"></div>
+    <div class="clearfix ace-main-content">
+        <div id="breadcrumbs" class="ace-breadcrumbs"></div>
+        <div id="main-content" class="clearfix ace-page-content"></div>
+    </div>
+</div>
+{{/layout}}
+
+{{#view "breadcrumbs"}}
+<ul class="breadcrumb">
+    <li>
+        <i class="{{home.iconClass}}"></i>
+        <a href="javascript:void 0;">{{home.name}}</a>
+
+        {{#unless home.isLast}}
+        <span class="divider">
+            <i class="icon-angle-right"></i>
+        </span>
+        {{/unless}}
+    </li>
+    {{#each items}}
+    {{#if isLast}}
+    <li class="active">
+    {{else}}
+    <li>
+    {{/if}}
+    {{name}}
+    {{#unless isLast}}
+    <span class="divider">
+        <i class="icon-angle-right"></i>
+    </span>
+    {{/unless}}
+    </li>
+    {{/each}}
+</ul>
+{{/view}}

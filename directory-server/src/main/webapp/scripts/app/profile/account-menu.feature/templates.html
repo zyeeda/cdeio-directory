@@ -7,21 +7,21 @@
 
 {{#view "title"}}
 <img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="用户头像" />
-<span id="user-info">
-    欢迎，{{settings.currentUser.realname}}
+<span class="user-info">
+    <small>欢迎,</small>
+    {{settings.currentUser.realName}}
 </span>
 
 <i class="icon-caret-down"></i>
 {{/view}}
 
 {{#view "dropdown"}}
+{{#if settings.currentUser.isAdmin}}
 <li>
-    <a href="#"><i class="icon-cog"></i>偏好设置</a>
-</li>
-<li>
-    <a href="#"><i class="icon-user"></i>用户信息</a>
+    <a href="#"><i class="icon-arrow-left"></i>返回</a>
 </li>
 <li class="divider"></li>
+{{/if}}
 <li>
     <a href="{{settings.signOutUrl}}"><i class="icon-off"></i>退出</a>
 </li>

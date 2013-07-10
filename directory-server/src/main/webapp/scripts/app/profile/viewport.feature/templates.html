@@ -1,37 +1,47 @@
 {{#layout}}
 <div id="header" class="navbar navbar-inverse"></div>
 <div id="content" class="container-fluid ace-main-container"></div>
-{{/layout}}
+<div id="edit-info-widget" class="row-fluid mfp-hide">
+    <div class="span6 offset3">
+        <div class="position-relative">
+            <div class="widget-box no-border">
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <div class="widget-box no-border">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h4 class="header green lighter bigger">
+                                        <i class="icon-user blue"></i>
+                                        修改用户信息
+                                    </h4>
 
-{{#view "header"}}
-<div class="navbar-inner">
-    <div class="container-fluid">
-        <a class="brand" href="javascript:void 0;">
-            {{#if settings.application-logo}}
-            <img class="c-system-logo" src="{{settings.application-logo}}" alt="应用程序图标" />
-            {{else}}
-            <img class="c-system-logo" src="scripts/coala/themes/default/img/zyeeda-logo-inverse.png" alt="应用程序图标" />
-            {{/if}}
-            {{#if settings.application-name}}
-            <div class="c-system-name">{{settings.application-name}}</div>
-            {{else}}
-            <div class="c-system-name">中昱达目录服务</div>
-            {{/if}}
-        </a>
+                                    <div class="space-6"></div>
 
-        <ul id="user-profile" class="nav ace-nav pull-right">
-            <li class="light-blue user-profile">
-                <a href="{{settings.signOutUrl}}" class="user-menu">
-                    <img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="用户头像" />
-                    <span id="user-info">
-                        退出
-                    </span>
-                </a>
-            </li>
-        </ul>
+                                    <div id="edit-info-form"></div>
+
+                                    <div class="space-16"></div>
+
+                                    <div class="row-fluid">
+                                        <button type="reset" class="span6 btn btn-small">
+                                            <i class="icon-refresh"></i>
+                                            重置
+                                        </button>
+
+                                        <button onclick="return false;" class="span6 btn btn-small btn-success">
+                                            <i class="icon-save icon-on-right"></i>
+                                            保存
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-{{/view}}
+{{/layout}}
 
 {{#view "content"}}
 <div id="main-content" class="clearfix">
@@ -48,29 +58,16 @@
                                 {{info.realName}}
                             </h3>
 
-                            <div class="widget-toolba no-borderr">
-                                <button class="btn btn-primary">
-                                    <i class="icon-edit"></i>修改信息
-                                </button>
+                            <div class="widget-toolbar no-border">
+                                <div class="btn-group">
+                                    <button id="edit-info-btn" class="btn btn-primary">
+                                        <i class="icon-edit"></i>修改信息
+                                    </button>
+                                    <button id="change-password-btn" class="btn btn-danger">
+                                        <i class="icon-key"></i>修改密码
+                                    </button>
+                                </div>
                             </div>
-
-                            <!--<div class="widget-toolbar no-border invoice-info">-->
-                                <!--<span class="invoice-info-label">Invoice:</span>-->
-                                <!--<span class="red">#121212</span>-->
-
-                                <!--<br />-->
-                                <!--<span class="invoice-info-label">Date:</span>-->
-                                <!--<span class="blue">03/03/2013</span>-->
-                            <!--</div>-->
-
-                            <!--<div class="widget-toolbar hidden-480">
-                                <a href="#">
-                                    <i class="icon-edit"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="icon-print"></i>
-                                </a>
-                            </div>-->
                         </div>
 
                         <div class="widget-body">
@@ -198,39 +195,12 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!--
-                                    <div class="hr hr8 hr-double hr-dotted"></div>
-
-                                    <div class="row-fluid">
-                                        <div class="span5 pull-right">
-                                            <h4 class="pull-right">
-                                                Total amount :
-                                                <span class="red">$395</span>
-                                            </h4>
-                                        </div>
-                                        <div class="span7 pull-left"> Extra Information </div>
-                                    </div>
-
-                                    <div class="space-6"></div>
-
-                                    <div class="row-fluid">
-                                        <div class="span12 well">
-                                            Thank you for choosing Ace Company products.
-            We believe you will be satisfied by our services.
-                                        </div>
-                                    </div>
-                                    -->
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-            <!--PAGE CONTENT ENDS HERE-->
         </div><!--/row-->
     </div><!--/#page-content-->
 </div>
