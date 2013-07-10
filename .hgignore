@@ -5,6 +5,7 @@ syntax: glob
 .classpath
 .project
 .settings
+.externalToolBuilders
 *.swp
 *.bak
 *~
