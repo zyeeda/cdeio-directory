@@ -9,11 +9,11 @@
     <New class="org.eclipse.jetty.plus.jndi.Resource">
         <Arg></Arg>
         <Arg>javax.transaction.TransactionManager</Arg>
-        <Arg><Ref id="tm" /></Arg>
+        <Arg><Ref refid="tm" /></Arg>
     </New>
 
     <New id="tx" class="org.eclipse.jetty.plus.jndi.Transaction">
-        <Arg><Ref id="tm" /></Arg>
+        <Arg><Ref refid="tm" /></Arg>
     </New>
 
     <New id="ctx" class="javax.naming.InitialContext">
@@ -25,7 +25,7 @@
     <Call name="bind" class="org.eclipse.jetty.jndi.NamingUtil">
         <Arg><Ref refid="comp"/></Arg>
         <Arg>TransactionSynchronizationRegistry</Arg>
-        <Arg><Ref id="tsr"/></Arg>
+        <Arg><Ref refid="tsr"/></Arg>
     </Call>
 
     <New class="org.eclipse.jetty.plus.jndi.Resource">
