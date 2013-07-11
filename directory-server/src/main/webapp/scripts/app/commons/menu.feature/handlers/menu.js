@@ -1,17 +1,29 @@
 define(['jquery'], function($) {
     return {
         startFeature: function(e) {
-            var t = $(e.target), app = this.feature.module.getApplication(), el = this.feature.layout.$el;
-            if (!t.is('a')) t = t.parents('a');
+            var t = $(e.target)
+              , app = this.feature.module.getApplication()
+              , el = this.feature.layout.$el
+              , item;
 
-            var item = this.collection.get(t.data('id')).toJSON();
-            if (item['featurePath'] == 'main/home') {
-                app.viewport.setHome(item);
-                app.viewport.updateNavigator()
-            } else {
-                app.viewport.updateNavigator(item);
+            if (!t.is('a')) {
+                t = t.parents('a');
             }
-            app.startFeature(item.featurePath, item);
+
+            item = this.collection.get(t.data('id')).toJSON();
+            if (item.pathType == 'FEATURE') {
+                if (item.path == 'main/home') {
+                    app.viewport.setHome(item);
+                    app.viewport.updateNavigator()
+                } else {
+                    app.viewport.updateNavigator(item);
+                }
+                app.startFeature(item.path, item);
+            } else if (item.pathType == 'URL') {
+                app.router.navigate(item.path, { trigger: true });
+            } else {
+                throw Error('No path type specified.');
+            }
 
             el.find('.active').removeClass('active');
             t.parent().addClass('active');

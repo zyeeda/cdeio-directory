@@ -4,6 +4,7 @@ define({
             breadcrumbs: 'breadcrumbs'
         }
     },
+
     views: [{
         name: 'inline:breadcrumbs', region: 'breadcrumbs', avoidLoadingHandlers: true,
         extend: {
@@ -19,23 +20,20 @@ define({
 
     extend: {
         onStart: function(_super, feature) {
-            var header, sidebar;
+            var header, sidebar, content;
 
             app.viewport = feature;
 
-            app.done(function() {
-                app.config.featureContainer = content;
-            });
-
-            console.log(feature);
-
             header = feature.layout.$('header');
             sidebar = feature.layout.$('sidebar');
+            content = feature.layout.$('content');
 
             app.startFeature('commons/header', { container: header, ignoreExists: true }).done(function (headerFeature) {
                 app.startFeature('admin/account-menu', { container: headerFeature.views['inline:inner-header'].$('notification'), ignoreExists: true });
             });
             app.startFeature('commons/menu', { container: sidebar, ignoreExists: true });
+
+            app.config.featureContainer = content;
 
             feature.setHome({ name: '首页', featurePath: 'admin/home', iconClass: 'icon-home' });
             feature.updateNavigator();

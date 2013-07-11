@@ -1,7 +1,8 @@
 define({
     routes: {
         '': 'showHome',
-        'profile': 'showProfile'
+        'profile': 'showProfile',
+        'account-department': 'showAccountDepartment'
     },
 
     showHome: function() {
@@ -14,5 +15,9 @@ define({
 
     showProfile: function() {
         app.startFeature('profile/viewport', { container: $(document.body), ignoreExists: true });
+    },
+
+    showAccountDepartment: function() {
+        app.startFeature('admin/account-department', { ignoreExists: true });
     }
 });

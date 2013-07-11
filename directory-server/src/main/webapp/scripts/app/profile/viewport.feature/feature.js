@@ -58,9 +58,7 @@ define({
         onStart: function(_super, feature) {
             app.viewport = feature;
 
-            app.done(function() {
-                app.config.featureContainer = feature.layout.$('content');
-            });
+            app.config.featureContainer = feature.layout.$('content');
 
             app.startFeature('commons/header', { container: feature.layout.$('header'), ignoreExists: true }).done(function(headerFeature) {
                 app.startFeature('profile/account-menu', { container: headerFeature.views['inline:inner-header'].$('notification'), ignoreExists: true });
