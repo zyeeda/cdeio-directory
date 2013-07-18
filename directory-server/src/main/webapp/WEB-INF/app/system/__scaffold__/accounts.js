@@ -25,7 +25,7 @@ exports.labels = {
     entity: '账户',
     id: 'ID',
     realName: '姓名',
-    username: '用户名',
+    accountName: '账户名',
     password: '密码',
     password2: '重复密码',
     email: '邮箱',
@@ -105,13 +105,22 @@ exports.forms = {
 
 
 exports.grid = {
-    colModel: [
-        {name: 'realName', search: true},
-        {name: 'username', search: true},
-        {name: 'email', search: true},
-        {name: 'mobile', search: true},
-        {name: 'disabled', type: 'boolean', search: true},
-        {label: '部门', name: 'department.name', search: true}
+    /*
+    columns: [
+        { sName: 'accountName', aTargets: [0] },
+        { sName: 'realName', aTargets: [1] },
+        { sName: 'email', aTargets: [2] },
+        { sName: 'mobile', aTargets: [3] },
+        { sName: 'disabled', aTargets: [4] },
+        { sName: 'department.name', aTargets: [5], sTitle: '部门' }
+    ],*/
+    columns: [
+        { name: 'realName', search: true },
+        { name: 'accountName', search: true },
+        { name: 'email', search: true },
+        { name: 'mobile', search: true },
+        { name: 'disabled', type: 'boolean', search: true },
+        { name: 'department.name', header: '部门', defaultContent: '', search: true }
     ],
     filterToolbar: true,
     multiselect: true,

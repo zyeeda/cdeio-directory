@@ -1,4 +1,8 @@
-define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager){
+define([
+    'jquery',
+    'coala/core/loader-plugin-manager'
+], function($, LoaderManager) {
+
 	return {
 	    handlers: {
 	    	changePassword: function() {
@@ -29,7 +33,7 @@ define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager
                 });
                 return true;
             },
-            
+
             departmentChanged: function(feature, view, tree, e, viewName, treeNode) {
             	var me = this,
                 grid = me.feature.views['views:grid'].components[0];
@@ -37,8 +41,8 @@ define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager
             	var defaultFilters = [{name: "department.path",operator: "like", value: treeNode.path + "%"}];
             	grid.setGridParam({postData: { defaultFilters: defaultFilters}});
             	grid.trigger('reloadGrid');
-            }, 
-            
+            },
+
             del: function() {
             	if(!window.confirm('确定要删除选中的记录吗?')){
             		return;
@@ -56,7 +60,7 @@ define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager
             	});
             }
 	    },
-	    
+
 	    initOperatorsVisibility: function(operators) {
 	        var o, _i, _len, _results;
 	        _results = [];
@@ -68,7 +72,7 @@ define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager
 	        }
 	        return _results;
 	     },
-	      
+
 	    ensureOperatorsVisibility: function(operators, id) {
 	        var o, _i, _len, _results;
 	        _results = [];

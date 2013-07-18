@@ -6,7 +6,9 @@
         <#if applicationName??>
         <h4>${applicationName}</h4>
         <#else>
+        <#--
         <h4>中昱达单点登录系统</h4>
+        -->
         </#if>
     </div>
     <div class="signin-form">

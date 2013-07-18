@@ -2,6 +2,7 @@ var {mark} = require('coala/mark');
 var {json} = require('coala/response');
 
 exports.enableFrontendExtension = true;
+
 exports.filters = {
     defaults: {
         exclude: {
@@ -22,20 +23,19 @@ exports.filters = {
     }
 };
 
-exports.enableFrontendExtension = true;
 exports.style = 'tree';
 
 exports.labels = {
-		entity: '部门',
-		parent: '上级部门',
-        name: '部门'
+    entity: '部门',
+    parent: '上级部门',
+    name: '部门'
 };
 
 exports.fieldGroups = {
-        DEFAULT: ['parent', 'name'],
+    DEFAULT: ['parent', 'name'],
 };
 
-exports['tree'] = {
+exports.tree = {
     isAsync: true,
     root: '所有部门',
 	edit: {
@@ -48,25 +48,23 @@ exports['tree'] = {
 };
 
 exports.operators = {
-	    add: {icon: "icon-plus"},
-	    edit: {icon: "icon-edit"},
-	    del: {icon: "icon-minus"},
-	    toggleMove: {icon: "icon-move"}
-		//add: {label: "添加", icon: "icon-plus"},
-		//edit: {label: "编辑", icon: "icon-edit"},
-		//del: {label: "删除",icon: "icon-minus"},
-		//toggleMove: {label: "开启移动", icon: "icon-move"}
+    add: { icon: 'icon-plus', style: 'btn-info', group: 'action' },
+    del: { icon: 'icon-minus', style: 'btn-danger', group: 'action' },
+    edit: { icon: 'icon-pencil', group: 'action' },
+
+    refresh: { icon: 'icon-refresh', group: 'other' },
+    toggleMove: { icon: 'icon-move', group: 'other' }
 };
 
 exports.validators = {
-	remove: {
-		defaults: mark('services', 'system:departments').on(function (departmentSvc, context, department, request) {
-			var isEmpty = departmentSvc.isEmpty(department);
-			if (!isEmpty) {
-				context.addViolation({ message: '不能删除非空的组织机构或部门' });
-			}
-		})
-	}
+    remove: {
+        defaults: mark('services', 'system:departments').on(function (departmentSvc, context, department, request) {
+            var isEmpty = departmentSvc.isEmpty(department);
+            if (!isEmpty) {
+                context.addViolation({ message: '不能删除非空的组织机构或部门' });
+            }
+        })
+    }
 }
 
 exports.hooks = {
@@ -80,6 +78,7 @@ exports.hooks = {
 			})
 		})
 	},
+
 	afterUpdate: {
 		edit: mark('services', 'system:jms-service').on(function (jmsService, department) {
 			var msg = {resource: 'department', type: 'update', content: department};
@@ -95,6 +94,7 @@ exports.hooks = {
 			})
 		})
 	},
+
 	afterRemove: {
 		defaults: mark('services', 'system:jms-service').on(function (jmsService, department) {
 			var msg = {resource: 'department', type: 'remove',	content: department};

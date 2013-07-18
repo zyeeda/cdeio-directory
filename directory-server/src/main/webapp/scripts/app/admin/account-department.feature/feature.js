@@ -7,7 +7,8 @@ define({
                 hideTogglerOnSlide: true
             },
             west: {
-                size: 200,
+                size: 260,
+                minSize: 260,
                 spacing_open: 5
             },
             center: {
