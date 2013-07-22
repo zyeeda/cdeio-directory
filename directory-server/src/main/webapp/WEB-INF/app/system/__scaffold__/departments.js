@@ -11,7 +11,7 @@ exports.filters = {
     },
     sub: {
         exclude: {
-            departmentFilter: ['parent', 'children(2)'],
+            departmentFilter: ['parent', 'children(1)'],
             accountFilter: ['department', 'password', 'password2']
         }
     },
@@ -28,11 +28,11 @@ exports.style = 'tree';
 exports.labels = {
     entity: '部门',
     parent: '上级部门',
-    name: '部门'
+    name: '部门名称'
 };
 
 exports.fieldGroups = {
-    DEFAULT: ['parent', 'name'],
+    DEFAULT: ['name', 'parent'],
 };
 
 exports.tree = {
