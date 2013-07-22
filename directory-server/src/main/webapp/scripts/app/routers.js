@@ -19,5 +19,8 @@ define({
 
     showAccountDepartment: function() {
         app.startFeature('admin/account-department', { ignoreExists: true });
+        app.menuFeatureDeferred.done(function (menuFeature) {
+            menuFeature.activateMenu(location.hash);
+        });
     }
 });

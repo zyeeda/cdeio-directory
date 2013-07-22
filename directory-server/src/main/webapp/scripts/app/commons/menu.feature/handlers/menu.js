@@ -1,6 +1,6 @@
 define(['jquery'], function($) {
     return {
-        startFeature: function(e) {
+        /*startFeature: function(e) {
             var t = $(e.target)
               , app = this.feature.module.getApplication()
               , el = this.feature.layout.$el
@@ -30,9 +30,9 @@ define(['jquery'], function($) {
             if (t.parent().parent().hasClass('submenu')) {
                 t.parent().parent().parent().addClass('active');
             }
-        },
+        },*/
 
-        toggleChild: function(e) {
+        /*toggleChild: function(e) {
             var t = $(e.target), el = this.feature.layout.$el;
             if (el.hasClass('menu-min')) return false;
             if (!t.is('a')) t = t.parents('a');
@@ -47,6 +47,23 @@ define(['jquery'], function($) {
             }
             $(ul).slideToggle(200).parent().toggleClass("open");
             return false;
+        },*/
+
+        toggleSubMenu: function(e) {
+            var t = $(e.target)
+              , el = this.feature.layout.$el
+              , ul;
+
+            if (!t.is('a')) {
+                t = t.parents('a');
+            }
+
+            ul = t.next();
+            if (ul.is(':visible')) {
+                this.feature._closeSubMenu(ul, { enableAnimation: true });
+            } else {
+                this.feature._openSubMenu(ul, { enableAnimation: true });
+            }
         }
     };
 });

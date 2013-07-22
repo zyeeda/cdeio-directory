@@ -31,7 +31,7 @@ define({
             app.startFeature('commons/header', { container: header, ignoreExists: true }).done(function (headerFeature) {
                 app.startFeature('admin/account-menu', { container: headerFeature.views['inline:inner-header'].$('notification'), ignoreExists: true });
             });
-            app.startFeature('commons/menu', { container: sidebar, ignoreExists: true });
+            app.menuFeatureDeferred = app.startFeature('commons/menu', { container: sidebar, ignoreExists: true });
 
             app.config.featureContainer = content;
 

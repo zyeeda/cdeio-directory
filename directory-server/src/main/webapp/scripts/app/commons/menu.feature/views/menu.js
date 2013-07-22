@@ -1,7 +1,5 @@
 define(['jquery', 'underscore'], function($, _) {
 
-
-
     var findChildren = function(data, id) {
         var children = [];
 
@@ -23,11 +21,11 @@ define(['jquery', 'underscore'], function($, _) {
 
     return {
         events: {
-            'click child-*': 'startFeature',
-            'click parent-*': 'toggleChild'
+            'click parent-*': 'toggleSubMenu'
         },
 
         model: 'system/menu',
+
         extend: {
             serializeData: function(su) {
                 var deferred = $.Deferred(), c = this.collection, data = su.apply(this), me = this;

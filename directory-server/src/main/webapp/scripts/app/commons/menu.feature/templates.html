@@ -24,13 +24,10 @@
 </div>
 
 <div id="sidebar-shortcuts-mini" class="ace-sidebar-shortcuts-mini">
-  <span class="btn btn-success"></span>
-
-  <span class="btn btn-info"></span>
-
-  <span class="btn btn-warning"></span>
-
-  <span class="btn btn-danger"></span>
+    <span class="btn btn-success"></span>
+    <span class="btn btn-info"></span>
+    <span class="btn btn-warning"></span>
+    <span class="btn btn-danger"></span>
 </div>
 {{/view}}
 
@@ -39,7 +36,7 @@
   {{#each data}}
   {{#if children}}
   <li>
-	<a href="javascript:void(0)" class="dropdown-toggle" id="parent-{{id}}">
+	<a href="javascript:void 0;" class="dropdown-toggle" id="parent-{{id}}">
 	  <i class="{{iconClass}}"></i>
 	  <span>{{name}}</span>
 	  <b class="arrow icon-angle-down"></b>
@@ -47,7 +44,7 @@
 	<ul class="submenu">
       {{#each children}}
 	  <li>
-		<a href="javascript:void(0)" id="child-{{id}}" data-id="{{id}}">
+      <a href="{{path}}" id="child-{{id}}" data-id="{{id}}">
 		  <i class="icon-double-angle-right"></i>
           {{name}}
 		</a>
@@ -57,7 +54,7 @@
   </li>
   {{else}}
   <li>
-	<a href="javascript:void(0)" id="child-{{id}}" data-id="{{id}}">
+  <a href="{{path}}" id="child-{{id}}" data-id="{{id}}">
 	  <i class="{{iconClass}}"></i>
 	  <span>{{name}}</span>
 	</a>
