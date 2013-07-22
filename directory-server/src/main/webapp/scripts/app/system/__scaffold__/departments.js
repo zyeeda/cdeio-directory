@@ -23,10 +23,10 @@ define(['jquery'], function($){
                 var $ele = $(e.currentTarget);
                 if(tree.setting.edit.enable) {
                 	 tree.setting.edit.enable = false;
-                	 $ele.html($ele.html().replace('关闭','开启'));
+                     $ele.toggleClass('btn-danger');
                 }else {
                 	 tree.setting.edit.enable = true;
-                	 $ele.html($ele.html().replace('开启','关闭'));
+                     $ele.toggleClass('btn-danger');
                 }
                 return true;
             }
