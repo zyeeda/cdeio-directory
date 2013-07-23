@@ -43,7 +43,6 @@ define({
 
     extend: {
         onStart: function(_super, feature) {
-            console.log(feature);
             app.startFeature('system/scaffold:departments', { container: feature.views['inline:dept-tree'].$el, ignoreExists: true });
             app.startFeature('system/scaffold:accounts', { container: feature.views['inline:account-list'].$el, ignoreExists: true });
         }
