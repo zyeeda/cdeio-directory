@@ -36,12 +36,14 @@ exports.fieldGroups = {
 };
 
 exports.tree = {
-    isAsync: true,
-    root: '所有部门',
 	edit: {
 		showRemoveBtn: false,
 		showRenameBtn: false
 	},
+    view: {
+        selectedMulti: false,
+        showLine: false
+    },
 	callback: {
     	'onDrop': 'departmentMoved'
     }
