@@ -42,9 +42,9 @@ define({
     },
 
     extend: {
-        onStart: function(_super, feature) {
-            app.startFeature('system/scaffold:departments', { container: feature.views['inline:dept-tree'].$el, ignoreExists: true });
-            app.startFeature('system/scaffold:accounts', { container: feature.views['inline:account-list'].$el, ignoreExists: true });
+        onStart: function(_super) {
+            app.startFeature('system/scaffold:departments', { container: this.views['inline:dept-tree'].$el, ignoreExists: true });
+            app.startFeature('system/scaffold:accounts', { container: this.views['inline:account-list'].$el, ignoreExists: true });
         }
     }
 });

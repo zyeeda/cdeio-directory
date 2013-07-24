@@ -19,24 +19,36 @@ define({
     }],
 
     extend: {
-        onStart: function(_super, feature) {
-            var header, sidebar, content;
+        onStart: function(_super) {
+            console.log('viewport.feature.onStart');
+            var header, sidebar, content, d1, d2, d = $.Deferred();
 
-            app.viewport = feature;
+            app.viewport = this;
 
-            header = feature.layout.$('header');
-            sidebar = feature.layout.$('sidebar');
-            content = feature.layout.$('content');
+            header = this.layout.$('header');
+            sidebar = this.layout.$('sidebar');
+            content = this.layout.$('content');
 
+            console.log(app.getPromises().length);
             app.startFeature('commons/header', { container: header, ignoreExists: true }).done(function (headerFeature) {
-                app.startFeature('admin/account-menu', { container: headerFeature.views['inline:inner-header'].$('notification'), ignoreExists: true });
+                d1 = app.startFeature('admin/account-menu', { container: headerFeature.views['inline:inner-header'].$('notification'), ignoreExists: true });
             });
-            app.menuFeatureDeferred = app.startFeature('commons/menu', { container: sidebar, ignoreExists: true });
+            console.log('b');
+            d2 = app.startFeature('commons/menu', { container: sidebar, ignoreExists: true });
 
             app.config.featureContainer = content;
 
-            feature.setHome({ name: '首页', featurePath: 'admin/home', iconClass: 'icon-home' });
-            feature.updateNavigator();
+            console.log(app.getPromises().length);
+
+            this.setHome({ name: '首页', featurePath: 'admin/home', iconClass: 'icon-home' });
+            this.updateNavigator();
+
+            $.when(d1, d2).then(function() {
+                console.log('c');
+                d.resolve();
+            });
+
+            return d.promise();
         },
 
         setHome: function(su, home) {

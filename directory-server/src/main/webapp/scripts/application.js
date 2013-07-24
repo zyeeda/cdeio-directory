@@ -12,8 +12,12 @@ define([
         app.config = config;
 
         app.done(function() {
+            console.log('a');
+            console.log(app.getPromises().length);
+            console.log(app.settings.currentUser.isAdmin);
             if (app.settings.currentUser.isAdmin) {
                 if (location.hash) {
+                    console.log('a2');
                     app.startFeature('admin/viewport', { container: $(document.body), ignoreExists: true });
                 }
             } else {

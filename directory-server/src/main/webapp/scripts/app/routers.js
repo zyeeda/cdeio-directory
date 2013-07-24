@@ -18,9 +18,15 @@ define({
     },
 
     showAccountDepartment: function() {
+        var menuFeature;
+
         app.startFeature('admin/account-department', { ignoreExists: true });
-        app.menuFeatureDeferred.done(function (menuFeature) {
+        console.log('e');
+        menuFeature = app.findModule('commons').findFeature('menu');
+        menuFeature.activateMenu(location.hash);
+        /*app.menuFeatureDeferred.done(function (menuFeature) {
+            console.log('3');
             menuFeature.activateMenu(location.hash);
-        });
+        });*/
     }
 });
