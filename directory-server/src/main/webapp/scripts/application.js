@@ -20,6 +20,8 @@ define([
                     app.startFeature('admin/viewport', { container: $(document.body), ignoreExists: true }).done(function() {
                         deferred.resolve();
                     });
+                } else {
+                    deferred.resolve();
                 }
             } else {
                 app.startFeature('profile/viewport', { container: $(document.body), ignoreExists: true }).done(function() {
