@@ -37,6 +37,9 @@ exports.fieldGroups = {
 
 exports.tree = {
 	edit: {
+        drag: {
+            autoExpandTrigger: true
+        },
 		showRemoveBtn: false,
 		showRenameBtn: false
 	},
