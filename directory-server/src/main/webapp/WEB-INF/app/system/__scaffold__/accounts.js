@@ -124,6 +124,7 @@ exports.grid = {
     ],
     filterToolbar: true,
     multiselect: true,
+    fixedHeader: true,
     events: {
         'system/departments#tree:onClick': 'departmentChanged'
     }
