@@ -8,9 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <#--
         <title>中昱达目录服务, Powered by Zyeeda Coala Framework</title>
-        -->
 
         <meta name="viewport" content="width=device-width">
 
