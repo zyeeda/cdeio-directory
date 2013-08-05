@@ -6,10 +6,12 @@ define([
 	return {
 	    handlers: {
 	    	changePassword: function() {
-	            var me = this, grid = me.feature.views['views:grid'].components[0],
-                selected = grid.getGridParam('selrow'),
+	            var me = this
+                  , grid = me.feature.views['grid:body'].components[0]
+                  , selected = grid.getSelected();
+
                 app = me.feature.module.getApplication();
-                app.loadView(me.feature, 'forms:changePassword').done(function(view){
+                app.loadView(me.feature, 'form:changePassword').done(function(view){
                 	view.model.clear();
             		app.showDialog({
                         view: view,
@@ -43,22 +45,23 @@ define([
             	grid.trigger('reloadGrid');
             },
 
-            del: function() {
-            	if(!window.confirm('确定要删除选中的记录吗?')){
-            		return;
-            	}
-            	var me = this,
-                grid = me.feature.views['views:grid'].components[0],
-                selected = grid.getGridParam('selarrrow');
-            	me.feature.request({
-        			url: 'delete',
-        			type: 'post',
-        			data: {ids: selected},
-        			success: function(d) {
-                    	grid.trigger('reloadGrid');
-        			}
-            	});
-            }
+            /*del: function() {
+                var me = this;
+
+                app.confirm('确定要删除选中的记录吗?', function() {
+                    var grid = me.feature.views['grid:body'].components[0]
+                      , selected = grid.getSelected();
+
+                    me.feature.request({
+                        url: 'delete',
+                        type: 'post',
+                        data: { ids: selected },
+                        success: function(d) {
+                            grid.refresh();
+                        }
+                    });
+                });
+            }*/
 	    },
 
 	    initOperatorsVisibility: function(operators) {

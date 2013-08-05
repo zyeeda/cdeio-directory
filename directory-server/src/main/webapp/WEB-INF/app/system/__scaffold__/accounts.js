@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var logger = require('ringo/logging').getLogger(module.id);
+var {SecurityUtils} = org.apache.shiro;
 
 var {json, error, html} = require('coala/response');
 var {mark} = require('coala/mark');
@@ -39,7 +40,7 @@ exports.labels = {
 };
 
 exports.fieldGroups = {
-    baseInfo: ['username', 'email'],
+    baseInfo: ['accountName', 'email'],
     pwdInfo: [{
         name: 'password',
         type: 'password'
@@ -59,9 +60,9 @@ exports.fieldGroups = {
         }]
     }],
     editPwdInfo: [
-		    {name: 'oldPassword', type: 'password', validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
-		    {name: 'newPassword', type: 'password', validations: {rules: {required:true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
-		    {name: 'newPassword2', type: 'password', validations: {rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
+        {name: 'oldPassword', type: 'password', validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
+        {name: 'newPassword', type: 'password', validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
+        {name: 'newPassword2', type: 'password', validations: {rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
     ]
 };
 
@@ -80,8 +81,10 @@ exports.forms = {
         size: 'normal',
         groups: [{
             name: 'baseInfo',
+            columns: 2
         }, {
             name: 'extInfo',
+            columns: 2
         }]
     },
     add: {
@@ -105,15 +108,6 @@ exports.forms = {
 
 
 exports.grid = {
-    /*
-    columns: [
-        { sName: 'accountName', aTargets: [0] },
-        { sName: 'realName', aTargets: [1] },
-        { sName: 'email', aTargets: [2] },
-        { sName: 'mobile', aTargets: [3] },
-        { sName: 'disabled', aTargets: [4] },
-        { sName: 'department.name', aTargets: [5], sTitle: '部门' }
-    ],*/
     columns: [
         { name: 'realName', search: true },
         { name: 'accountName', search: true },
@@ -131,19 +125,19 @@ exports.grid = {
 }
 
 exports.operators = {
-    add: {label: '添加', icon: 'icon-plus', group: 'add'},
-    refresh: {label: '刷新', icon: 'icon-refresh', group: 'refresh'},
-    show: {label: '查看', icon: 'icon-eye-open', group: 'modify'},
-    edit: {label: '编辑', icon: 'icon-edit', group: 'modify'},
-    changePassword: {label: '修改密码', icon: 'icon-edit', group: 'modify'},
-    del: {label: '删除', icon: 'icon-minus', group: 'modify'}
+    add: { label: '添加', icon: 'icon-plus', style: 'btn-info', group: 'add' },
+    refresh: { label: '刷新', icon: 'icon-refresh', group: 'refresh' },
+    show: { label: '查看', icon: 'icon-eye-open', group: 'modify' },
+    edit: { label: '编辑', icon: 'icon-edit', group: 'modify' },
+    changePassword: { label: '修改密码', icon: 'icon-edit', group: 'modify' },
+    del: { label: '删除', icon: 'icon-minus', style: 'btn-danger', group: 'modify' }
 }
 
 exports.validators = {
     remove: {
         defaults: function (context, account, request) {
-            if (account.getUsername() === 'admin') {
-                context.addViolation({ message: '不能删除' + account.getUsername() + '用户'});
+            if (account.getAccountName() === SecurityUtils.getSubject().getPrincipal().getAccountName()) {
+                context.addViolation({ message: '不能删除当前登录的用户!' });
             }
         }
     },
