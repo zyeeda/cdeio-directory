@@ -11,7 +11,7 @@ define([
                   , selected = grid.getSelected();
 
                 app = me.feature.module.getApplication();
-                app.loadView(me.feature, 'form:changePassword').done(function(view){
+                app.loadView(me.feature, 'form:changePassword').done(function(view) {
                 	view.model.clear();
             		app.showDialog({
                         view: view,
@@ -19,16 +19,16 @@ define([
                         buttons: [{
                             label: '确定',
                             fn: function() {
-                            	view.getFormData();
-                            	view.model.set('id', selected);
-                            	me.feature.request({
+                            	data = view.getFormData();
+                                data.id = selected.id;
+                                me.feature.request({
                         			url: 'password',
                         			type: 'put',
-                        			data: view.model.toJSON(),
+                        			data: data,
                         			success: function(d) {
-                                    	return true;
+                                        //app.success('密码修改成功');
                         			}
-                            	});
+                                });
                             }
                         }]
                     })
@@ -36,32 +36,16 @@ define([
                 return true;
             },
 
-            departmentChanged: function(feature, view, tree, e, viewName, treeNode) {
-            	var me = this,
-                grid = me.feature.views['views:grid'].components[0];
+            departmentChanged: function(feature, view, tree, e, treeId, treeNode) {
+            	var me = this
+                  , defaultFilters;
+
+                grid = me.feature.views['grid:body'].components[0];
             	me.feature.model.set('department', treeNode);
-            	var defaultFilters = [{name: "department.path",operator: "like", value: treeNode.path + "%"}];
-            	grid.setGridParam({postData: { defaultFilters: defaultFilters}});
-            	grid.trigger('reloadGrid');
-            },
-
-            /*del: function() {
-                var me = this;
-
-                app.confirm('确定要删除选中的记录吗?', function() {
-                    var grid = me.feature.views['grid:body'].components[0]
-                      , selected = grid.getSelected();
-
-                    me.feature.request({
-                        url: 'delete',
-                        type: 'post',
-                        data: { ids: selected },
-                        success: function(d) {
-                            grid.refresh();
-                        }
-                    });
-                });
-            }*/
+                defaultFilters = ['like', 'department.path', treeNode.path, { mode: 'start' }];
+                grid.addFilter(defaultFilters);
+                grid.refresh();
+            }
 	    },
 
 	    initOperatorsVisibility: function(operators) {

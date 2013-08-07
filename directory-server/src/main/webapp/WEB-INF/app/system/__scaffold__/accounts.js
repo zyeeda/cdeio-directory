@@ -159,10 +159,6 @@ exports.hooks = {
     },
 
     beforeUpdate: {
-    	defaults: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
-            accountSvc.hashPassword(account);
-        }),
-
         changePassword: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
             accountSvc.hashPassword(account);
         }),
