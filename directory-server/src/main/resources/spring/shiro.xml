@@ -28,7 +28,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"
         p:securityManager-ref="securityManager"
         p:loginUrl="#{openIdProvider.signInPath}"
-        p:successUrl="#{openIdProvider.mainPath}"
+        p:successUrl="#{openIdProvider.indexPath}"
         p:unauthorizedUrl="#{openIdProvider.signInPath}">
         <property name="filters">
             <util:map>
