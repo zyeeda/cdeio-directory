@@ -18,6 +18,7 @@ define([
                         title: '修改密码',
                         buttons: [{
                             label: '确定',
+                            status: 'btn-primary',
                             fn: function() {
                             	data = view.getFormData();
                                 data.id = selected.id;
@@ -48,28 +49,16 @@ define([
             }
 	    },
 
-	    initOperatorsVisibility: function(operators) {
-	        var o, _i, _len, _results;
-	        _results = [];
-	        for (_i = 0, _len = operators.length; _i < _len; _i++) {
-	          o = operators[_i];
-	          if (['edit', 'del', 'show', 'changePassword'].indexOf(o.id) !== -1) {
-	            _results.push(this.$(o.id).hide());
-	          }
-	        }
-	        return _results;
-	     },
-
-	    ensureOperatorsVisibility: function(operators, id) {
-	        var o, _i, _len, _results;
-	        _results = [];
-	        for (_i = 0, _len = operators.length; _i < _len; _i++) {
-	          o = operators[_i];
-	          if (['edit', 'del', 'show', 'changePassword'].indexOf(o.id) !== -1) {
-	            _results.push(id ? this.$(o.id).show() : this.$(o.id).hide());
-	          }
-	        }
-	        return _results;
-	    }
+        ensureOperatorsVisibility: function(operators, id) {
+            var o, _i, _len, _results;
+            _results = [];
+            for (_i = 0, _len = operators.length; _i < _len; _i++) {
+                o = operators[_i];
+                if (['edit', 'del', 'show', 'changePassword'].indexOf(o.id) !== -1) {
+                    _results.push(id ? this.$(o.id).show() : this.$(o.id).hide());
+                }
+            }
+            return _results;
+        }
 	}
 });
