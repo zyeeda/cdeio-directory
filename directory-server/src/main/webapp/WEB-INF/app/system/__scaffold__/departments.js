@@ -53,11 +53,10 @@ exports.tree = {
 };
 
 exports.operators = {
-    add: { icon: 'icon-plus', style: 'btn-info', group: 'action' },
+    add: { icon: 'icon-plus', style: 'btn-info', group: 'add' },
+    refresh: { icon: 'icon-refresh', group: 'refresh' },
+    edit: { icon: 'icon-edit', group: 'action' },
     del: { icon: 'icon-minus', style: 'btn-danger', group: 'action' },
-    edit: { icon: 'icon-pencil', group: 'action' },
-
-    refresh: { icon: 'icon-refresh', group: 'other' },
     toggleMove: { icon: 'icon-move', group: 'other' }
 };
 
@@ -73,7 +72,6 @@ exports.validators = {
 }
 
 exports.hooks = {
-
 	afterCreate: {
 		add: mark('services', ['system:departments', 'system:jms-service']).on(function (departmentSvc, jmsService, department) {
 			department =  departmentSvc.buildPath(department);
@@ -132,6 +130,5 @@ exports.doWithRouter = function(router) {
     	var results = deptService.get(id);
         return json(results, exports.filters.child);
     }));
-
 };
 

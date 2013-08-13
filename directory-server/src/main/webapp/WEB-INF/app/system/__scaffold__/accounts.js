@@ -32,7 +32,7 @@ exports.labels = {
     email: '邮箱',
     mobile: '手机',
     telephone: '电话',
-    disabled: '禁用状态',
+    disabled: '状态',
     oldPassword: '原密码',
     newPassword: '新密码',
     newPassword2: '重复密码',
@@ -78,13 +78,10 @@ exports.forms = {
     },
     show: {
         labelOnTop: false,
-        size: 'normal',
         groups: [{
-            name: 'baseInfo',
-            columns: 2
+            name: 'baseInfo'
         }, {
-            name: 'extInfo',
-            columns: 2
+            name: 'extInfo'
         }]
     },
     add: {
@@ -99,9 +96,8 @@ exports.forms = {
             columns: 2
         }]
     },
-
     changePassword: {
-        size: 'normal',
+        size: 'mini',
         groups: ['editPwdInfo']
     }
 }
@@ -129,7 +125,7 @@ exports.operators = {
     refresh: { label: '刷新', icon: 'icon-refresh', group: 'refresh' },
     show: { label: '查看', icon: 'icon-eye-open', group: 'modify' },
     edit: { label: '编辑', icon: 'icon-edit', group: 'modify' },
-    changePassword: { label: '修改密码', icon: 'icon-edit', group: 'modify' },
+    changePassword: { label: '修改密码', icon: 'icon-key', group: 'modify' },
     del: { label: '删除', icon: 'icon-minus', style: 'btn-danger', group: 'modify' }
 }
 
