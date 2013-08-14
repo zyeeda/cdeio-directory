@@ -7,10 +7,9 @@ define({
 
     showHome: function() {
         if (app.settings.currentUser.isAdmin) {
-            app.startFeature('admin/viewport', { container: $(document.body), ignoreExists: true });
-        } else {
-            app.startFeature('profile/viewport', { container: $(document.body), ignoreExists: true });
+            return app.startFeature('admin/viewport', { container: $(document.body), ignoreExists: true });
         }
+        return app.startFeature('profile/viewport', { container: $(document.body), ignoreExists: true });
     },
 
     showProfile: function() {
@@ -18,10 +17,18 @@ define({
     },
 
     showAccountDepartment: function() {
-        var menuFeature;
+        function _show() {
+            var menuFeature;
 
-        app.startFeature('admin/account-department', { ignoreExists: true });
-        menuFeature = app.findModule('commons').findFeature('menu');
-        menuFeature.activateMenu(location.hash);
+            app.startFeature('admin/account-department', { ignoreExists: true });
+            menuFeature = app.findModule('commons').findFeature('menu');
+            menuFeature.activateMenu(location.hash);
+        }
+
+        if (app.viewport.module.baseName !== 'admin') {
+            this.showHome().done(_show);
+        }
+
+        _show();
     }
 });
