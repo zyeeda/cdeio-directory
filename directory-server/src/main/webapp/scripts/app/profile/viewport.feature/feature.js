@@ -55,12 +55,12 @@ define({
         }
     }],
     extend: {
-        onStart: function(_super, feature) {
-            app.viewport = feature;
+        onStart: function(_super) {
+            app.viewport = this;
 
-            app.config.featureContainer = feature.layout.$('content');
+            app.config.featureContainer = this.layout.$('content');
 
-            app.startFeature('commons/header', { container: feature.layout.$('header'), ignoreExists: true }).done(function(headerFeature) {
+            app.startFeature('commons/header', { container: this.layout.$('header'), ignoreExists: true }).done(function(headerFeature) {
                 app.startFeature('profile/account-menu', { container: headerFeature.views['inline:inner-header'].$('notification'), ignoreExists: true });
             });
         }
