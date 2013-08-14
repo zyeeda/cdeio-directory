@@ -19,7 +19,6 @@ define({
     showAccountDepartment: function() {
         function _show() {
             var menuFeature;
-
             app.startFeature('admin/account-department', { ignoreExists: true });
             menuFeature = app.findModule('commons').findFeature('menu');
             menuFeature.activateMenu(location.hash);
@@ -27,6 +26,7 @@ define({
 
         if (app.viewport.module.baseName !== 'admin') {
             this.showHome().done(_show);
+            return;
         }
 
         _show();
