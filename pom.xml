@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.zyeeda</groupId>
         <artifactId>zyeeda-project</artifactId>
-        <version>2-SNAPSHOT</version>
+        <version>2</version>
     </parent>
 
     <artifactId>zyeeda-directory</artifactId>
@@ -32,7 +32,7 @@
             <artifactId>zyeeda-coala-core</artifactId>
             <version>${coala.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>
