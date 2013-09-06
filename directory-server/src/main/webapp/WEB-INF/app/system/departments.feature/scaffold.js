@@ -25,8 +25,8 @@ exports.filters = {
 
 exports.style = 'tree';
 
+exports.entityLabel = '部门';
 exports.labels = {
-    entity: '部门',
     parent: '上级部门',
     name: '部门名称'
 };
@@ -62,18 +62,18 @@ exports.operators = {
 
 exports.validators = {
     remove: {
-        defaults: mark('services', 'system:departments').on(function (departmentSvc, context, department, request) {
+        defaults: mark('services', 'system/departments').on(function (departmentSvc, context, department, request) {
             var isEmpty = departmentSvc.isEmpty(department);
             if (!isEmpty) {
                 context.addViolation({ message: '不能删除非空的组织机构或部门' });
             }
         })
     }
-}
+};
 
 exports.hooks = {
 	afterCreate: {
-		add: mark('services', ['system:departments', 'system:jms-service']).on(function (departmentSvc, jmsService, department) {
+		add: mark('services', 'system/departments', 'system/jms').on(function (departmentSvc, jmsService, department) {
 			department =  departmentSvc.buildPath(department);
 			var msg = {resource: 'department', type: 'create', content: department};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
@@ -83,13 +83,13 @@ exports.hooks = {
 	},
 
 	afterUpdate: {
-		edit: mark('services', 'system:jms-service').on(function (jmsService, department) {
+		edit: mark('services', 'system/jms').on(function (jmsService, department) {
 			var msg = {resource: 'department', type: 'update', content: department};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
 			})
 		}),
-		move: mark('services', ['system:departments', 'system:jms-service']).on(function (departmentSvc, jmsService, department) {
+		move: mark('services', 'system/departments', 'system/jms-service').on(function (departmentSvc, jmsService, department) {
 			departmentSvc.changeChildrenPath(department);
 			var msg = {resource: 'department', type: 'move', content: department};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
@@ -99,7 +99,7 @@ exports.hooks = {
 	},
 
 	afterRemove: {
-		defaults: mark('services', 'system:jms-service').on(function (jmsService, department) {
+		defaults: mark('services', 'system/jms').on(function (jmsService, department) {
 			var msg = {resource: 'department', type: 'remove',	content: department};
 			json(msg, exports.filters.defaults).body.forEach(function(str){
 				jmsService.sendMsg(str);
@@ -109,7 +109,7 @@ exports.hooks = {
 };
 
 exports.doWithRouter = function(router) {
-    router.get('/sync/:path', mark('services', 'system:departments').on(function (deptService, request, path) {
+    router.get('/sync/:path', mark('services', 'system/departments').on(function (deptService, request, path) {
     	var results;
     	if(!path) {
     		return html('notfound!');
@@ -121,12 +121,12 @@ exports.doWithRouter = function(router) {
         return json(results, exports.filters.defaults);
     }));
 
-    router.get('/sub/:id', mark('services', 'system:departments').on(function (deptService, request, id) {
+    router.get('/sub/:id', mark('services', 'system/departments').on(function (deptService, request, id) {
     	var results = deptService.get(id);
         return json(results, exports.filters.sub);
     }));
 
-    router.get('/child/:id', mark('services', 'system:departments').on(function (deptService, request, id) {
+    router.get('/child/:id', mark('services', 'system/departments').on(function (deptService, request, id) {
     	var results = deptService.get(id);
         return json(results, exports.filters.child);
     }));

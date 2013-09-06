@@ -22,8 +22,8 @@ exports.filters = {
 exports.enableFrontendExtension = true;
 exports.style = 'grid';
 
+exports.entityLabel = '账号';
 exports.labels = {
-    entity: '账户',
     id: 'ID',
     realName: '姓名',
     accountName: '账户名',
@@ -100,8 +100,7 @@ exports.forms = {
         size: 'mini',
         groups: ['editPwdInfo']
     }
-}
-
+};
 
 exports.grid = {
     columns: [
@@ -118,7 +117,7 @@ exports.grid = {
     events: {
         'system/departments#tree:onClick': 'departmentChanged'
     }
-}
+};
 
 exports.operators = {
     add: { label: '添加', icon: 'icon-plus', style: 'btn-info', group: 'add' },
@@ -127,7 +126,7 @@ exports.operators = {
     edit: { label: '编辑', icon: 'icon-edit', group: 'modify' },
     changePassword: { label: '修改密码', icon: 'icon-key', group: 'modify' },
     del: { label: '删除', icon: 'icon-minus', style: 'btn-danger', group: 'modify' }
-}
+};
 
 exports.validators = {
     remove: {
@@ -149,43 +148,45 @@ exports.validators = {
 
 exports.hooks = {
     beforeCreate: {
-    	defaults: mark('services', 'system:accounts').on(function (accountSvc, entity) {
+    	defaults: mark('services', 'system/accounts').on(function (accountSvc, entity) {
             accountSvc.hashPassword(entity);
         })
     },
 
     beforeUpdate: {
-        changePassword: mark('services', 'system:accounts').on(function (accountSvc, account, request) {
+        changePassword: mark('services', 'system/accounts').on(function (accountSvc, account, request) {
             accountSvc.hashPassword(account);
         }),
 
-        enable: mark('services', 'system:accounts').on(function (accountSvc, account) {
+        enable: mark('services', 'system/accounts').on(function (accountSvc, account) {
             accountSvc.enableAccount(account);
         }),
 
-        disable: mark('services', 'system:accounts').on(function (accountSvc, account) {
+        disable: mark('services', 'system/accounts').on(function (accountSvc, account) {
             accountSvc.disableAccount(account);
         })
     },
 
     afterCreate: {
-    	defaults: mark('services','system:jms-service').on(function (jmsService, account) {
+    	defaults: mark('services','system/jms').on(function (jmsService, account) {
             var msg = {resource: 'account', type: 'create',	content: account};
             json(msg, exports.filters.defaults).body.forEach(function(str){
                 jmsService.sendMsg(str);
             })
         })
     },
+    
     afterUpdate: {
-    	defaults: mark('services','system:jms-service').on(function (jmsService, account) {
+    	defaults: mark('services','system/jms').on(function (jmsService, account) {
             var msg = {resource: 'account', type: 'update',	content: account};
             json(msg, exports.filters.defaults).body.forEach(function(str){
                 jmsService.sendMsg(str);
             })
         })
     },
+    
     afterRemove: {
-        defaults: mark('services','system:jms-service').on(function (jmsService, account) {
+        defaults: mark('services','system/jms').on(function (jmsService, account) {
             var msg = {resource: 'account', type: 'remove',	content: account};
             json(msg, exports.filters.defaults).body.forEach(function(str){
                 jmsService.sendMsg(str);
@@ -195,7 +196,7 @@ exports.hooks = {
 };
 
 exports.doWithRouter = function(router) {
-    router.get('/sync/:path', mark('services', 'system:accounts').on(function (accountSvc, request, path) {
+    router.get('/sync/:path', mark('services', 'system/accounts').on(function (accountSvc, request, path) {
         var results;
         if(!path) {
             return html('notfound!');
@@ -207,7 +208,7 @@ exports.doWithRouter = function(router) {
         return json(results, exports.filters.defaults);
     }));
 
-    router.put('/password', mark('services', 'system:accounts').on(function (accountSvc, request) {
+    router.put('/password', mark('services', 'system/accounts').on(function (accountSvc, request) {
     	var data = request.params;
         return json(accountSvc.changePassword(data), exports.filters.defaults);
     }));

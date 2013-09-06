@@ -32,19 +32,28 @@ define({
         avoidLoadingHandlers: true
     }],
 
-    container: function(feature) {
+    /*container: function(feature) {
         var layoutContainer = $('<div class="ace-fill"></div>');
         $(window).on('resize', function() {
             $.layout.callbacks.resizeLayout(layoutContainer);
         });
         layoutContainer.appendTo(app.config.featureContainer);
         return layoutContainer;
-    },
+    },*/
 
     extend: {
         onStart: function(_super) {
-            app.startFeature('system/scaffold:departments', { container: this.views['inline:dept-tree'].$el, ignoreExists: true });
-            app.startFeature('system/scaffold:accounts', { container: this.views['inline:account-list'].$el, ignoreExists: true });
+            this.departmentDeferred = app.startFeature('system/scaffold:departments', { container: this.views['inline:dept-tree'].$el, ignoreExists: true });
+            this.accountDeferred = app.startFeature('system/scaffold:accounts', { container: this.views['inline:account-list'].$el, ignoreExists: true });
+        },
+
+        onStop: function() {
+            this.departmentDeferred.done(function(feature) {
+                feature.stop();
+            });
+            this.accountDeferred.done(function(feature) {
+                feature.stop();
+            });
         }
     }
 });

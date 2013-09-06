@@ -6,7 +6,6 @@ var logger = require('ringo/logging').getLogger(module.id);
 var {json} = require('coala/response');
 var {createRouter} = require('coala/router');
 var {frontendSettings} = require('coala/config');
-var {mark} = require('coala/mark');
 
 var router = exports.router = createRouter();
 

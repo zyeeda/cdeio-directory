@@ -1,34 +1,55 @@
-define({
-    routes: {
-        '': 'showHome',
-        'profile': 'showProfile',
-        'account-department': 'showAccountDepartment'
-    },
+define([
+    'underscore'
+], function(_) {
+    return {
+        routes: {
+            '': 'showHome',
+            'profile': 'showProfile',
+            'account-department': 'showAccountDepartment',
+            'permissions': 'showPermissions',
+            'roles': 'showRoles'
+        },
 
-    showHome: function() {
-        if (app.settings.currentUser.isAdmin) {
-            return app.startFeature('admin/viewport', { container: $(document.body), ignoreExists: true });
+        showHome: function() {
+            if (app.settings.currentUser.isAdmin) {
+                return app.startFeature('admin/viewport', { container: $(document.body), ignoreExists: true });
+            }
+            return app.startFeature('profile/viewport', { container: $(document.body), ignoreExists: true });
+        },
+
+        showProfile: function() {
+            app.startFeature('profile/viewport', { container: $(document.body), ignoreExists: true });
+        },
+
+        showAccountDepartment: function() {
+            this._showFeature('admin/account-department');
+        },
+
+        showPermissions: function() {
+            this._showFeature('system/scaffold:permissions');
+        },
+
+        showRoles: function() {
+            this._showFeature('system/scaffold:roles');
+        },
+
+        _showFeature: function(featurePath) {
+            var show = _.bind(function() {
+                app.startFeature(featurePath, { ignoreExists: true });
+                this._activateMenu(location.hash);
+            }, this);
+
+            if (app.viewport.module.baseName !== 'admin') {
+                this.showHome().done(show);
+                return;
+            }
+            show();
+        },
+
+        _activateMenu: function(hash) {
+            var menuFeature = app.findModule('commons').findFeature('menu');
+            menuFeature.activateMenu(hash);
         }
-        return app.startFeature('profile/viewport', { container: $(document.body), ignoreExists: true });
-    },
 
-    showProfile: function() {
-        app.startFeature('profile/viewport', { container: $(document.body), ignoreExists: true });
-    },
-
-    showAccountDepartment: function() {
-        function _show() {
-            var menuFeature;
-            app.startFeature('admin/account-department', { ignoreExists: true });
-            menuFeature = app.findModule('commons').findFeature('menu');
-            menuFeature.activateMenu(location.hash);
-        }
-
-        if (app.viewport.module.baseName !== 'admin') {
-            this.showHome().done(_show);
-            return;
-        }
-
-        _show();
-    }
+    };
 });

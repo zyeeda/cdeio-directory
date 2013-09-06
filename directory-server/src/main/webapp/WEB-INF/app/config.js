@@ -7,6 +7,7 @@ exports.coala = {
     entityPackages : [
         'com.zyeeda.coala.commons.resource.entity',
         'com.zyeeda.coala.commons.organization.entity',
+        'com.zyeeda.coala.commons.authc.entity',
         'com.zyeeda.directory'
     ],
 

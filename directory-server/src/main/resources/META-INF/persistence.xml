@@ -15,9 +15,10 @@
         <class>com.zyeeda.coala.commons.resource.entity.SettingItem</class>
         <class>com.zyeeda.coala.commons.organization.entity.Account</class>
         <class>com.zyeeda.coala.commons.organization.entity.Department</class>
+        <class>com.zyeeda.coala.commons.authc.entity.Permission</class>
+        <class>com.zyeeda.coala.commons.authc.entity.Role</class>
         <mapping-file>META-INF/mappings/coala/validation.orm.xml</mapping-file>
-        <mapping-file>META-INF/mappings/sso/consumer/openid.orm.xml</mapping-file>
-        <mapping-file>META-INF/mappings/sso/provider/openid.orm.xml</mapping-file>
+        <mapping-file>META-INF/mappings/sso/openid/realm.orm.xml</mapping-file>
 
         <validation-mode>NONE</validation-mode>
 

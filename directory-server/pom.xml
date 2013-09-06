@@ -13,7 +13,7 @@
     <name>Zyeeda Directory Service (Provider)</name>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    
+
     <repositories>
         <repository>
             <id>google-maven-snapshot-repository</id>
@@ -24,7 +24,7 @@
             </snapshots>
         </repository>
     </repositories>
-    
+
     <properties>
         <kaptcha.version>2.3.2</kaptcha.version>
     </properties>
@@ -32,10 +32,10 @@
     <dependencies>
         <dependency>
             <groupId>com.zyeeda</groupId>
-            <artifactId>zyeeda-sso-provider</artifactId>
+            <artifactId>zyeeda-sso-openid</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>com.google.code</groupId>
             <artifactId>kaptcha</artifactId>

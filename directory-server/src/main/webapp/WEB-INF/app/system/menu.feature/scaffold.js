@@ -14,7 +14,7 @@ exports.labels = {
     featurePath: '标识',
     iconClass: '图标',
     option: '配置'
-}
+};
 
 exports.fieldGroups = {
     DEFAULT: [
@@ -27,4 +27,4 @@ exports.fieldGroups = {
             rowspan: 5
         }
     ]
-}
+};

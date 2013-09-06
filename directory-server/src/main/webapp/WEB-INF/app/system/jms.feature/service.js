@@ -1,10 +1,10 @@
 var {mark} 					= require('coala/mark');
-var {directoryServer} 		= require('config'); 
+var {directoryServer} 		= require('config');
 var {MessageCreator} 		= org.springframework.jms.core;
 
 exports.createService = function () {
 	return {
-		sendMsg: mark('beans',  ['jmsTemplate', 'destination']).on(function (jmsTemplate, destination, msg) {
+		sendMsg: mark('beans', 'jmsTemplate', 'destination').on(function (jmsTemplate, destination, msg) {
 			if(directoryServer.activemq.disable) {
 				return;
 			}
