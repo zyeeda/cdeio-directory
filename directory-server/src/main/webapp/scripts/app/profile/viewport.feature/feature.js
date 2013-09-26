@@ -63,6 +63,11 @@ define({
             app.startFeature('commons/header', { container: this.layout.$('header'), ignoreExists: true }).done(function(headerFeature) {
                 app.startFeature('profile/account-menu', { container: headerFeature.views['inline:inner-header'].$('notification'), ignoreExists: true });
             });
+        },
+
+        onStop: function(_super) {
+            app.findModule('commons').findFeature('header').stop();
+            app.findModule('profile').findFeature('account-menu').stop();
         }
     }
 });

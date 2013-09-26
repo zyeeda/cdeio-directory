@@ -45,6 +45,17 @@ define({
             return d.promise();
         },
 
+        onStop: function(_super) {
+            var commonsModule, adminModule;
+
+            commonsModule = app.findModule('commons');
+            commonsModule.findFeature('header').stop();
+            commonsModule.findFeature('menu').stop();
+
+            adminModule = app.findModule('admin');
+            adminModule.findFeature('account-menu').stop();
+        },
+
         setHome: function(su, home) {
             this.views['inline:breadcrumbs'].home = home;
         },
