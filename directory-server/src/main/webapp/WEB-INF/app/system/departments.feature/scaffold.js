@@ -59,6 +59,7 @@ exports.operators = {
     refresh: { icon: 'icon-refresh', group: 'refresh' },
     edit: { icon: 'icon-edit', group: 'action' },
     del: { icon: 'icon-minus', style: 'btn-danger', group: 'action' },
+    show: false,
     toggleMove: { icon: 'icon-move', group: 'other' }
 };
 
