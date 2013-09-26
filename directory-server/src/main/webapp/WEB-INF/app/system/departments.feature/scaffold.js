@@ -36,6 +36,8 @@ exports.fieldGroups = {
 };
 
 exports.tree = {
+    isAsync: true,
+    root: '所有部门',
 	edit: {
         drag: {
             autoExpandTrigger: true

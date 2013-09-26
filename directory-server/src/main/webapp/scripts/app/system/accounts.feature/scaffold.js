@@ -43,7 +43,7 @@ define([
 
                 grid = me.feature.views['grid:body'].components[0];
             	me.feature.model.set('department', treeNode);
-                defaultFilters = ['like', 'department.path', treeNode.path, { mode: 'start' }];
+                defaultFilters = ['like', 'department.path', treeNode.path || '', { mode: 'start' }];
                 grid.addFilter(defaultFilters);
                 grid.refresh();
             }
