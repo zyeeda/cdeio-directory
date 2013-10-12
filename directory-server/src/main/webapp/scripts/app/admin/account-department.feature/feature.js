@@ -48,12 +48,11 @@ define({
         },
 
         onStop: function() {
-            this.departmentDeferred.done(function(feature) {
-                feature.stop();
-            });
-            this.accountDeferred.done(function(feature) {
-                feature.stop();
-            });
+            var systemModule;
+
+            systemModule = app.findModule('system');
+            systemModule.findFeature('scaffold:departments').stop();
+            systemModule.findFeature('scaffold:accounts').stop();
         }
     }
 });
