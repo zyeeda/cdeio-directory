@@ -113,7 +113,6 @@ exports.grid = {
     ],
     filterToolbar: true,
     multiselect: true,
-    fixedHeader: true,
     events: {
         'system/departments#tree:onClick': 'departmentChanged'
     }
@@ -175,7 +174,7 @@ exports.hooks = {
             })
         })
     },
-    
+
     afterUpdate: {
     	defaults: mark('services','system/jms').on(function (jmsService, account) {
             var msg = {resource: 'account', type: 'update',	content: account};
@@ -184,7 +183,7 @@ exports.hooks = {
             })
         })
     },
-    
+
     afterRemove: {
         defaults: mark('services','system/jms').on(function (jmsService, account) {
             var msg = {resource: 'account', type: 'remove',	content: account};
