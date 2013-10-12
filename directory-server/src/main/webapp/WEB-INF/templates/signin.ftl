@@ -79,7 +79,7 @@
         <div class="row-fluid">
             <div class="remember-me">
                 <label>
-                    <input name="rememberMe" type="checkbox" value="rememberMe">
+                    <input name="rememberMe" type="checkbox" value="true">
                     <span class="lbl">&nbsp;保持登录状态</span>
                 </label>
             </div>
