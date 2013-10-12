@@ -35,13 +35,6 @@
             <artifactId>zyeeda-sso-openid</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.google.code</groupId>
-            <artifactId>kaptcha</artifactId>
-            <version>${kaptcha.version}</version>
-            <scope>runtime</scope>
-        </dependency>
     </dependencies>
 
     <build>
