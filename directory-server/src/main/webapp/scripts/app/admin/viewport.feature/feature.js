@@ -8,8 +8,8 @@ define({
     views: [{
         name: 'inline:breadcrumbs', region: 'breadcrumbs', avoidLoadingHandlers: true,
         extend: {
-            serializeData: function(su) {
-                var data = su.apply(this);
+            serializeData: function(_super) {
+                var data = _super.apply(this);
                 data || (data = {});
                 data.home = this.home;
                 data.items = this.items;
@@ -56,20 +56,24 @@ define({
             adminModule.findFeature('account-menu').stop();
         },
 
-        setHome: function(su, home) {
+        setHome: function(_super, home) {
             this.views['inline:breadcrumbs'].home = home;
         },
 
-        updateNavigator: function(su, menuItem) {
-            var v = this.views['inline:breadcrumbs'], m = menuItem;
+        updateNavigator: function(_super, menuItem) {
+            var v = this.views['inline:breadcrumbs'], menu;
+            if (menuItem) {
+                menu = menuItem.toJSON();
+            }
+
             v.home.isLast = !menuItem;
             v.items = [];
-            while (m) {
-                v.items.unshift(m);
-                m = m.parent;
+            while (menu) {
+                v.items.unshift(menu);
+                menu = menu.parent;
             }
             if (v.items.length > 0) {
-                v.items[v.items.length -1].isLast = true;
+                v.items[v.items.length - 1].isLast = true;
             }
             v.render();
         }

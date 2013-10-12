@@ -48,7 +48,10 @@ define([
 
         _activateMenu: function(hash) {
             var menuFeature = app.findModule('commons').findFeature('menu');
-            menuFeature.activateMenu(hash);
+            var menuItem = menuFeature.activateMenu(hash);
+            if (menuItem) {
+                app.viewport.updateNavigator(menuItem);
+            }
         }
 
     };

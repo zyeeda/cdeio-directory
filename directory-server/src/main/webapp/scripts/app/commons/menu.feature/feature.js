@@ -23,13 +23,16 @@ define(['underscore'], function(_) {
             activateMenu: function(_super, url) {
                 var menuView
                 , models
+                , menuModel
                 , menuItem;
 
                 menuView = this.views.menu;
                 models = menuView.collection.where({ path: url });
                 if (models.length > 0) {
-                    menuItem = menuView.$('child-' + models[0].get('id')).parent();
+                    menuModel = models[0];
+                    menuItem = menuView.$('child-' + menuModel.get('id')).parent();
                     this._lightUpMenu(menuItem);
+                    return menuModel;
                 }
             },
 
