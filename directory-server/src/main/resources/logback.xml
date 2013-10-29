@@ -22,6 +22,7 @@
     <logger name="bitronix.tm" level="INFO" />
     <logger name="org.enhydra" level="INFO" />
     <logger name="org.objectweb" level="INFO" />
+    <logger name="org.hibernate.engine.transaction.internal" level="OFF" />
 
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
