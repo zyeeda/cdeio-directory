@@ -30,10 +30,14 @@ getSession = function() {
     for (i = 0; i < roles.size(); i ++) {
         role = roles.get(i);
         o.roles.push(role.name);
-        for (j = 0; j < role.permissions.size(); j ++) {
-            permission = role.permissions.get(j);
+        for (j = role.permissions.iterator(); j.hasNext(); ) {
+            permission = j.next();
             o.permissions[permission.value] = true;
         }
+        /*for (j = 0; j < role.permissions.size(); j ++) {
+            permission = role.permissions.get(j);
+            o.permissions[permission.value] = true;
+        }*/
     }
 
     return o;

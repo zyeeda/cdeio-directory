@@ -11,7 +11,7 @@ define(['jquery'], function($){
                 }
 
                 me = this,
-                tree = me.feature.views['treeViews:tree'].components[0],
+                tree = me.feature.views['tree:body'].components[0],
                 app = me.feature.module.getApplication();
                 me.feature.model.set('id', treeNodes[0].id);
 
@@ -27,7 +27,7 @@ define(['jquery'], function($){
 
             toggleMove: function(e) {
                 var me = this
-                  , tree = me.feature.views['treeViews:tree'].components[0]
+                  , tree = me.feature.views['tree:body'].components[0]
                   , app = me.feature.module.getApplication()
                   , $el = $(e.currentTarget);
 

@@ -32,7 +32,21 @@ exports.labels = {
 };
 
 exports.fieldGroups = {
-    DEFAULT: ['name', 'parent'],
+    baseInfo: ['name', 'parent'],
+    editInfo: ['name']
+};
+
+exports.forms = {
+    defaults: {
+        groups: [{
+            name: 'baseInfo'
+        }]
+    },
+    edit: {
+        groups: [{
+            name: 'editInfo'
+        }]
+    }
 };
 
 exports.tree = {
@@ -55,12 +69,12 @@ exports.tree = {
 };
 
 exports.operators = {
-    add: { icon: 'icon-plus', style: 'btn-info', group: 'add' },
-    refresh: { icon: 'icon-refresh', group: 'refresh' },
-    edit: { icon: 'icon-edit', group: 'action' },
-    del: { icon: 'icon-minus', style: 'btn-danger', group: 'action' },
+    add: { label: '' },
+    edit: { label: '' },
+    del: { label: '' },
+    refresh: { label: '' },
     show: false,
-    toggleMove: { icon: 'icon-move', group: 'other' }
+    toggleMove: { icon: 'icon-move', group: 'other', show: 'always' }
 };
 
 exports.validators = {
@@ -76,10 +90,10 @@ exports.validators = {
 
 exports.hooks = {
 	afterCreate: {
-		add: mark('services', 'system/departments', 'system/jms').on(function (departmentSvc, jmsService, department) {
-			department =  departmentSvc.buildPath(department);
-			var msg = {resource: 'department', type: 'create', content: department};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
+		defaults: mark('services', 'system/departments', 'system/jms').on(function (departmentSvc, jmsService, department) {
+			departmentSvc.buildPath(department);
+			var msg = { resource: 'department', type: 'create', content: department };
+			json(msg, exports.filters.defaults).body.forEach(function(str) {
 				jmsService.sendMsg(str);
 			})
 		})
@@ -87,15 +101,15 @@ exports.hooks = {
 
 	afterUpdate: {
 		edit: mark('services', 'system/jms').on(function (jmsService, department) {
-			var msg = {resource: 'department', type: 'update', content: department};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
+			var msg = { resource: 'department', type: 'update', content: department };
+			json(msg, exports.filters.defaults).body.forEach(function(str) {
 				jmsService.sendMsg(str);
 			})
 		}),
-		move: mark('services', 'system/departments', 'system/jms-service').on(function (departmentSvc, jmsService, department) {
+		move: mark('services', 'system/departments', 'system/jms').on(function (departmentSvc, jmsService, department) {
 			departmentSvc.changeChildrenPath(department);
-			var msg = {resource: 'department', type: 'move', content: department};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
+			var msg = { resource: 'department', type: 'move', content: department };
+			json(msg, exports.filters.defaults).body.forEach(function(str) {
 				jmsService.sendMsg(str);
 			})
 		})
@@ -103,8 +117,8 @@ exports.hooks = {
 
 	afterRemove: {
 		defaults: mark('services', 'system/jms').on(function (jmsService, department) {
-			var msg = {resource: 'department', type: 'remove',	content: department};
-			json(msg, exports.filters.defaults).body.forEach(function(str){
+			var msg = { resource: 'department', type: 'remove',	content: department };
+			json(msg, exports.filters.defaults).body.forEach(function(str) {
 				jmsService.sendMsg(str);
 			})
 		})

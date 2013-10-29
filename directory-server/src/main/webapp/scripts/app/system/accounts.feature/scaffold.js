@@ -49,7 +49,7 @@ define([
             }
 	    },
 
-        ensureOperatorsVisibility: function(operators, id) {
+        /*ensureOperatorsVisibility: function(operators, id) {
             var o, _i, _len, _results;
             _results = [];
             for (_i = 0, _len = operators.length; _i < _len; _i++) {
@@ -59,6 +59,6 @@ define([
                 }
             }
             return _results;
-        }
+        }*/
 	}
 });

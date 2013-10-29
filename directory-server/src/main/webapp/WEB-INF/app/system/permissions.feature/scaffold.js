@@ -13,7 +13,7 @@ exports.fieldGroups = {
 
 exports.filters = {
     defaults: {
-        '!permissionFilter': ''
+        '!permissionFilter': ['roles'],
     }
 };
 

@@ -13,7 +13,9 @@ exports.coala = {
 
     orms: [
         'src/main/resources/META-INF/mappings/account-department.orm.xml'
-    ]
+    ],
+
+    disableAuthz: false
 };
 
 exports.directoryServer = {
