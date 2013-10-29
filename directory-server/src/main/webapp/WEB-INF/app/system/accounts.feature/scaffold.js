@@ -22,7 +22,7 @@ exports.filters = {
 exports.enableFrontendExtension = true;
 exports.style = 'grid';
 
-exports.entityLabel = '账号';
+exports.entityLabel = '账户';
 exports.labels = {
     id: 'ID',
     realName: '姓名',
@@ -60,9 +60,9 @@ exports.fieldGroups = {
         }]
     }],
     editPwdInfo: [
-        {name: 'oldPassword', type: 'password', validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
-        {name: 'newPassword', type: 'password', validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
-        {name: 'newPassword2', type: 'password', validations: {rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
+        {name: 'oldPassword', type: 'password', required: true, validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
+        {name: 'newPassword', type: 'password', required: true, validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
+        {name: 'newPassword2', type: 'password', required: true, validations: {rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
     ]
 };
 
@@ -119,12 +119,7 @@ exports.grid = {
 };
 
 exports.operators = {
-    add: { label: '添加', icon: 'icon-plus', style: 'btn-info', group: 'add' },
-    refresh: { label: '刷新', icon: 'icon-refresh', group: 'refresh' },
-    show: { label: '查看', icon: 'icon-eye-open', group: 'modify' },
-    edit: { label: '编辑', icon: 'icon-edit', group: 'modify' },
-    changePassword: { label: '修改密码', icon: 'icon-key', group: 'modify' },
-    del: { label: '删除', icon: 'icon-minus', style: 'btn-danger', group: 'modify' }
+    changePassword: { label: '修改密码', icon: 'icon-key', group: 'selected' }
 };
 
 exports.validators = {
