@@ -40,12 +40,14 @@ exports.forms = {
     defaults: {
         groups: [{
             name: 'baseInfo'
-        }]
+        }],
+        size: 'small'
     },
     edit: {
         groups: [{
             name: 'editInfo'
-        }]
+        }],
+        size: 'small'
     }
 };
 
