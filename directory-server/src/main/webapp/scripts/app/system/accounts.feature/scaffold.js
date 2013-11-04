@@ -38,13 +38,15 @@ define([
             },
 
             departmentChanged: function(feature, view, tree, e, treeId, treeNode) {
-            	var me = this
-                  , defaultFilters;
+                var grid, defaultFilters;
 
-                grid = me.feature.views['grid:body'].components[0];
-            	me.feature.model.set('department', treeNode);
+                grid = this.feature.views['grid:body'].components[0];
                 defaultFilters = ['like', 'department.path', treeNode.path || '', { mode: 'start' }];
-                grid.addFilter(defaultFilters);
+                if (treeNode.isRoot) {
+                    grid.removeFilter(defaultFilters);
+                } else {
+                    grid.addFilter(defaultFilters);
+                }
                 grid.refresh();
             }
 	    }
