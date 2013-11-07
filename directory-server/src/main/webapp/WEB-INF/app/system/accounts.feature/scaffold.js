@@ -13,9 +13,14 @@ var {Update} = com.zyeeda.coala.validation.group;
 exports.filters = {
     defaults: {
         exclude: {
-            accountFilter: ['password', 'password2'],
+            accountFilter: ['password', 'password2', 'roles'],
             departmentFilter: ['accounts', 'children', 'parent(1)']
         }
+    },
+    get: {
+        '!accountFilter': ['password', 'password2'],
+        '!departmentFilter': ['accounts', 'children', 'parent(1)'],
+        '!roleFilter': ['accounts', 'permissions']
     }
 };
 
@@ -59,11 +64,18 @@ exports.fieldGroups = {
             text: '启用'
         }]
     }],
+    roles: [{
+        name: 'roles', type: 'inline-grid', colspan: 2
+    }],
     editPwdInfo: [
         {name: 'oldPassword', type: 'password', required: true, validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
         {name: 'newPassword', type: 'password', required: true, validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
         {name: 'newPassword2', type: 'password', required: true, validations: {rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
     ]
+};
+
+exports.feature = {
+    views: ['form:changePassword']
 };
 
 exports.forms = {
@@ -74,7 +86,7 @@ exports.forms = {
         }, {
             name: 'extInfo',
             columns: 2
-        }]
+        }, 'roles']
     },
     show: {
         labelOnTop: false,
@@ -82,7 +94,7 @@ exports.forms = {
             name: 'baseInfo'
         }, {
             name: 'extInfo'
-        }]
+        }, 'roles']
     },
     add: {
         groups: [{
@@ -94,7 +106,7 @@ exports.forms = {
         }, {
             name: 'extInfo',
             columns: 2
-        }]
+        }, 'roles']
     },
     changePassword: {
         size: 'mini',

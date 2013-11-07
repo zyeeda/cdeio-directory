@@ -20,6 +20,7 @@ router.get('/', function(request) {
         mobile: p.getMobile(),
         telephone: p.getTelephone(),
         department: p.getDepartment() ? p.getDepartment().getName() : null,
+        id: p.id,
         sites: []
     };
     sites = SessionUtil.retrieveSites(subject.getSession());
@@ -37,6 +38,7 @@ router.get('/', function(request) {
     return json(result);
 });
 
+/*
 router.get('/', function(request) {
     var  result = {}, key, item;
 
@@ -45,3 +47,4 @@ router.get('/', function(request) {
     }
     return json(result);
 });
+*/

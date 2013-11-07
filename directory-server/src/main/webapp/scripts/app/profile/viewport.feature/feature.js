@@ -22,7 +22,8 @@ define({
             }
         },
         events: {
-            'click edit-info-btn': 'showEditInfoDialog'
+            'click edit-info-btn': 'showEditInfoDialog',
+            'click change-password-btn': 'showChangePasswordDialog'
         }
     }, {
         name: 'inline:edit-info-form',

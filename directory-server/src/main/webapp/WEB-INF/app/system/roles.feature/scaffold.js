@@ -9,24 +9,20 @@ exports.labels = {
 };
 
 exports.fieldGroups = {
-    defaults: ['name', 'description', 'department'],
-    inlineGrid: [{
-        name: 'permissions', type: 'inline-grid', path: '/system/permissions', refKey: 'roles', allowPick: true, manyToMany: true
+    defaults: ['name', 'description', 'department', {
+        name: 'permissions', type: 'inline-grid'
     }]
-};
-
-exports.forms = {
-    defaults: {
-        groups: ['defaults']
-    },
-    edit: {
-        groups: ['defaults', 'inlineGrid']
-    }
 };
 
 exports.filters = {
     defaults: {
         '!roleFilter': ['permissions'],
+        accountFilter: ['password', 'password2'],
+        departmentFilter: ['children', 'accounts', 'parent(1)']
+    },
+    get: {
+        '!roleFilter': '',
+        '!permissionFilter': 'roles',
         accountFilter: ['password', 'password2'],
         departmentFilter: ['children', 'accounts', 'parent(1)']
     }
@@ -39,4 +35,10 @@ exports.grid = {
         { name: 'description' },
         { name: 'department' }
     ]
+};
+
+exports.picker = {
+    grid: {
+        columns: ['name', 'description', 'department']
+    }
 };
