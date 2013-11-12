@@ -1,6 +1,16 @@
 define(['jquery'], function($) {
 
     return {
+        afterShowDialog: function (type, v, data) {
+            console.log( type, v, data );
+        },
+
+        renderers: {
+            mobileRenderer: function(data) {
+                return data ? '+86 ' + data : '';
+            }
+        },
+
         handlers: {
             changePassword: function() {
                 var me = this

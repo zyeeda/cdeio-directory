@@ -119,7 +119,7 @@ exports.grid = {
         { name: 'realName', search: true },
         { name: 'accountName', search: true },
         { name: 'email', search: true },
-        { name: 'mobile', search: true },
+        { name: 'mobile', search: true, renderer: 'mobileRenderer' },
         { name: 'disabled', type: 'boolean', search: true },
         { name: 'department.name', header: '部门', defaultContent: '', search: true }
     ],
