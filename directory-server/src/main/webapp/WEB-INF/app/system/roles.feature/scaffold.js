@@ -10,7 +10,7 @@ exports.labels = {
 
 exports.fieldGroups = {
     defaults: ['name', 'description', 'department', {
-        name: 'permissions', type: 'inline-grid'
+        name: 'permissions', type: 'inline-grid', multiple: true
     }]
 };
 

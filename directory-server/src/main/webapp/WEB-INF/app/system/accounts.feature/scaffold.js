@@ -65,7 +65,7 @@ exports.fieldGroups = {
         }]
     }],
     roles: [{
-        name: 'roles', type: 'inline-grid', colspan: 2
+        name: 'roles', type: 'inline-grid', colspan: 2, multiple: true
     }],
     editPwdInfo: [
         {name: 'oldPassword', type: 'password', required: true, validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
@@ -124,7 +124,6 @@ exports.grid = {
         { name: 'department.name', header: '部门', defaultContent: '', search: true }
     ],
     filterToolbar: true,
-    multiselect: true,
     events: {
         'system/departments#tree:onClick': 'departmentChanged'
     }
