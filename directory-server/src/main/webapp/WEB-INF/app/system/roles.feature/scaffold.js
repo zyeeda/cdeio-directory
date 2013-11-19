@@ -34,7 +34,8 @@ exports.grid = {
         { name: 'name' },
         { name: 'description' },
         { name: 'department' }
-    ]
+    ],
+    multiple: true
 };
 
 exports.picker = {

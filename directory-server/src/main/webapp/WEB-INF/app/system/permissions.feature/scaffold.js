@@ -23,5 +23,6 @@ exports.grid = {
         { name: 'name' },
         { name: 'value' },
         { name: 'description' }
-    ]
+    ],
+    multiple: true
 };
