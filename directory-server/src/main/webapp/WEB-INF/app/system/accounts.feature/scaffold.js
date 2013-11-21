@@ -25,6 +25,7 @@ exports.filters = {
 };
 
 exports.enableFrontendExtension = true;
+exports.haveFilter = true;
 exports.style = 'grid';
 
 exports.entityLabel = '账户';
@@ -41,7 +42,8 @@ exports.labels = {
     oldPassword: '原密码',
     newPassword: '新密码',
     newPassword2: '重复密码',
-    department: '部门'
+    department: '部门',
+    'department.id': '部门'
 };
 
 exports.fieldGroups = {
@@ -71,7 +73,8 @@ exports.fieldGroups = {
         {name: 'oldPassword', type: 'password', required: true, validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
         {name: 'newPassword', type: 'password', required: true, validations: {rules: {required: true, rangelength:[6, 60]}, messages: {required: '不能为空', rangelength:'个数必须在6和60之间'}}},
         {name: 'newPassword2', type: 'password', required: true, validations: {rules: {required: true, equalTo: 'newPassword'}, messages: {required: '不能为空', equalTo: '不匹配'}}}
-    ]
+    ],
+    filter: [{name :'department.id', type: 'tree-picker', source: '/system/departments'}]
 };
 
 exports.feature = {
@@ -111,12 +114,17 @@ exports.forms = {
     changePassword: {
         size: 'mini',
         groups: ['editPwdInfo']
+    },
+    filter: {
+        groups: [{
+            name: 'filter', columns: 4
+        }]
     }
 };
 
 exports.grid = {
     columns: [
-        { name: 'realName', search: true },
+        { name: 'realName', search: true, sortable: false },
         { name: 'accountName', search: true },
         { name: 'email', search: true },
         { name: 'mobile', search: true, renderer: 'mobileRenderer' },
@@ -130,7 +138,7 @@ exports.grid = {
 };
 
 exports.operators = {
-    changePassword: { label: '修改密码', icon: 'icon-key', group: 'selected' }
+    changePassword: { label: '修改密码', icon: 'icon-key', group: '20-selected' }
 };
 
 exports.validators = {

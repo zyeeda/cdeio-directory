@@ -30,6 +30,7 @@ exports.filters = {
 
 exports.style = 'grid';
 exports.grid = {
+    multiple: true,
     columns: [
         { name: 'name' },
         { name: 'description' },
