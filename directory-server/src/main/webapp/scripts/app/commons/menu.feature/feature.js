@@ -21,10 +21,10 @@ define(['underscore'], function(_) {
 
         extend: {
             activateMenu: function(_super, url) {
-                var menuView
-                , models
-                , menuModel
-                , menuItem;
+                var menuView,
+                    models,
+                    menuModel,
+                    menuItem;
 
                 menuView = this.views.menu;
                 models = menuView.collection.where({ path: url });

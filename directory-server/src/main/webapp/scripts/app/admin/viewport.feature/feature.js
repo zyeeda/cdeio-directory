@@ -10,7 +10,7 @@ define({
         extend: {
             serializeData: function(_super) {
                 var data = _super.apply(this);
-                data || (data = {});
+                data = data || (data = {});
                 data.home = this.home;
                 data.items = this.items;
                 return data;

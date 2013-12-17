@@ -7,14 +7,14 @@ define(['jquery', 'underscore'], function($, _) {
             if (!id && !item.parent) {
                 children.push(item);
             } else if (item.parent && item.parent.id == id) {
-                children.push(item)
+                children.push(item);
             }
         });
         return children;
     }, parseData = function(data) {
         var roots = findChildren(data);
         _.each(roots, function(item) {
-            item.children = findChildren(data, item.id)
+            item.children = findChildren(data, item.id);
         });
         return roots;
     };
@@ -30,7 +30,7 @@ define(['jquery', 'underscore'], function($, _) {
             serializeData: function(su) {
                 var deferred = $.Deferred(), c = this.collection, data = su.apply(this), me = this;
                 c.fetch().done(function() {
-                    data.data = parseData(c.toJSON())
+                    data.data = parseData(c.toJSON());
                     deferred.resolve(data);
                 });
                 return deferred.promise();

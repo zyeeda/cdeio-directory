@@ -32,7 +32,7 @@ define([
 
         app.addPromise(deferred.promise());
         return app;
-    }
+    };
 
 });
 

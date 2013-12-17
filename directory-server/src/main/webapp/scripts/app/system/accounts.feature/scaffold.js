@@ -13,9 +13,9 @@ define(['jquery'], function($) {
 
         handlers: {
             changePassword: function() {
-                var me = this
-                  , grid = me.feature.views['grid:body'].components[0]
-                  , selected = grid.getSelected();
+                var me = this,
+                    selected = grid.getSelected(),
+                    grid = me.feature.views['grid:body'].components[0];
 
                 app = me.feature.module.getApplication();
                 view = me.feature.views['form:changePassword'];

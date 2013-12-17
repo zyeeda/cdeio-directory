@@ -5,7 +5,7 @@ define({
         this.$('btn').toggleClass("icon-double-angle-right");
         if (el.hasClass('menu-min')) {
             console.log('aa');
-            $(".open > .submenu").removeClass("open")
+            $(".open > .submenu").removeClass("open");
         }
     }
-})
+});

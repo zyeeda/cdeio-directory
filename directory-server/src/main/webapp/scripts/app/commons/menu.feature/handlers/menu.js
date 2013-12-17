@@ -50,9 +50,9 @@ define(['jquery'], function($) {
         },*/
 
         toggleSubMenu: function(e) {
-            var t = $(e.target)
-              , el = this.feature.layout.$el
-              , ul;
+            var el = this.feature.layout.$el,
+                t = $(e.target),
+                ul;
 
             if (!t.is('a')) {
                 t = t.parents('a');

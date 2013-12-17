@@ -2,16 +2,14 @@ define(['jquery'], function($){
     return {
         handlers: {
             departmentMoved: function(e, treeId, treeNodes, targetNode) {
-                var me
-                  , tree
-                  , app;
+                var me, tree, app;
 
                 if (!targetNode) {
                     return;
                 }
 
-                me = this,
-                tree = me.feature.views['tree:body'].components[0],
+                me = this;
+                tree = me.feature.views['tree:body'].components[0];
                 app = me.feature.module.getApplication();
                 me.feature.model.set('id', treeNodes[0].id);
 
@@ -26,10 +24,10 @@ define(['jquery'], function($){
             },
 
             toggleMove: function(e) {
-                var me = this
-                  , tree = me.feature.views['tree:body'].components[0]
-                  , app = me.feature.module.getApplication()
-                  , $el = $(e.currentTarget);
+                var me = this,
+                    tree = me.feature.views['tree:body'].components[0],
+                    app = me.feature.module.getApplication(),
+                    $el = $(e.currentTarget);
 
                 if (tree.setting.edit.enable) {
                     tree.setting.edit.enable = false;
@@ -41,5 +39,5 @@ define(['jquery'], function($){
                 return true;
             }
         }
-    }
+    };
 });
