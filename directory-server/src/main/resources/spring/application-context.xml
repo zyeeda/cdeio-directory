@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- $Id$ -->
+<!-- $Id: application-context.xml,v 881d824905dd 2013/07/10 04:08:55 tangrui $ -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -25,7 +25,7 @@
 
     <context:property-placeholder location="classpath:settings/*.properties" />
 
-    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/defaultDS" />
+    <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/defaultDS" />
 
     <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager" />
 

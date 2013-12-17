@@ -27,6 +27,7 @@
 
     <properties>
         <kaptcha.version>2.3.2</kaptcha.version>
+        <jetty.config>${project.build.outputDirectory}/META-INF/jetty</jetty.config>
     </properties>
 
     <dependencies>
@@ -60,14 +61,6 @@
                                     <name>logback.configurationFile</name>
                                     <value>src/main/resources/logback.xml</value>
                                 </property>
-                                <!--<property>
-                                    <name>java.awt.headless</name>
-                                    <value>true</value>
-                                </property>-->
-                                <property>
-                                    <name>jetty.port</name>
-                                    <value>9100</value>
-                                </property>
                             </properties>
                         </configuration>
                     </execution>
@@ -77,11 +70,11 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <jettyConfig>${project.build.outputDirectory}/META-INF/jetty/jetty.xml</jettyConfig>
+                    <jettyXml>
+                        ${jetty.config}/jetty.xml,${jetty.config}/jetty-http.xml,${jetty.config}/jetty-ssl.xml,${jetty.config}/jetty-https.xml,${jetty.config}/jetty-plus.xml,${jetty.config}/jetty-btm.xml
+                    </jettyXml>
                     <webApp>
                         <contextPath>/</contextPath>
-                        <jettyEnvXml>${project.build.outputDirectory}/META-INF/jetty/jetty-env.xml</jettyEnvXml>
-                        <defaultsDescriptor>${project.build.outputDirectory}/META-INF/jetty/webdefault.xml</defaultsDescriptor>
                     </webApp>
                 </configuration>
             </plugin>
