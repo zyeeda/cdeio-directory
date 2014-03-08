@@ -9,5 +9,5 @@ define({
         return 'invoke/scaffold/' + path;
 	},
 
-    disableAuthz: false
+    disableAuthz: true
 });
