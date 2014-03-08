@@ -12,7 +12,7 @@
 
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="../scripts/coala/themes/ace/css/main.css">
+        <link rel="stylesheet" href="../scripts/coala/themes/ace/styles/index.css">
         <link rel="stylesheet" href="../assets/styles/main.css">
 
         <!-- Le HTML5 shiv, for IE6-8 support of HTML5 elements -->
