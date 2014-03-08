@@ -14,19 +14,7 @@
     <version>2.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <repositories>
-        <repository>
-            <id>google-maven-snapshot-repository</id>
-            <name>Google Maven Snapshot Repository</name>
-            <url>https://m2repos.googlecode.com/svn/nexus</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <properties>
-        <kaptcha.version>2.3.2</kaptcha.version>
         <jetty.config>${project.build.outputDirectory}/META-INF/jetty</jetty.config>
     </properties>
 
