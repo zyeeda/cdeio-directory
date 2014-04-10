@@ -10,6 +10,11 @@
         <Arg>none</Arg>
     </Call>
 
+    <Call name="setInitParameter">
+        <Arg>org.eclipse.jetty.servlet.Default.useFileMappedBuffer</Arg>
+        <Arg>false</Arg>
+    </Call>
+
     <Call name="addAliasCheck">
         <Arg><New class="org.eclipse.jetty.server.handler.AllowSymLinkAliasChecker"/></Arg>
     </Call>
