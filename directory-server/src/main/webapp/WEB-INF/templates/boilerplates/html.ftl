@@ -12,7 +12,7 @@
 
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="../scripts/coala/themes/ace/styles/index.css">
+        <link rel="stylesheet" href="../scripts/coala/themes/ace.css">
         <link rel="stylesheet" href="../assets/styles/main.css">
 
         <!-- Le HTML5 shiv, for IE6-8 support of HTML5 elements -->
@@ -22,11 +22,11 @@
         <script src="../scripts/coala/vendors/modernizr.js"></script>
 
         <!-- Le fav and touch icons -->
-        <link rel="shortcut icon" href="../scripts/coala/themes/default/img/favicon.ico" />
-        <link rel="apple-touch-icon-precomposed" href="../scripts/coala/themes/default/img/apple-touch-icon-114-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" href="../scripts/coala/themes/default/img/apple-touch-icon-114-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" href="../scripts/coala/themes/default/img/apple-touch-icon-72-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" href="../scripts/coala/themes/default/img/apple-touch-icon-57-precomposed.png" />
+        <link rel="shortcut icon" href="../scripts/coala/themes/default/images/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" href="../scripts/coala/themes/default/images/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="../scripts/coala/themes/default/images/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="../scripts/coala/themes/default/images/apple-touch-icon-72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="../scripts/coala/themes/default/images/apple-touch-icon-57-precomposed.png" />
     </head>
 
     <#nested>
