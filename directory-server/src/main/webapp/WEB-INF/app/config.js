@@ -1,13 +1,13 @@
 var {SecurityUtils} = org.apache.shiro;
 
 var logger = require('ringo/logging').getLogger(module.id);
-var {mark} = require('coala/mark');
+var {mark} = require('cdeio/mark');
 
-exports.coala = {
+exports.cdeio = {
     entityPackages : [
-        'com.zyeeda.coala.commons.resource.entity',
-        'com.zyeeda.coala.commons.organization.entity',
-        'com.zyeeda.coala.commons.authc.entity',
+        'com.zyeeda.cdeio.commons.resource.entity',
+        'com.zyeeda.cdeio.commons.organization.entity',
+        'com.zyeeda.cdeio.commons.authc.entity',
         'com.zyeeda.directory'
     ],
 

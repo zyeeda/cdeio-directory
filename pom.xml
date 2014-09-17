@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <coala.version>2.0.0-SNAPSHOT</coala.version>
+        <cdeio.version>2.0.0-SNAPSHOT</cdeio.version>
         <activemq.version>5.7.0</activemq.version>
         <spring.version>3.2.8.RELEASE</spring.version>
     </properties>
@@ -29,8 +29,8 @@
         </dependency>
         <dependency>
             <groupId>com.zyeeda</groupId>
-            <artifactId>zyeeda-coala-core</artifactId>
-            <version>${coala.version}</version>
+            <artifactId>zyeeda-cdeio-core</artifactId>
+            <version>${cdeio.version}</version>
         </dependency>
 
         <dependency>

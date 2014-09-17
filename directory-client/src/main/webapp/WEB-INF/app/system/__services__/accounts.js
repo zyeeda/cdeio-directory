@@ -1,9 +1,9 @@
 var _ = require('underscore');
-var {mark} = require('coala/mark');
-var {json, error} = require('coala/response');
+var {mark} = require('cdeio/mark');
+var {json, error} = require('cdeio/response');
 
-var {BCrypt} = com.zyeeda.coala.crypto;
-var {Account} = com.zyeeda.coala.commons.organization.entity;
+var {BCrypt} = com.zyeeda.cdeio.crypto;
+var {Account} = com.zyeeda.cdeio.commons.organization.entity;
 
 exports.createService = function() {
 

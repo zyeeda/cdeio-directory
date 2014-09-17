@@ -17,12 +17,12 @@
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 
     <bean id="openIdProvider" class="com.zyeeda.sso.openid.provider.support.DefaultOpenIdProvider"
-        p:name="${coala.application.name}"
-        p:serverProtocol="${coala.server.protocol:http}"
-        p:serverAddress="${coala.server.address}"
-        p:serverPort="${coala.server.port:9100}"
-        p:indexPath="${coala.sso.op.index.path:/}"
-        p:basePath="${coala.sso.op.base.path:/provider}"
+        p:name="${cdeio.application.name}"
+        p:serverProtocol="${cdeio.server.protocol:http}"
+        p:serverAddress="${cdeio.server.address}"
+        p:serverPort="${cdeio.server.port:9100}"
+        p:indexPath="${cdeio.sso.op.index.path:/}"
+        p:basePath="${cdeio.sso.op.base.path:/provider}"
         init-method="init" />
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"

@@ -1,4 +1,4 @@
-define(['jquery', 'coala/core/loader-plugin-manager'], function($, LoaderManager){
+define(['jquery', 'cdeio/core/loader-plugin-manager'], function($, LoaderManager){
 	return {
 	    handlers: {
 	    	sync: function() {

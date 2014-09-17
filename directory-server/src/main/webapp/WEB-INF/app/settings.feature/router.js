@@ -1,6 +1,6 @@
-var {json} = require('coala/response');
-var {createRouter} = require('coala/router');
-var {frontendSettings} = require('coala/config');
+var {json} = require('cdeio/response');
+var {createRouter} = require('cdeio/router');
+var {frontendSettings} = require('cdeio/config');
 
 var router = exports.router = createRouter();
 

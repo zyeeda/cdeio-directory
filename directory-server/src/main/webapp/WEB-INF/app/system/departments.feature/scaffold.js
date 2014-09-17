@@ -1,5 +1,5 @@
-var {mark} = require('coala/mark');
-var {json} = require('coala/response');
+var {mark} = require('cdeio/mark');
+var {json} = require('cdeio/response');
 
 exports.enableFrontendExtension = true;
 

@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'scripts/coala/vendors/jquery/jquery.magnific-popup.js'
+    'scripts/cdeio/vendors/jquery/jquery.magnific-popup.js'
 ], function($) {
     return {
         showEditInfoDialog: function() {

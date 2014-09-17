@@ -1,11 +1,11 @@
 define([
     'jquery',
     'underscore',
-    'coala/coala',
-    'coala/applications/default',
-    'coala/core/config',
-    'coala/vendors/jquery/jquery.slimscroll.min'
-], function($, _, coala, createDefault, config) {
+    'cdeio/cdeio',
+    'cdeio/applications/default',
+    'cdeio/core/config',
+    'cdeio/vendors/jquery/jquery.slimscroll.min'
+], function($, _, cdeio, createDefault, config) {
 
     return function(options) {
         var app, deferred = $.Deferred();

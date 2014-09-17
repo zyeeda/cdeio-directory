@@ -2,13 +2,13 @@ var _ = require('underscore');
 var logger = require('ringo/logging').getLogger(module.id);
 var {SecurityUtils} = org.apache.shiro;
 
-var {json, error, html} = require('coala/response');
-var {mark} = require('coala/mark');
-var validator = require('coala/validation/validator').createValidator();
+var {json, error, html} = require('cdeio/response');
+var {mark} = require('cdeio/mark');
+var validator = require('cdeio/validation/validator').createValidator();
 
-var {BCrypt} = com.zyeeda.coala.commons.crypto;
-var {Account, Gender} = com.zyeeda.coala.commons.organization.entity;
-var {Update} = com.zyeeda.coala.validation.group;
+var {BCrypt} = com.zyeeda.cdeio.commons.crypto;
+var {Account, Gender} = com.zyeeda.cdeio.commons.organization.entity;
+var {Update} = com.zyeeda.cdeio.validation.group;
 
 exports.filters = {
     defaults: {

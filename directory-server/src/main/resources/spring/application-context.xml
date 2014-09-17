@@ -29,7 +29,7 @@
 
     <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager" />
 
-    <bean class="com.zyeeda.coala.web.scaffold.provider.DefaultEntityMetaResolver" />
+    <bean class="com.zyeeda.cdeio.web.scaffold.provider.DefaultEntityMetaResolver" />
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basenames">
@@ -41,7 +41,7 @@
     </bean>
 
     <!--<import resource="classpath:spring/ldap.xml" />-->
-    <import resource="classpath:spring/coala/validation.xml" />
+    <import resource="classpath:spring/cdeio/validation.xml" />
     <import resource="classpath:spring/sso/provider/ehcache.xml" />
     <import resource="classpath:spring/freemarker.xml" />
     <import resource="classpath:spring/hibernate.xml" />

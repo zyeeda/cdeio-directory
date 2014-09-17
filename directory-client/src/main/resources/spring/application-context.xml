@@ -33,7 +33,7 @@
     <!--
      - Scaffold configuration.
     -->
-    <bean class="com.zyeeda.coala.web.scaffold.provider.DefaultEntityMetaResolver" />
+    <bean class="com.zyeeda.cdeio.web.scaffold.provider.DefaultEntityMetaResolver" />
     
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
@@ -50,7 +50,7 @@
      - Uncomment the one you use then change it.
     -->
     <import resource="classpath:spring/hibernate.xml" />
-    <import resource="classpath:spring/coala/validation.xml" />
+    <import resource="classpath:spring/cdeio/validation.xml" />
         <import resource="classpath:spring/jms.xml" />
     
 </beans>

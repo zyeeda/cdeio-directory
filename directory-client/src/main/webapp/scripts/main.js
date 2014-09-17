@@ -1,18 +1,18 @@
 define([
     'jquery',
-    'coala/coala',
-    'coala/core/config',
+    'cdeio/cdeio',
+    'cdeio/core/config',
     './directory-application'
-], function ($, coala, config) {
+], function ($, cdeio, config) {
 
     $(function() {
-        var app = window.app = coala.startApplication('directory-application');
+        var app = window.app = cdeio.startApplication('directory-application');
         app.done(function(){
         	app.startFeature('viewport').done(function (viewport) {
                 config.featureContainer = function (feature) {
                     return viewport.layout.$('sidebar');
                 }
-                coala.startBackboneHistory(app);
+                cdeio.startBackboneHistory(app);
             }).done(function(viewport){
             	app.startFeature('system/departments', {container: viewport.layout.$('sidebar')});
             }).done(function(viewport){

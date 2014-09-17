@@ -1,6 +1,6 @@
 
-var {mark} 			= require('coala/mark');
-var {Department} 	= com.zyeeda.coala.commons.organization.entity;
+var {mark} 			= require('cdeio/mark');
+var {Department} 	= com.zyeeda.cdeio.commons.organization.entity;
 var {Session, DeliveryMode} = javax.jms;
 var {HashMap} = java.util;
 

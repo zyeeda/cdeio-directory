@@ -1,9 +1,9 @@
-exports.coala = {
+exports.cdeio = {
 
     appPath: 'src/main/webapp/WEB-INF/app/',
 
     entityPackages : [
-        'com.zyeeda.coala.commons.organization.entity',
+        'com.zyeeda.cdeio.commons.organization.entity',
         'com.zyeeda.directory'
     ],
 

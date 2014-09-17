@@ -1,1 +1,1 @@
-exports.router = require('coala/application').create(this);
+exports.router = require('cdeio/application').create(this);

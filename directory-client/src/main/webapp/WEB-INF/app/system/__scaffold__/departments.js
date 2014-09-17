@@ -1,5 +1,5 @@
-var {mark} = require('coala/mark');
-var {html} = require('coala/response');
+var {mark} = require('cdeio/mark');
+var {html} = require('cdeio/response');
 
 exports.enableFrontendExtension = true;
 exports.filters = {

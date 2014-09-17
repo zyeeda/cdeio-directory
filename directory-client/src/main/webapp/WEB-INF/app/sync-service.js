@@ -1,8 +1,8 @@
-var {mark} = require('coala/mark');
+var {mark} = require('cdeio/mark');
 var {sync} = require('config');
 var {String} = java.lang;
 var {Session, TextMessage, MessageListener} = javax.jms;
-var {Department, Account} = com.zyeeda.coala.commons.organization.entity;
+var {Department, Account} = com.zyeeda.cdeio.commons.organization.entity;
 var {ObjectMapper} = com.fasterxml.jackson.databind;
 var {FileCopyUtils} = org.springframework.util;
 var {TypeReference} = com.fasterxml.jackson.core.type;

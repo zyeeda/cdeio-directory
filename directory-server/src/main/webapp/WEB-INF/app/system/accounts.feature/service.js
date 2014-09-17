@@ -1,10 +1,10 @@
 var _ = require('underscore');
-var {mark} = require('coala/mark');
-var {json, error} = require('coala/response');
-var {createValidationContext} = require('coala/validation/validation-context');
+var {mark} = require('cdeio/mark');
+var {json, error} = require('cdeio/response');
+var {createValidationContext} = require('cdeio/validation/validation-context');
 
-var {BCrypt} = com.zyeeda.coala.commons.crypto;
-var {Account} = com.zyeeda.coala.commons.organization.entity;
+var {BCrypt} = com.zyeeda.cdeio.commons.crypto;
+var {Account} = com.zyeeda.cdeio.commons.organization.entity;
 
 exports.createService = function() {
 

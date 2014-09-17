@@ -1,4 +1,4 @@
-var {mark} 					= require('coala/mark');
+var {mark} 					= require('cdeio/mark');
 var {Session, DeliveryMode} = javax.jms;
 var {HashMap} 				= java.util;
 

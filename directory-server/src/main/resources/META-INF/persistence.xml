@@ -5,15 +5,15 @@
 
     <persistence-unit name="default" transaction-type="JTA">
 
-        <mapping-file>META-INF/mappings/coala/validation.orm.xml</mapping-file>
+        <mapping-file>META-INF/mappings/cdeio/validation.orm.xml</mapping-file>
         <mapping-file>META-INF/mappings/sso/openid/realm.orm.xml</mapping-file>
 
-        <class>com.zyeeda.coala.commons.resource.entity.MenuItem</class>
-        <class>com.zyeeda.coala.commons.resource.entity.SettingItem</class>
-        <class>com.zyeeda.coala.commons.organization.entity.Account</class>
-        <class>com.zyeeda.coala.commons.organization.entity.Department</class>
-        <class>com.zyeeda.coala.commons.authc.entity.Permission</class>
-        <class>com.zyeeda.coala.commons.authc.entity.Role</class>
+        <class>com.zyeeda.cdeio.commons.resource.entity.MenuItem</class>
+        <class>com.zyeeda.cdeio.commons.resource.entity.SettingItem</class>
+        <class>com.zyeeda.cdeio.commons.organization.entity.Account</class>
+        <class>com.zyeeda.cdeio.commons.organization.entity.Department</class>
+        <class>com.zyeeda.cdeio.commons.authc.entity.Permission</class>
+        <class>com.zyeeda.cdeio.commons.authc.entity.Role</class>
 
         <!--
          | Uncomment the following lines when using zyeeda-knowledge module!
