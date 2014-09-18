@@ -1,18 +1,27 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id$ -->
+
+<!--
+$License$
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.zyeeda</groupId>
-        <artifactId>zyeeda-project</artifactId>
+        <artifactId>zyeeda-origin</artifactId>
         <version>3-SNAPSHOT</version>
     </parent>
 
     <artifactId>zyeeda-directory</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>Zyeeda Directory Service</name>
-    <url>http://www.zyeeda.com/products/zyeeda-directory</url>
+    <url>http://www.zyeeda.com</url>
     <packaging>pom</packaging>
 
     <properties>
@@ -29,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>com.zyeeda</groupId>
-            <artifactId>zyeeda-cdeio-core</artifactId>
+            <artifactId>zyeeda-cdeio-runtime-core</artifactId>
             <version>${cdeio.version}</version>
         </dependency>
 
@@ -58,10 +67,9 @@
             <artifactId>spring-jms</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
     </dependencies>
 
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>com.cj.jshintmojo</groupId>
@@ -71,7 +79,7 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
     <modules>
         <module>directory-server</module>
