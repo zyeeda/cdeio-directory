@@ -1,3 +1,4 @@
+<#-- $Id$ -->
 <#import "boilerplates/signin.ftl" as bp>
 
 <@bp.signin>

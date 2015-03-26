@@ -1,3 +1,4 @@
+<#-- $Id$ -->
 <#import "html.ftl" as bp>
 
 <#macro signin>
