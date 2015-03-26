@@ -23,7 +23,6 @@ bin
 
 WEB-INF/classes
 WEB-INF/lib
-WEB-INF/modules/cdeio
 
-src/main/webapp/scripts/cdeio
+cdeio
 src/main/webapp/scripts/main-dist.js
