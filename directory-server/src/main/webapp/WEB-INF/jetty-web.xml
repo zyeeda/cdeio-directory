@@ -5,16 +5,19 @@
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
 
 <Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
+    <!-- Don't allow jsessionid to appear after the URL. -->
     <Call name="setInitParameter">
         <Arg>org.eclipse.jetty.servlet.SessionIdPathParameterName</Arg>
         <Arg>none</Arg>
     </Call>
 
+    <!-- Make Jetty not hold files, so that other programs cannot open it in Windows system. -->
     <Call name="setInitParameter">
         <Arg>org.eclipse.jetty.servlet.Default.useFileMappedBuffer</Arg>
         <Arg>false</Arg>
     </Call>
 
+    <!-- Allow symbolic link in webapp. -->
     <Call name="addAliasCheck">
         <Arg><New class="org.eclipse.jetty.server.handler.AllowSymLinkAliasChecker"/></Arg>
     </Call>
