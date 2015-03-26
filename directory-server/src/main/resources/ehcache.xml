@@ -2,7 +2,10 @@
 
 <!-- $Id -->
 
-<ehcache updateCheck="false">
+<ehcache xmlns="http://ehcache.org"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://ehcache.org http://ehcache.org/ehcache.xsd"
+         updateCheck="false">
 
     <!-- Sets the path to the directory where cache .data files are created.
 
@@ -55,7 +58,7 @@
            timeToLiveSeconds="0"
            timeToIdleSeconds="600"
            diskPersistent="true"
-           diskExpiryThreadIntervalSeconds="600" />
+           diskExpiryThreadIntervalSeconds="600"/>
 
 </ehcache>
 
