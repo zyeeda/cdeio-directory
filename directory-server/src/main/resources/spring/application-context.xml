@@ -31,11 +31,17 @@
         </property>
     </bean>
 
+    <!-- LDAP server data source config. -->
     <!--<import resource="classpath:spring/ldap.xml" />-->
+    <!-- Build ValidationFactory instance. -->
     <import resource="classpath:spring/cdeio/validation.xml"/>
+    <!-- Configurate Ehcache to store pre sign in information to stop robots. -->
     <import resource="classpath:spring/sso/provider/ehcache.xml"/>
+    <!-- Load Freemarker templates from this project's classpath: WEB-INF/templates. -->
     <import resource="classpath:spring/freemarker.xml"/>
+    <!-- Configurate Hibernate to use SQL data source. -->
     <import resource="classpath:spring/hibernate.xml"/>
     <import resource="classpath:spring/jms.xml"/>
+    <!-- Delegate all servlet filters config here. -->
     <import resource="classpath:spring/shiro.xml"/>
 </beans>
