@@ -27,6 +27,7 @@
         <param-value>classpath:spring/application-context.xml</param-value>
     </context-param>
 
+    <!-- Delegate all servlet filter config to shiro.xml file. -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -45,7 +46,7 @@
     </filter-mapping>
 
     <servlet>
-        <servlet-name>kaptcha</servlet-name>
+        <servlet-name>kaptchaServlet</servlet-name>
         <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
         <init-param>
             <param-name>kaptcha.image.width</param-name>
@@ -57,12 +58,12 @@
         </init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>kaptcha</servlet-name>
+        <servlet-name>kaptchaServlet</servlet-name>
         <url-pattern>/captcha.jpg</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>jsgi</servlet-name>
+        <servlet-name>jsgiServlet</servlet-name>
         <servlet-class>com.zyeeda.cdeio.web.SpringAwareJsgiServlet</servlet-class>
         <init-param>
             <param-name>app-name</param-name>
@@ -87,7 +88,7 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>jsgi</servlet-name>
+        <servlet-name>jsgiServlet</servlet-name>
         <url-pattern>/invoke/*</url-pattern>
     </servlet-mapping>
 
