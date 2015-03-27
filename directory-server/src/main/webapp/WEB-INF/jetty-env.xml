@@ -49,7 +49,7 @@
                 <Set name="minPoolSize">5</Set>
                 <Set name="maxPoolSize">30</Set>
                 <Get name="driverProperties">
-                    <Put name="URL">jdbc:mysql://localhost:3306/cdeio-directory?pinGlobalTxToPhysicalConnection=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8</Put>
+                    <Put name="URL">jdbc:mysql://mysql:3306/cdeio-directory?pinGlobalTxToPhysicalConnection=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8</Put>
                     <Put name="user">root</Put>
                     <Put name="password">mysecretpassword</Put>
                 </Get>
