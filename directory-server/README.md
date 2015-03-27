@@ -8,7 +8,7 @@ Maven 3.3.1 版本新增加的功能可以允许以前配置在 `MAVEN_OPTS` 环
 
 在 MySQL 中创建名为 `cdeio-directory` 的数据库，并将字符集设置为 UTF-8，在当前目录下运行 `mvn jetty:run` 既可启动服务。
 
-在使用自己编写的 pom.xml 文件运行项目的时候，主要要添加对 `cdeio-sso-openid` 库的引用：
+在使用自己编写的 pom.xml 文件运行项目的时候，注意要添加对 `cdeio-sso-openid` 库的引用：
 
 ```xml
 <dependency>
@@ -117,7 +117,7 @@ Maven 3.3.1 版本新增加的功能可以允许以前配置在 `MAVEN_OPTS` 环
 
 ### 3.4.2、声明 shiroFilter
 
-`shiroFilter` 的定义是此配置中最重要的部分，首先需要声明到各个 filter 的引用（`filters` 属性），然后要配置这些 filter 如何被应用到系统路径上（`filterChainDefinitions` 属性）。
+`shiroFilter` 的定义是此配置中最重要的部分，首先需要声明到各个 filter 的引用别名（`filters` 属性），然后要配置这些 filter 如何被应用到系统路径上（`filterChainDefinitions` 属性）。
 
 每个 filter 的具体含义如下：
 
@@ -125,13 +125,13 @@ Maven 3.3.1 版本新增加的功能可以允许以前配置在 `MAVEN_OPTS` 环
 * `authc` 对用户进行登录认证；
 * `signin` 用来显示登录页面；
 * `endpoint` 单点登录协议需要使用的一个路径，单点登录请求从这里开始；
-* `signout` 登出用户并显示登出后的界面，与 signin filter 不同的是，signout filter 除了显示登出后的界面以外还处理登出操作，但是 signin filter 只用来显示登录界面，具体进行用户认证操作的是由 authc filter 完成的；
+* `signout` 登出用户并显示登出后的界面，与 signin filter 不同的是，signout filter 除了显示登出后的界面以外还处理登出操作，但是 signin filter 只用来显示登录界面，具体的用户认证操作的是由 authc filter 完成的；
 * `xrds` 和 `user` 都是单点登录协议需要使用的路径；
 * `check` 检查用户是否登录（仅检查不负责具体认证）；
-* `index` 用户登录成功以后，显示系统首页。这时存在两种情况，一种情况是用户直接在提供者端登录，不使用单点功能，则认证成功以后进入目录管理主页；另外一种情况是用户通过消费者端登录，则认证成功以后，会把用户重定向到来时的路径；
+* `index` 用户登录成功以后，显示系统首页。这时存在两种情况，一种是用户直接在单点登录提供者端登录，不使用单点功能，则认证成功以后进入目录管理主页；另外一种是用户通过消费者端登录，则认证成功以后，会把用户重定向到来时的路径；
 * `open` Spring 的 OpenEntityManagerInViewFilter 的实例，用来控制在一个请求范围内的 EntityManager 的生命周期。
 
-**注：具体每一个 filter 的定义是在此文件的最后面依次罗列的。**
+**注：每一个 filter 的具体定义是在此文件的最后面依次罗列的。**
 
 ### 3.4.3、路径映射
 
