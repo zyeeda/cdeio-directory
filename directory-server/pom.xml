@@ -25,6 +25,13 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
 
     <properties>
         <jetty.config>${project.build.outputDirectory}/META-INF/jetty</jetty.config>
+
+        <!-- MySQL Server Config -->
+        <mysql.server.host>mysql</mysql.server.host>
+        <mysql.server.port>3306</mysql.server.port>
+        <mysql.server.database>cdeio-directory</mysql.server.database>
+        <mysql.server.user>root</mysql.server.user>
+        <mysql.server.password>mysecretpassword</mysql.server.password>
     </properties>
 
     <dependencies>
@@ -73,6 +80,19 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
                     <webApp>
                         <contextPath>/</contextPath>
                     </webApp>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <configuration>
+                    <url>jdbc:mysql://${mysql.server.host}:${mysql.server.port}/${mysql.server.database}?pinGlobalTxToPhysicalConnection=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8</url>
+                    <user>${mysql.server.user}</user>
+                    <password>${mysql.server.password}</password>
+                    <locations>
+                        <location>filesystem:src/main/resources/migration/mysql</location>
+                    </locations>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
         </plugins>

@@ -10,7 +10,7 @@
         ">
 
     <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-          p:generateDdl="true"/>
+          p:generateDdl="false"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:jpaVendorAdapter-ref="hibernateJpaVendorAdapter"
