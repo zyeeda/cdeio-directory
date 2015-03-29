@@ -4,7 +4,7 @@
 
 <configuration debug="true">
 
-    <property name="applicationName" value="zyeeda-directory-server"/>
+    <property name="applicationName" value="cdeio-directory-server"/>
 
     <contextName>${applicationName}</contextName>
 
