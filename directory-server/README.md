@@ -164,3 +164,17 @@ Realm 是对存储认证信息的数据库的抽象，在本系统中，可以�
 * `JpaRealm` 以关系型数据库作为后端存储的认证信息库；
 * `MockRealm` 伪装的认证信息库，实际上没有任何存储，当输入的用户名和密码相同的时候就可以登录。系统默认启用此 realm。
 
+## 3.5、persistence.xml 配置
+
+```xml
+<mapping-file>META-INF/mappings/cdeio/validation.orm.xml</mapping-file>
+<mapping-file>META-INF/mappings/sso/openid/realm.orm.xml</mapping-file>
+
+<class>com.zyeeda.cdeio.commons.resource.entity.MenuItem</class>
+<class>com.zyeeda.cdeio.commons.resource.entity.SettingItem</class>
+<class>com.zyeeda.cdeio.commons.organization.entity.Account</class>
+<class>com.zyeeda.cdeio.commons.organization.entity.Department</class>
+<class>com.zyeeda.cdeio.commons.authc.entity.Permission</class>
+<class>com.zyeeda.cdeio.commons.authc.entity.Role</class>
+```
+
