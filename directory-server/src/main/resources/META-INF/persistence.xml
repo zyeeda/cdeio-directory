@@ -19,12 +19,6 @@
         <class>com.zyeeda.cdeio.commons.authc.entity.Permission</class>
         <class>com.zyeeda.cdeio.commons.authc.entity.Role</class>
 
-        <!--
-         | Uncomment the following lines when using zyeeda-knowledge module!
-         | <class>org.drools.persistence.info.SessionInfo</class>
-         | <class>org.drools.persistence.info.WorkItemInfo</class>
-         |-->
-
         <validation-mode>NONE</validation-mode>
 
         <properties>
