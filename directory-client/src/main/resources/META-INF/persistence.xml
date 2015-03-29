@@ -1,32 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id$ -->
+
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence classpath:///META-INF/schema/persistence_2_0.xsd"
-	version="2.0">
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
 
-	<persistence-unit name="default" transaction-type="JTA">
+    <persistence-unit name="default" transaction-type="JTA">
 
-		<!--
-		 | Uncomment the following lines when using zyeeda-knowledge module!
-         |-->
-        <!--
-		<class>org.drools.persistence.info.SessionInfo</class>
-		<class>org.drools.persistence.info.WorkItemInfo</class>
-		-->
+        <mapping-file>META-INF/mappings/commons/organization/account.orm.xml</mapping-file>
 
-		<class>com.zyeeda.cdeio.commons.organization.entity.Account</class>
-		<class>com.zyeeda.cdeio.commons.organization.entity.Department</class>
-		<mapping-file>META-INF/mappings/cdeio/validation.orm.xml</mapping-file>
+        <class>com.zyeeda.cdeio.commons.organization.entity.Account</class>
+        <class>com.zyeeda.cdeio.commons.organization.entity.Department</class>
+        <class>com.zyeeda.cdeio.commons.authc.entity.Permission</class>
+        <class>com.zyeeda.cdeio.commons.authc.entity.Role</class>
 
-		<validation-mode>NONE</validation-mode>
+        <validation-mode>NONE</validation-mode>
 
-		<properties>
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.use_sql_comments" value="true" />
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
 
-			<property name="hibernate.transaction.manager_lookup_class"
-				value="org.hibernate.transaction.WeblogicTransactionManagerLookup" />
-		</properties>
+            <property name="hibernate.transaction.manager_lookup_class"
+                      value="org.hibernate.transaction.WeblogicTransactionManagerLookup"/>
+        </properties>
 
-	</persistence-unit>
+    </persistence-unit>
 </persistence>
