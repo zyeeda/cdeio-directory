@@ -7,7 +7,7 @@
 <Configure id="Server" class="org.eclipse.jetty.server.Server">
 
     <Call name="getConfiguration" class="bitronix.tm.TransactionManagerServices">
-        <Set name="serverId">jetty-btm-node0</Set>
+        <Set name="serverId">jetty-btm-node-directory-server</Set>
         <Set name="logPart1Filename"><SystemProperty name="jetty.home" default="."/>/work/btm1.tlog
         </Set>
         <Set name="logPart2Filename"><SystemProperty name="jetty.home" default="."/>/work/btm2.tlog
