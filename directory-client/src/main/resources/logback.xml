@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<configuration debug="true" >
+<!-- $Id$ -->
 
-	<property name="applicationName" value="zyeeda-drivebox" />
-    
+<configuration debug="true">
+
+    <property name="applicationName" value="cdeio-directory-client"/>
+
     <contextName>${applicationName}</contextName>
-    
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
                 %d{yyyy-MM-dd hh:mm:ss.SSS} %-5p %logger.%M [%t] - %m%n
             </pattern>
         </encoder>
-	</appender>
-	
-    <logger name="org.springframework" level="DEBUG" />
-	<logger name="org.hibernate" level="DEBUG" />
-	<logger name="org.mortbay" level="INFO" />
-    <logger name="org.quartz" level="INFO" />
-    <logger name="bitronix.tm" level="INFO" />
-    <logger name="org.enhydra" level="INFO" />
-    <logger name="org.objectweb" level="INFO" />
-	
+    </appender>
+
+    <logger name="org.springframework" level="DEBUG"/>
+    <logger name="org.hibernate" level="DEBUG"/>
+    <logger name="org.hibernate.engine.transaction.internal" level="OFF"/>
+    <logger name="org.eclipse" level="INFO"/>
+    <logger name="org.eclipse.jetty" level="INFO"/>
+    <logger name="org.quartz" level="INFO"/>
+    <logger name="bitronix.tm" level="INFO"/>
+
     <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
     </root>
-	
+
 </configuration>
