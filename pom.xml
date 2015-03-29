@@ -14,18 +14,18 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
 
     <parent>
         <groupId>com.zyeeda</groupId>
-        <artifactId>zyeeda-origin</artifactId>
-        <version>3-SNAPSHOT</version>
+        <artifactId>origin</artifactId>
+        <version>4-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zyeeda-directory</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>Zyeeda Directory Service</name>
+    <artifactId>cdeio-directory</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
+    <name>CDE.IO Directory Service</name>
     <url>http://www.zyeeda.com</url>
     <packaging>pom</packaging>
 
     <properties>
-        <cdeio.version>2.0.0-SNAPSHOT</cdeio.version>
+        <cdeio.version>2.1.0-SNAPSHOT</cdeio.version>
         <activemq.version>5.7.0</activemq.version>
         <spring.version>3.2.8.RELEASE</spring.version>
     </properties>
@@ -33,12 +33,12 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
+            <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.zyeeda</groupId>
-            <artifactId>zyeeda-cdeio-runtime-core</artifactId>
+            <artifactId>cdeio-core</artifactId>
             <version>${cdeio.version}</version>
         </dependency>
 
@@ -69,20 +69,15 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
         </dependency>
     </dependencies>
 
-    <!--<build>
-        <plugins>
-            <plugin>
-                <groupId>com.cj.jshintmojo</groupId>
-                <artifactId>jshint-maven-plugin</artifactId>
-                <configuration>
-                    <failOnError>false</failOnError>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>-->
-
     <modules>
         <module>directory-server</module>
         <module>directory-client</module>
     </modules>
+
+    <scm>
+        <connection>scm:git:https://github.com/zyeeda/cdeio-directory</connection>
+        <developerConnection>scm:git:${basedir}/../${project.artifactId}</developerConnection>
+        <url>https://github.com/zyeeda/cdeio-directory</url>
+        <tag>HEAD</tag>
+    </scm>
 </project>

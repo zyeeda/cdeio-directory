@@ -14,13 +14,32 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
 
     <parent>
         <groupId>com.zyeeda</groupId>
-        <artifactId>zyeeda-directory</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>cdeio-directory</artifactId>
+        <version>2.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zyeeda-directory-server-consumer</artifactId>
-    <name>Zyeeda Directory Service (Consumer)</name>
+    <artifactId>cdeio-directory-client</artifactId>
+    <name>CDE.IO Directory Server Consumer</name>
     <packaging>war</packaging>
+
+    <properties>
+        <cdeio.version>2.1.0-SNAPSHOT</cdeio.version>
+        <jetty.config>${project.build.outputDirectory}/META-INF/jetty</jetty.config>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zyeeda</groupId>
+            <artifactId>cdeio-core</artifactId>
+            <version>${cdeio.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zyeeda</groupId>
+            <artifactId>cdeio-sso-openid</artifactId>
+            <version>${cdeio.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <resources>
@@ -31,79 +50,38 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
         </resources>
 
         <plugins>
-             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>maven-jetty-plugin</artifactId>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>logback.configurationFile</name>
+                                    <value>src/main/resources/logback.xml</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <contextPath>/</contextPath>
-                    <jettyConfig>${project.build.outputDirectory}/META-INF/jetty/jetty.xml</jettyConfig>
-                    <jettyEnvXml>${project.build.outputDirectory}/META-INF/jetty/jetty-env.xml</jettyEnvXml>
-                    <webDefaultXml>${project.build.outputDirectory}/META-INF/jetty/webdefault.xml</webDefaultXml>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>logback.configurationFile</name>
-                            <value>src/main/resources/logback.xml</value>
-                        </systemProperty>
-                    </systemProperties>
-                    <connectors>
-                        <connector
-                            implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <port>8200</port>
-                        </connector>
-                    </connectors>
+                    <jettyXml>
+                        ${jetty.config}/jetty.xml,${jetty.config}/jetty-http.xml,${jetty.config}/jetty-ssl.xml,${jetty.config}/jetty-https.xml,${jetty.config}/jetty-plus.xml,${jetty.config}/jetty-btm.xml
+                    </jettyXml>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.btm</groupId>
-                        <artifactId>btm</artifactId>
-                        <version>2.1.1</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.codehaus.btm</groupId>
-                        <artifactId>btm-jetty6-lifecycle</artifactId>
-                        <version>2.1.3</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-api</artifactId>
-                        <version>1.7.2</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-core</artifactId>
-                        <version>1.0.6</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-classic</artifactId>
-                        <version>1.0.6</version>
-                        <exclusions>
-                            <exclusion>
-                                <artifactId>slf4j-api</artifactId>
-                                <groupId>org.slf4j</groupId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
-                    <dependency>
-                        <groupId>javax.resource</groupId>
-                        <artifactId>connector-api</artifactId>
-                        <version>1.5</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.18</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
-
-    <scm>
-        <connection>scm:hg:http://bitbucket.org/zyeeda/directory</connection>
-        <developerConnection>scm:hg:${basedir}/../${project.artifactId}</developerConnection>
-        <url>http://bitbucket.org/zyeeda/directory</url>
-        <tag>HEAD</tag>
-    </scm>
 </project>
 
