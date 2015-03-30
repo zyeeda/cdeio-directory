@@ -1,6 +1,6 @@
 FROM zyeeda/java:latest
 
-EXPOSE 9100 9143
+EXPOSE 8080 8443 
 
 COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

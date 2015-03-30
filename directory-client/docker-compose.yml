@@ -1,0 +1,24 @@
+mysql:
+  image: mysql:5.6
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: mysecretpassword
+    MYSQL_DATABASE: cdeio-samples
+  volumes:
+    - ../mysql/etc/mysql:/etc/mysql
+
+client:
+  build: ./
+  ports:
+    - "80:8080"
+    - "443:8443"
+  links:
+    - mysql
+  mem_limit: 1000000000
+  volumes:
+    - ../colorvest:/opt/zyeeda/colorvest
+    - ../:/opt/zyeeda/cdeio-directory
+    - ~/.m2/:/root/.m2
+  working_dir: /opt/zyeeda/cdeio-directory/directory-client
+
