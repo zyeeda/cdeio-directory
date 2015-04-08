@@ -8,7 +8,7 @@ mysql:
   volumes:
     - ../mysql/etc/mysql:/etc/mysql
 
-client:
+server:
   build: ./
   ports:
     - "80:8080"
