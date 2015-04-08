@@ -16,11 +16,16 @@
           p:serverAddress="${cdeio.server.address}"
           p:serverPort="${cdeio.server.port:80}"
           p:indexPath="${cdeio.sso.rp.index.path}"
-          p:basePath="${cdeio.sso.rp.base.path}"
+          p:signInPath="${cdeio.sso.rp.signin.path}"
+          p:signOutPath="${cdeio.sso.rp.signout.path}"
+          p:returnToPath="${cdeio.sso.rp.returnto.path}"
+          p:callbackPath="${cdeio.sso.rp.callback.path}"
           p:providerServerProtocol="${cdeio.op.server.protocol:http}"
           p:providerServerAddress="${cdeio.op.server.address}"
           p:providerServerPort="${cdeio.op.server.port:9100}"
-          p:providerBasePath="${cdeio.sso.op.base.path}"/>
+          p:providerXrdsPath="${cdeio.sso.op.xrds.path}"
+          p:providerSignInPath="${cdeio.sso.op.signin.path}"
+          p:providerSignOutPath="${cdeio.sso.op.signout.path}"/>
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"
           p:securityManager-ref="securityManager"
