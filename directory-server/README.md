@@ -25,11 +25,10 @@ Maven 3.3.1 版本新增加的功能可以允许以前配置在 `MAVEN_OPTS` 环
 3. `docker-machine create -d virtualbox op` 创建虚拟机
 4. `$(docker-machine env op)` 将 docker 命令连接到新创建的虚拟机
 5. `docker-machine ip` 记录下显示的 IP 地址
-6. 返回到此工作区的根目录，即 `cdeio-directory` 目录
-7. `docker-compose up -d` 启动系统
-8. `docker-compose logs op` 显示系统启动日志
+7. 在当前目录下运行 `docker-compose up -d` 启动系统
+8. `docker-compose logs server` 显示系统启动日志
 9. 系统启动完成后，打开浏览器访问 `http://<IP ADDRESS>:9100`
-10. 使用 admin/admin 登录系统，如果能够登录成功则说明运行成功
+10. 使用 admin/admin 账户登录系统，如果能够登录成功则说明系统正常运行
 
 # 2、系统介绍
 

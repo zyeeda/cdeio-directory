@@ -20,7 +20,15 @@ Maven 3.3.1 版本新增加的功能可以允许以前配置在 `MAVEN_OPTS` 环
 
 ## 1.2、在 Docker 中运行
 
-暂不支持。
+1. 安装 docker-machine
+2. 安装 docker-compose
+3. `docker-machine create -d virtualbox rp` 创建虚拟机
+4. `$(docker-machine env rp)` 将 docker 命令连接到新创建的虚拟机
+5. `docker-machine ip` 记录下显示的 IP 地址
+6. 在当前目录下运行 `docker-compose up -d` 启动系统
+7. `docker-compose logs server` 显示系统启动日志
+8. 系统启动完成后，打开浏览器访问 `http://<IP ADDRESS>:9100`
+9. 使用 tom/tom 账户登录系统，如果能够登录成功则说明系统正常运行
 
 # 2、系统介绍
 
@@ -53,11 +61,17 @@ Maven 3.3.1 版本新增加的功能可以允许以前配置在 `MAVEN_OPTS` 环
 `openIdConsumer` 的声明方法同 `openIdProvider` 类似，只是声明类型变为 `com.zyeeda.cdeio.sso.openid.consumer.support.ShiroSessionOpenIdConsumer`。初始化参数 `cdeio.application.name`、`cdeio.server.protocol`、`cdeio.server.address` 和 `cdeio.server.port` 等配置都与 provider 配置中的含义相同。其他参数的解释如下：
 
 `cdeio.sso.rp.index.path` consumer 服务运行所在的上下文根目录，这个需要根据实际情况来设定，在本例中是 /；
-`cdeio.sso.rp.base.path` consumer 服务相对于 `cdeio.sso.rp.index.path` 的路径，这个需要根据实际情况来设定，本例中是 /accounts/openid；
+`cdeio.sso.rp.signin.path` consumer 服务的登录路径
+`cdeio.sso.rp.signout.path` consumer 服务的登出路径
+`cdeio.sso.rp.returnto.path` consumer 服务的 return to 路径
+`cdeio.sso.rp.callback.path` consumer 服务的 callback 路径
+
 `cdeio.op.server.protocol` SSO provider 服务所使用的协议，http 或者 https，默认为 http；
 `cdeio.op.server.address` SSO provider 服务所在的地址，可以是 IP 地址或域名；
 `cdeio.op.server.port` SSO provider 服务所在的端口，默认为 9100；
-`cdeio.sso.op.base.path` SSO provider 服务所在的路径，本例中是 /provider。
+`cdeio.sso.op.xrds.path` SSO provider 服务 XRDS 路径
+`cdeio.sso.op.signin.path` SSO provider 服务登录路径
+`cdeio.sso.op.signout.path` SSO provider 服务登出路径
 
 ### 3.4.2、声明 shiroFilter
 
