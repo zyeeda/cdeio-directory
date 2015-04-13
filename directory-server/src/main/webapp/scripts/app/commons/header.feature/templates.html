@@ -7,17 +7,12 @@
     <a class="brand" href="javascript:void 0;">
         <img
             class="c-system-logo"
-            src="{{#if settings.application-logo}}{{settings.application-logo}}{{else}}scripts/cdeio/themes/default/images/zyeeda-logo-inverse.png{{/if}}"
+            src="{{settings.application_logo}}"
             alt="应用程序图标" />
         <div class="c-system-name">
-        {{#if settings.application-name}}
-            {{settings.application-name}}
-        {{else}}
-            中昱达目录管理系统
-        {{/if}}
+        {{settings.application_name}}
         </div>
     </a>
-
     <ul id="notification" class="nav ace-nav pull-right">
     </ul>
 </div>

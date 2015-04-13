@@ -1,6 +1,6 @@
 var {SecurityUtils} = org.apache.shiro;
 
-var {SessionUtil} = com.zyeeda.sso.openid.provider.util;
+var {SessionUtil} = com.zyeeda.cdeio.sso.openid.provider.util;
 
 var logger = require('ringo/logging').getLogger(module.id);
 var {json} = require('cdeio/response');

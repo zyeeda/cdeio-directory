@@ -1,0 +1,41 @@
+{{#layout}}
+<div class="info-container">
+	<div id="header"></div>
+	<div id="content"></div>
+</div>
+{{/layout}}
+
+{{#view "header"}}
+<div class="info-header">
+	<span>个人信息</span>
+</div>
+{{/view}}
+
+{{#view "content"}}
+<div class="info-content">
+	<div class="info-img">
+		<img class="large-user-photo photo" src="{{settings.currentUser.photo}}" alt="用户头像" />
+		<button id="change-password-btn" class="btn btn-default btn-change-password">修改密码</button>
+	</div>
+	<div class="info-detailed">
+		<span>欢迎,{{settings.currentUser.realName}}</span>
+		<div>
+			<ul>
+				<li><i class="icon-user blue"></i>&nbsp;&nbsp;&nbsp;{{info.name}}</li>
+				<li><i class="icon-briefcase blue"></i>&nbsp;&nbsp;&nbsp;{{info.role}}</li>
+				<li><i class="icon-phone blue"></i>&nbsp;&nbsp;&nbsp;{{info.mobile}}</li>
+				<li><i class="icon-envelope blue"></i>&nbsp;&nbsp;&nbsp;{{info.email}}</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="info-password" hidden>
+	<div class="changePassword"></div>
+	<div class="btn-groups">
+		<button id="submit-password" class="btn btn-small btn-info btn-password">提交</button>
+		<button id="reset-password" class="btn btn-small btn-warning btn-password">重置</button>
+		<button id="quit-password" class="btn btn-small btn-default btn-password">取消</button>
+	</div>
+</div>
+
+{{/view}}

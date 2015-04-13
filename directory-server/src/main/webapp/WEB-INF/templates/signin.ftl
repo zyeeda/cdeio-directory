@@ -1,16 +1,18 @@
-<#-- $Id$ -->
 <#import "boilerplates/signin.ftl" as bp>
 
 <@bp.signin>
 <form method="post">
-    <div class="signin-form-above hidden-phone">
+    <div class="logo">
+        <img src="../assets/images/logo.svg" />
         <#if applicationName??>
-        <h4>${applicationName}</h4>
+            ${applicationName}
         <#else>
-        <h4>中昱达单点登录系统</h4>
+            CDEIO 单点登录系统
         </#if>
     </div>
-    <div class="signin-form">
+    
+    <div class="space-6"></div>
+    <fieldset>
         <#if request.getAttribute("signInFailure")??>
         <#assign signInFailure = request.getAttribute("signInFailure")>
         <div class="alert alert-error">
@@ -27,68 +29,53 @@
         </#if>
         </div>
         </#if>
-        <div class="row-fluid">
-            <div class="span12">
-                <label><strong>用户名</strong></label>
-            </div>
-        </div>
-        <div class="row-fluid">
-            <span class="block input-icon input-icon-right">
-                <input id="username" name="username" type="text" class="input-block-level" />
-                <i class="icon-user"></i>
+
+        <label>
+            <span class="block input-icon">
+                <i class="icon-user svg-icon"></i>
+                <input type="text" id="username" name="username" class="span12" placeholder="账号">
+                
             </span>
-        </div>
-        <div class="row-fluid">
-            <div class="password">
-                <label><strong>密码</strong></label>
-            </div>
-            <div class="forget-password">
-                <label><strong>忘记密码?</strong></label>
-            </div>
-        </div>
-        <div class="row-fluid">
-            <span class="block input-icon input-icon-right">
-                <input id="password" name="password" type="password" class="input-block-level" />
-                <i class="icon-lock"></i>
+        </label>
+
+        <label>
+            <span class="block input-icon">
+                <i class="icon-lock svg-icon"></i>
+                <input type="password" id="password" name="password" class="span12" placeholder="密码">
             </span>
-        </div>
+        </label>
+
+        <div class="space-1"></div>
+        
         <#if request.getAttribute("signInToken")??>
         <#assign signInToken = request.getAttribute("signInToken")>
         <#if signInToken.isCaptchaRequired()>
-        <div class="row-fluid">
-            <div class="captcha-label">
-                <label><strong>验证码</strong></label>
-            </div>
-            <div class="captcha-unclear">
-                <a class="change-captcha" href="javascript:changeCaptcha();">看不清楚?</a>
-            </div>
-        </div>
-        <div class="row-fluid">
-            <div class="span8">
-                <input name="captcha" type="text" class="input-block-level" />
-            </div>
-            <div class="span4">
-                <img id="captcha" src="/captcha.jpg" alt="验证码" />
-            </div>
-        </div>
-        <div class="help-block">
-        </div>
+        <label>
+            <span class="block input-icon">
+                <i class="icon-qrcode svg-icon" onclick="javascript:changeCaptcha();"></i>
+                <input type="text" name="captcha" class="span8" placeholder="验证码">
+                <img id="captcha" class="span4 pull-right captcha" src="../captcha.jpg" alt="验证码" onclick="javascript:changeCaptcha();" />
+            </span>
+        </label>
+        <div class="space-1"></div>
         </#if>
         </#if>
-    </div>
-    <div class="signin-form-below">
-        <div class="row-fluid">
-            <div class="remember-me">
-                <label>
-                    <input name="rememberMe" type="checkbox" value="true">
-                    <span class="lbl">&nbsp;保持登录状态</span>
-                </label>
-            </div>
-            <div class="signin-btn">
-                <button class="btn btn-large btn-success" type="submit"><i class="icon-lock icon-white c-icon-small"></i>&nbsp;&nbsp;登&nbsp;录</button>
-            </div>
+        
+        <div class="clearfix">
+            <label class="inline remember">
+                <input type="checkbox" class="ace">
+                <span class="lbl"> 记住密码 ?</span>
+            </label>
         </div>
-    </div>
+        <div class="space-2"></div>
+
+        <div class="clearfix">
+            <input type="reset" class="width-30 pull-right btn reset" value="重 置">
+            <input type="submit" class="width-30 pull-right btn login" value="登 录">
+        </div>
+
+        <div class="space-4"></div>
+    </fieldset>
 </form>
 
 <script>
@@ -97,7 +84,7 @@
     }
 
     function changeCaptcha() {
-        document.getElementById('captcha').setAttribute('src', '/captcha.jpg?' + new Date().getTime());
+        document.getElementById('captcha').setAttribute('src', '../captcha.jpg?' + new Date().getTime());
     }
 </script>
 </@bp.signin>

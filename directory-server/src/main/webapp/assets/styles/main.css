@@ -1,3 +1,7 @@
+@import url('../../scripts/cdeio/themes/ace.css');
+@import url('prettify.css');
+@import url('login.css');
+
 .c-ds-footer {
     height: 100%;
     background-color: #F1F1F1;
@@ -136,7 +140,7 @@
 .remember-me {
     margin-top: 12px;
     float: left;
-    width: 8em;
+    width: 8.5em;
 }
 
 .signin-btn {
@@ -171,4 +175,119 @@
 .no-online-system {
     text-align: center;
 }
+
+.code pre, .code code {
+    tab-size: 4;
+    border-radius: 0px;
+}
+
+.main-content {
+    background: #fcfcfc;
+}
+
+.code .pre {
+    margin: 0 20px;
+}
+
+.code .tab-content {
+    border: 0;
+}
+
+.code .nav {
+    margin-bottom: 0px;
+    padding-top: 12px;
+    margin-left: 32px;
+}
+
+.nav-pills > li > a {
+    -webkit-border-radius: 0; 
+    -moz-border-radius: 0;
+    border-radius: 0; 
+}
+
+.marked {
+    padding: 0px;
+    margin: 0 20px;
+    line-height: 2em;
+    word-spacing: 0.1em;
+}
+
+.marked p {
+    font-size: 15px;
+    vertical-align: bottom;
+}
+
+.marked .pre  {
+    margin: 20px 0;
+}
+
+.code .abox {
+   border: 1px solid #0088CC;
+}
+
+.copy-btn {
+    float: right;
+    margin-top: 5px;
+    margin-right: 30px;
+    background: #232C31 !important;
+    border: 1px solid #C5C8C6;
+    color: #C5C8C6 !important;
+}
+
+.code-path {
+    position: absolute;
+    left: 45px;
+    top: 20px;
+    color: #C3DDB5;
+    font-size: 10px;
+}
+
+.widget-hr {
+    margin: 10px 0 0 0;
+}
+
+.marked .copy-btn {
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.code .tab-content {
+    max-width: 80em;
+}
+
+
+.context-login-iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+}
+
+/*ztree style begin*/
+/* tree */
+.icon-tree_ico_close, .icon-tree_ico_open, .icon-tree_ico_docu {
+  /*background-position: -24px -24px;*/
+  background-image: url("../images/country_tree_icons.png") !important;
+  margin-right: 2px !important;
+  vertical-align: top;
+}
+
+.countryNode_ico_close, .countryNode_ico_open, .countryNode_ico_docu, .provinceNode_ico_close, .provinceNode_ico_open, .provinceNode_ico_docu, .cityNode_ico_close, .cityNode_ico_open, .cityNode_ico_docu, .countyNode_ico_close, .countyNode_ico_open, .countyNode_ico_docu{
+  background-image: url("../images/country_tree_icons.png") !important;
+  margin-right: 2px !important;
+  vertical-align: top;
+}
+.countryNode_ico_close, .countryNode_ico_open, .countryNode_ico_docu {
+  background-position: 0 0px !important;
+}
+.provinceNode_ico_close, .provinceNode_ico_open, .provinceNode_ico_docu {
+  background-position: 0 -16px !important;
+}
+.cityNode_ico_close, .cityNode_ico_open, .cityNode_ico_docu {
+  background-position: 0 -32px !important;
+}
+.countyNode_ico_close, .countyNode_ico_open, .countyNode_ico_docu {
+  background-position: 0 -64px !important;
+}
+
+/*ztree style end*/
 

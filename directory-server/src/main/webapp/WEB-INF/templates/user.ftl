@@ -1,4 +1,3 @@
-<#-- $Id$ -->
 <xrds:XRDS xmlns:xrds="xri://$xrds"
     xmlns:openid="http://openid.net/xmlns/1.0" xmlns="xri://$xrd*($v*2.0)">
     <XRD>

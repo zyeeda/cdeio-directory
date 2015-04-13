@@ -1,4 +1,3 @@
-<#-- $Id$ -->
 <#import "boilerplates/html.ftl" as bp>
 
 <@bp.html>

@@ -25,10 +25,14 @@ exports.directoryServer = {
 };
 
 exports.frontendSettings = {
+    'application_name': 'cdeio.application.name',
+    'application_logo': 'cdeio.application.logo',
+
     currentUser: function(context) {
         var subject = SecurityUtils.getSubject();
         var p = subject.getPrincipal();
         logger.debug('principal = {}', p);
+        console.log(p);
         if (p == null) {
             return {};
         }
@@ -37,7 +41,8 @@ exports.frontendSettings = {
             accountName: p.getAccountName(),
             realName: p.getRealName(),
             email: p.getEmail(),
-            isAdmin: true
+            isAdmin: true,
+            photo: 'assets/images/avatars/user.jpg'
         };
     },
 

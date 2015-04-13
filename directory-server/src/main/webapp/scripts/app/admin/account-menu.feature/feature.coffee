@@ -1,13 +1,12 @@
-define({
-    layout: {
-        regions: {
-            title: 'title',
+define
+    layout: 
+        regions: 
+            title: 'title'
             dropdown: 'dropdown'
-        }
-    },
-    views: [{
+        
+    
+    views: [
         name: 'inline:title', region: 'title', avoidLoadingHandlers: true
-    }, {
+    ,
         name: 'inline:dropdown', region: 'dropdown', avoidLoadingHandlers: true
-    }]
-});
+    ]

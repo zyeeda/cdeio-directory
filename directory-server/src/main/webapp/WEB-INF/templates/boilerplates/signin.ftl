@@ -1,40 +1,26 @@
-<#-- $Id$ -->
 <#import "html.ftl" as bp>
 
 <#macro signin>
-<@bp.html>
-<body>
-    <div class="content">
-        <div class="content-bg">
-            <img src="../assets/images/background.jpg" />
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span5 offset1 hidden-phone">
-                    <div class="left-padding"></div>
-                    <div class="row-fluid">
-                        <div class="span12 system-logo">
-                            <img src="../assets/images/system-signin-logo.png" />
+<@bp.html basePath="../">
+<body class="login-layout">
+    <div class="mask">
+        <div class="main-container container-fluid">
+            <div class="main-content">
+                <div class="row-fluid">
+                    <div class="login-container">
+                        <div class="row-fluid">
+                            <div class="position-relative">
+                                <div id="login-box" class="login-box visible widget-box no-border">
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <#nested>
+                                        </div><!-- /widget-main -->
+                                    </div><!-- /widget-body -->
+                                </div><!-- /login-box -->
+                            </div><!-- /position-relative -->
                         </div>
                     </div>
-                </div>
-                <div class="span4">
-                    <div class="right-padding hidden-phone"></div>
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <div class="signin-content">
-                                <#nested>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <div class="copyright">
-                                Copyright &copy; 2008-${.now?string("yyyy")} by ZYEEDA All Rights Reserved
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div><!-- /.row-fluid -->
             </div>
         </div>
     </div>
