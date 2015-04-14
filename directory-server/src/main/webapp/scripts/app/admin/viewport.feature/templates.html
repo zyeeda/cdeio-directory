@@ -1,52 +1,12 @@
 {{#layout}}
-<div class="navbar navbar-fixed-top" id="header"/>
-    <div class="container-fluid main-container">
-        <a class="menu-toggler" id="menu-toggler" href="#">
-            <span class="menu-text"></span>
-        </a>
-        <div id="sidebar" class="sidebar"/>
-        <div class="clearfix main-content">
-        <div id="breadcrumbs" class="breadcrumbs"/>
-        <div class="clearfix page-content no-padding" id="content"></div>
-    </div>
-</div>
+<div id="left"></div>
+<div id="right"></div>
 {{/layout}}
 
-{{#view "breadcrumbs"}}
-<ul class="breadcrumb">
-    <li>
-        <i class="{{home.iconClass}}"></i>
-        <a href="javascript:void 0;">{{home.name}}</a>
+{{#view "left"}}
+    <div>this is left</div>
+{{/view}}
 
-        {{#unless home.isLast}}
-        <span class="divider">
-            <i class="icon-angle-right"></i>
-        </span>
-        {{/unless}}
-    </li>
-    {{#each items}}
-    {{#if isLast}}
-    <li class="active">
-    {{else}}
-    <li>
-    {{/if}}
-    {{name}}
-    {{#unless isLast}}
-    <span class="divider">
-        <i class="icon-angle-right"></i>
-    </span>
-    {{/unless}}
-    </li>
-    {{/each}}
-</ul>
-<div class="nav-search" id="nav-search">
-    <a href="javascript:void(0);" class="btn btn-mini icon-eye-open show-source" id="view-source" style="display:none;" title="查看代码"></a>
-    <a href="javascript:void(0);" class="btn btn-mini icon-eye-close close-source" id="view-example" style="display:none;" title="返回样例"></a>
-    <!-- <form class="form-search" id="search-form" method = "post" onsubmit="return false">
-        <span class="input-icon">
-            <input type="text" placeholder="输入关键字后回车查询" class="input-mini nav-search-input width-90" id="nav-search-input" autocomplete="off" /> <i class="icon-search nav-search-icon"></i>
-        </span>
-        <input type="submit" value="提交" style="display:none;"/>
-    </form> -->
-</div>
+{{#view "right"}}
+    <div>this is right</div>
 {{/view}}
