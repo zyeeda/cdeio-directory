@@ -19,12 +19,17 @@
     <i class="icon-cogs"></i>
   </button> -->
 
-  <img class="large-user-photo" src="{{settings.currentUser.photo}}" alt="用户头像" />
-  <span class="large-user-name"><small>欢迎,</small> {{settings.currentUser.realName}}</span>
-  
-   <!-- <div class="large-user-btns" onclick="javascript:location.href='#profile'"><i class="icon-cog"></i></div>  -->
-
-  <div id="setting-cog" class="large-user-btns"><i id="icon-cog" class="icon-cog"></i></div>
+  <div class="large-userphoto">
+    <img class="large-user-photo" src="{{settings.currentUser.photo}}" alt="用户头像" />
+  </div>
+  <div class="large-userinfo">
+    <div class="large-username">
+      <span class="large-user-name"><small>欢迎,</small> {{settings.currentUser.realName}}</span>
+    </div>
+    <div class="large-setting-cog">
+      <div id="setting-cog" class="large-user-btns"><i id="icon-cog" class="icon-cog"></i></div>
+    </div>
+  </div>
 
 </div>
 
