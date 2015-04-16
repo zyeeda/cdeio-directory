@@ -17,7 +17,7 @@ define([
 
         showHome: function() {
             if (app.settings.currentUser.isAdmin) {
-                return app.startFeature('commons/viewport', { container: $(document.body), ignoreExists: true });
+                return app.startFeature('admin/viewport', { container: $(document.body), ignoreExists: true });
             }
             return app.startFeature('main/home', { container: $(document.body), ignoreExists: true });
         },
@@ -43,7 +43,7 @@ define([
                 app.startFeature(featurePath, { ignoreExists: true });
                 this._activateMenu(location.hash);
             }, this);
-            if (app.viewport.module.baseName !== 'commons') {
+            if (app.viewport.module.baseName !== 'admin') {
                 this.showHome().done(show);
                 return;
             }

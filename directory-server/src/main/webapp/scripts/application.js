@@ -17,7 +17,7 @@ define([
         app.done(function() {
             if (app.settings.currentUser.isAdmin) {
                 if (location.hash) {
-                    app.startFeature('commons/viewport', { container: $(document.body), ignoreExists: true }).done(function() {
+                    app.startFeature('admin/viewport', { container: $(document.body), ignoreExists: true }).done(function() {
                         deferred.resolve();
                     });
                 } else {
