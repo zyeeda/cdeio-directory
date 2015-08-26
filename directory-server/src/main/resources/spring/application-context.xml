@@ -41,7 +41,7 @@
     <import resource="classpath:spring/freemarker.xml"/>
     <!-- Configurate Hibernate to use SQL data source. -->
     <import resource="classpath:spring/hibernate.xml"/>
-    <import resource="classpath:spring/jms.xml"/>
+    <!--<import resource="classpath:spring/jms.xml"/>-->
     <!-- Delegate all servlet filters config here. -->
     <import resource="classpath:spring/shiro.xml"/>
 </beans>

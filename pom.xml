@@ -27,14 +27,14 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
     <properties>
         <cdeio.version>2.1.0-SNAPSHOT</cdeio.version>
         <activemq.version>5.7.0</activemq.version>
-        <spring.version>3.2.8.RELEASE</spring.version>
+        <!--<spring.version>3.2.8.RELEASE</spring.version>-->
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>com.zyeeda</groupId>
@@ -42,7 +42,7 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
             <version>${cdeio.version}</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>
             <version>${activemq.version}</version>
@@ -56,17 +56,17 @@ $License: Copyright &copyright 2014 Shenzhen Zyeeda Information Technology Co. L
                     <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
-         </dependency>
-        <dependency>
+         </dependency>-->
+        <!--<dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-pool</artifactId>
             <version>${activemq.version}</version>
-         </dependency>
-        <dependency>
+         </dependency>-->
+        <!--<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
             <version>${spring.version}</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <modules>
